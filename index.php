@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Lomond Outdoor Adventures</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
 <div>
