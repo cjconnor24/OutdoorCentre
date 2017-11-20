@@ -7,7 +7,7 @@
 </head>
 <body>
 <div>
-
+<header>
 <nav>
     <div class="container">
     <a href="#" class="nav__brand"><span class="nav__brand__span">Lomond Adventures</span></a>
@@ -16,15 +16,30 @@
         <li><a href="#">About Us</a></li>
         <li><a href="#">Facilites</a></li>
         <li><a href="#">Activities</a></li>
+        <li><a href="#">Contact Us</a></li>
     </ul>
     </div>
 </nav>
-<header></header>
+
+    <div class="hero">
+
+        <div class="container">
+            <h1>Welcome to Lomond Adventures</h1>
+            <p>The number one adventure location.</p>
+        </div>
+
+    </div>
+
+</header>
+
+
 
 <div class="body">
 
     <div class="container">
-<?php include('ipsum.php');?></div>
+<?php include('ipsum.php');?>
+<?php include('ipsum.php');?>
+    </div>
 
 </div>
 
