@@ -36,10 +36,10 @@
 
 <div class="body">
 
-    <div class="container">
+<div class="container">
 <?php include('ipsum.php');?>
 <?php include('ipsum.php');?>
-    </div>
+</div>
 
 </div>
 
