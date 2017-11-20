@@ -1,0 +1,77 @@
+/*@import url('reset.css');*/
+/*@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');*/
+html, * {
+    padding:0;
+    margin:0;
+}
+ul {list-style:none;padding:0;margin:0;}
+h1{ font-size: 2em;}
+h2{ font-size: 1.5em;}
+h3{ font-size: 1.17em;}
+h4{ font-size: 1em;}
+h5{ font-size: 0.83em;}
+h6{ font-size: 0.75em;}
+
+p { line-height: 1.5;
+    margin: 0 0 1em;    }
+
+
+/*
+
+GREEN #687561
+
+ */
+
+body {
+    font-family:Helvetica,Arial,sans-serif;
+    background:#687561; /*Flood page with green so no white gaps at the bottom*/
+}
+.body {
+    padding:60px 0 2em 0;
+    background:#FFF; /* COUNTER THE GREEN FLOOD FROM ABOVE */
+}
+/* NAV STYLES */
+nav {
+    background:#687561;
+    height:75px;
+    line-height:75px;
+}
+nav::after {
+    content: ' ';
+    clear:both;
+}
+nav ul {
+    font-family: 'Oswald', sans-serif;
+    width:100%;
+    text-align:right;
+}
+.nav__brand {
+    height:110px;
+    width:110px;
+    background:url('/img/nav-logo.svg') no-repeat center center;
+    display:block;
+    float:left;
+    position:relative;
+    top:20px;
+
+}
+.nav__brand__span {
+    display:none;
+}
+nav ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    float:left;
+}
+.container {
+    width:80%;
+    margin:0 auto;
+}
+
+/* FOOTER STYLES */
+footer p {
+    text-align:center;
+    padding:1em 0;
+    font-size:0.8em;
+    color:#CCC;
+}
