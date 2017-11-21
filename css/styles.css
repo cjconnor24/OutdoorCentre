@@ -325,3 +325,27 @@ footer form button[type=submit]:hover {
     color:#E17645;
     padding:0 0 0 10px;
 }
+.cookies {
+    height:60px;
+    width:100%;
+    display:block;
+    background:rgba(0,0,0,0.75);
+    position:fixed;
+    color:#FFF;
+    bottom:0;
+    left:0;
+    z-index:100;
+    text-align:center;
+    box-sizing: border-box;
+}
+.cookies__message {
+    line-height:60px;
+}
+.cookies__link-agree {
+    display:inline-block;
+    color:green;
+    text-decoration:none;
+}
+.cookies__link-disagree {
+    color:red;
+}
