@@ -278,6 +278,7 @@ footer form button[type=submit] {
     right:3px;
     background:#E17645;
     color:#FFF;
+    font-size:0.8em;
     cursor: pointer;
     transition:background-color 0.25s ease;
 }

@@ -8,6 +8,7 @@
 
     <link rel="shortcut icon" href="favicon.ico">
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css" media="screen">
 
     <script type="text/javascript" src="/js/slider.js"></script>
@@ -104,7 +105,7 @@
                         <label for="email">Email</label>
                         <div>
                         <input type="text" placeholder="Enter your email" />
-                        <button type="submit">Sign Up</button>
+                        <button type="submit"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
                         </div>
                     </div>
 
