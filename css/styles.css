@@ -288,10 +288,10 @@ footer form button[type=submit]:hover {
 }
 
 
-.sm-menu li {
+.footer__socialmenu li {
     display:inline-block;
 }
-.sm-menu li a {
+.footer__socialmenu li a {
     height:40px;
     width:40px;
     margin:0 0.5em 0 0;
@@ -305,9 +305,9 @@ footer form button[type=submit]:hover {
     border-radius:3px;
     transition: background-color 0.25s ease-out;
 }
-.sm-menu li a:hover {
+.footer__socialmenu li a:hover {
     background:#ff9455;
 }
-.sm-menu li a span {
+.footer__socialmenu li a span {
     display:none;
 }

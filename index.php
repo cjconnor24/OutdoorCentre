@@ -84,7 +84,7 @@
             </ul></div>
         <div class="col-3"><h2>Social Media</h2>
 
-            <ul class="sm-menu">
+            <ul class="footer__socialmenu">
                 <li><a href="#"><i class="fa fa-linkedin"></i> <span>LinkedIn</span></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
                 <li><a href="#"><i class="fa fa-facebook"></i> <span>Facebook</span></a></li>
