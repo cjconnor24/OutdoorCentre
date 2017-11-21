@@ -7,6 +7,55 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css">
+
+    <script type="text/javascript">
+
+        /**
+         * CRUDE FUNTION TO CHANGE HERO HEADER IMAGE
+         */
+        var i = 0;
+
+
+                    setInterval(changeHeroImage, 5000);
+
+
+
+
+        function changeHeroImage(){
+
+            var loop = 0;
+
+
+
+                try {
+                    console.log('THIS RAN');
+                    var heroBox = document.getElementsByClassName('hero')[0];
+                    var imagePath = "/img/";
+                    var heroImages = [
+                        "placeholder-2.jpg",
+                        "placeholder-3.jpg",
+                        "placeholder-4.jpg",
+                        "placeholder-1.jpg"
+                    ];
+
+                    heroBox.style.backgroundImage = 'url(' + imagePath + heroImages[i] + ')';
+
+                    if (i == 3) {
+                        i = 0;
+                    } else {
+                        i++;
+                    }
+
+                } catch (err) {
+                    Console.log('REMEBER AND AMEND YOUR JS SLIDER STUFF');
+                }
+
+
+
+        }
+
+
+    </script>
 </head>
 <body>
 <div>

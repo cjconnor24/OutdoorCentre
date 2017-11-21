@@ -165,7 +165,7 @@ nav ul li a:hover::after {
     /*height:350px;*/
     width:100%;
     margin-top:75px;
-    background:url('/img/placeholder-2.jpg') center center no-repeat fixed;
+    background:url('/img/placeholder-1.jpg') center center no-repeat fixed;
     background-size:cover;
     /*padding:10em 0;*/
     padding:calc(50px + 2em) 0 calc(100px + 2em) 0;
