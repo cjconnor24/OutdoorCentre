@@ -177,7 +177,7 @@ nav ul li a:hover::after {
     color:#FFF;
     position:relative;
     z-index:0;
-    transition:background-image 1s ease-in-out;
+    transition:background-image 2s ease;
 }
 .hero::after {
     content: '';
@@ -204,6 +204,7 @@ nav ul li a:hover::after {
     position:relative;
     top:-10vh;
     background:#FFF;
+    transition:position 1s;
 }
 .overlap::before {
     content:"";
@@ -245,6 +246,8 @@ nav ul li a:hover::after {
 footer {
     color:#FFF;
     padding:2em 0 5em 0;
+    /*background:url(/img/nav-logo.svg) center center no-repeat;*/
+    /*background-size: auto;*/
 }
 footer h2 {
     padding:0 0 1em 0;
