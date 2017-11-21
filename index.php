@@ -25,8 +25,8 @@
     <div class="hero">
 
         <div class="container">
-            <h1>Welcome to Lomond Adventures</h1>
-            <p>The number one adventure location.</p>
+            <h1 class="hero__header">Welcome to Lomond Adventures</h1>
+            <p class="hero__p">The number one adventure location.</p>
         </div>
 
     </div>
@@ -58,12 +58,12 @@
     <div class="container">
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-3">
             <h2>Contact Us</h2>
 
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
             <h2>Facilities</h2>
             <ul class="nav__menu">
                 <li><a href="#">Home</a></li>
@@ -73,7 +73,7 @@
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
-        <div class="col-4"><h2>Activities</h2>
+        <div class="col-3"><h2>Activities</h2>
             <ul class="nav__menu">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
@@ -81,7 +81,7 @@
                 <li><a href="#">Activities</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul></div>
-        <div class="col-4"><h2>Social Media</h2>
+        <div class="col-3"><h2>Social Media</h2>
             <ul class="nav__menu">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
