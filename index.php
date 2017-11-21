@@ -37,7 +37,7 @@
 
 <div class="body">
 
-<div class="container">
+<div class="container overlap">
 <?php include('ipsum.php');?>
 <?php include('ipsum.php');?>
 </div>

@@ -32,6 +32,7 @@ body {
 .body {
     padding:2em 0;
     background:#FFF; /* COUNTER THE GREEN FLOOD FROM ABOVE */
+    position:relative;
 }
 /* NAV STYLES */
 nav {
@@ -106,6 +107,13 @@ nav ul li a:hover::after {
 .container {
     width:80%;
     margin:0 auto;
+}
+.overlap {
+    position:relative;
+    top:-100px;
+    background:#FFF;
+    padding:2em;
+
 }
 
 /* FOOTER STYLES */
