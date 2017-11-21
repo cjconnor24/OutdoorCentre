@@ -112,8 +112,21 @@ nav ul li a:hover::after {
     position:relative;
     top:-100px;
     background:#FFF;
+    z-index:1;
+}
+.overlap::after {
+    content:"";
+    height:200px;
+    width:100%;
     padding:2em;
-
+    margin:0 auto;
+    display:block;
+    background:#F00;
+    position:absolute;
+    opacity:0.2;
+    top:-2em;
+    left:-2em;
+    z-index:0;
 }
 
 /* FOOTER STYLES */
