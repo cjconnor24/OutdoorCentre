@@ -7,6 +7,8 @@ html, * {
 * {
     box-sizing: border-box;
 }
+
+/* TYPOGRPAHY */
 ul {list-style:none;padding:0;margin:0;}
 h1{ font-size: 2em;font-family: 'Oswald', sans-serif;font-weight:400;}
 h2{ font-size: 1.5em;font-family: 'Oswald', sans-serif;font-weight:400;}
@@ -17,6 +19,23 @@ h6{ font-size: 0.75em;font-family: 'Oswald', sans-serif;font-weight:400;}
 
 p { line-height: 1.5;
     margin: 0 0 1em;    }
+
+/*
+COLUMN LOGIC
+*/
+.row [class*="col-"] {
+    float: left;
+}
+.col-2 { width:50%;}
+.col-3 { width:33.3333333333333%;}
+.col-4 { width:25%;}
+.col-5 { width:20%;}
+.col-6 { width:16.6666666666667%;}
+.row::after {
+	content:'';
+	display:block;
+	clear:both;
+}
 
 
 /*

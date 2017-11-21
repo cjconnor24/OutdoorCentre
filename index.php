@@ -38,6 +38,15 @@
 <div class="body">
 
 <div class="container overlap">
+
+    <div class="row">
+        <div class="col-4"><h1>HELLO</h1>
+        <p>THIS IS SOME CONTENT FOR COLUMN ONE. THIS IS SOME CONTENT FOR COLUMN ONE. THIS IS SOME CONTENT FOR COLUMN ONE. THIS IS SOME CONTENT FOR COLUMN ONE. </p></div>
+
+    <div class="col-2"><h1>HELLO</h1>
+        <p>THIS IS SOME CONTENT FOR COLUMN ONE. THIS IS SOME CONTENT FOR COLUMN ONE. THIS IS SOME CONTENT FOR COLUMN ONE. THIS IS SOME CONTENT FOR COLUMN ONE. </p></div>
+</div>
+
 <?php include('ipsum.php');?>
 <?php include('ipsum.php');?>
 </div>
@@ -45,7 +54,43 @@
 </div>
 
 <footer>
+
     <div class="container">
+
+    <div class="row">
+        <div class="col-4">
+            <h2>Contact Us</h2>
+
+        </div>
+
+        <div class="col-4">
+            <h2>Facilities</h2>
+            <ul class="nav__menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Facilites</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="col-4"><h2>Activities</h2>
+            <ul class="nav__menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Facilites</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul></div>
+        <div class="col-4"><h2>Social Media</h2>
+            <ul class="nav__menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Facilites</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul></div>
+
+    </div>
 
     </div>
 
