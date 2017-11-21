@@ -59,6 +59,7 @@ body {
     padding:2em 0;
     background:#FFF; /* COUNTER THE GREEN FLOOD FROM ABOVE */
     position:relative;
+    z-index:0;
 }
 /* NAV STYLES */
 nav {
@@ -68,6 +69,7 @@ nav {
     line-height:75px;
     position:fixed;
     top:0;
+    z-index:100;
     box-shadow: 0px 0px 20px #000;
 }
 nav::after {
@@ -132,27 +134,42 @@ nav ul li a:hover::after {
 
 .container {
     width:80%;
+    max-width:1536px;
     margin:0 auto;
 }
 .overlap {
     position:relative;
-    top:-100px;
+    top:-10vh;
     background:#FFF;
-    z-index:1;
 }
-.overlap::after {
+.overlap::before {
     content:"";
     height:200px;
     width:100%;
-    padding:2em;
+    padding:3em;
     margin:0 auto;
     display:block;
-    background:#F00;
+    background:#FFF;
+    /*background:url(/img/overlap.png) top center no-repeat;*/
+    /*background-size: 100%;*/
+    box-shadow:0px 0px 40px #687561;
+    top:-3em;
+    left:-3em;
     position:absolute;
-    opacity:0.2;
-    top:-2em;
-    left:-2em;
-    z-index:0;
+    z-index:-2;
+}
+.overlap::after {
+    content:"";
+    height:75px;
+    width:100%;
+    padding:3em;
+    position:absolute;
+    top:150px;
+    left:-3em;
+    background:#FFF;
+    box-shadow:0px 0px 100px #FFF;
+    display:block;
+    z-index:-1;
 }
 
 /* FOOTER STYLES */
