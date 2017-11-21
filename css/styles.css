@@ -17,6 +17,7 @@ h4{ font-size: 1em;font-family: 'Oswald', sans-serif;font-weight:400;}
 h5{ font-size: 0.83em;font-family: 'Oswald', sans-serif;font-weight:400;}
 h6{ font-size: 0.75em;font-family: 'Oswald', sans-serif;font-weight:400;}
 
+
 p { line-height: 1.5;
     margin: 0 0 1em;    }
 
@@ -55,7 +56,7 @@ colors
 .btn {
     background-color: #333333; /* Green */
     border: none;
-    color: white;
+    color: #FFF;
     padding:10px 20px;
     text-align: center;
     text-decoration: none;
@@ -115,7 +116,6 @@ nav::after {
     float:left;
     position:relative;
     top:20px;
-
 }
 .nav__brand__span {
     display:none;
@@ -141,8 +141,6 @@ nav ul li a {
 nav ul li a:hover {
     color:#E17645;
     text-shadow: 0px 0px 5px #333;
-
-    /*border-bottom:5px solid #E17645;*/
 }
 nav ul li a::after {
     content:'';
@@ -154,7 +152,6 @@ nav ul li a::after {
     background:#FFF;
     opacity:0;
     transition: opacity 0.25s;
-
 }
 nav ul li a:hover::after {
     opacity:0.8;
@@ -162,15 +159,12 @@ nav ul li a:hover::after {
 }
 
 .hero {
-    /*height:350px;*/
     width:100%;
     margin-top:75px;
     background:url('/img/placeholder-1.jpg') center center no-repeat fixed;
     background-size:cover;
-    /*padding:10em 0;*/
     padding:calc(50px + 2em) 0 calc(100px + 2em) 0;
     min-height:350px;
-    /*display:block;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -214,8 +208,6 @@ nav ul li a:hover::after {
     margin:0 auto;
     display:block;
     background:#FFF;
-    /*background:url(/img/overlap.png) top center no-repeat;*/
-    /*background-size: 100%;*/
     box-shadow:0px 0px 40px #687561;
     top:-3em;
     left:-3em;
@@ -250,7 +242,9 @@ footer {
     /*background-size: auto;*/
 }
 footer h2 {
-    padding:0 0 1em 0;
+    font-size:1.2em;
+    text-transform: uppercase;
+    padding:0 0 0.8em 0;
     text-shadow:1px 1px 5px #666;
 }
 footer form {
@@ -270,6 +264,10 @@ footer form  input[type=text] {
     border-radius:3px;
     position:relative;
     display:block;
+}
+footer form input[type=text]::placeholder {
+    color:#CCC;
+    font-size:1.3em;
 }
 footer form button[type=submit] {
     height:34px;
@@ -294,7 +292,7 @@ footer form button[type=submit]:hover {
 .footer__socialmenu li a {
     height:40px;
     width:40px;
-    margin:0 0.5em 0 0;
+    margin:0 5px 0 0;
     background:#E17645;
     display: flex;
     justify-content: center;
@@ -310,4 +308,19 @@ footer form button[type=submit]:hover {
 }
 .footer__socialmenu li a span {
     display:none;
+}
+.footer__menu li {
+    display:block;
+    padding:0.25em 0;
+}
+.footer__menu li a {
+    text-decoration:none;
+    text-transform: uppercase;
+    color:#FFF;
+    font-size:0.8em;
+    transition:color 0.25s ease, padding 0.3s ease;
+}
+.footer__menu li a:hover {
+    color:#E17645;
+    padding:0 0 0 10px;
 }

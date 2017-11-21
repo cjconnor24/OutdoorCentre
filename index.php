@@ -7,8 +7,8 @@
     <title>Lomond Outdoor Adventures</title>
 
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/css/styles.css" media="screen">
 
     <script type="text/javascript" src="/js/slider.js"></script>
 </head>
@@ -68,21 +68,23 @@
 
         <div class="col-3">
             <h2>Facilities</h2>
-            <ul class="nav__menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Facilites</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">Contact Us</a></li>
+            <ul class="footer__menu">
+                <?php
+                $facilities = array('Boat Hire','Equipment Hire','Life Jacket Hire');
+                foreach($facilities as $facility){
+                    echo "<li><a href=\"#\">$facility</a></li>";
+                }
+                ?>
             </ul>
         </div>
         <div class="col-3"><h2>Activities</h2>
-            <ul class="nav__menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Facilites</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">Contact Us</a></li>
+            <ul class="footer__menu">
+                <?php
+                $activities = array('Hiking','Kayaking','Canoeing','Climbing','Sailing');
+                foreach($activities as $facility){
+                    echo "<li><a href=\"#\">$facility</a></li>";
+                }
+                ?>
             </ul></div>
         <div class="col-3"><h2>Social Media</h2>
 
