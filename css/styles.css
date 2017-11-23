@@ -26,6 +26,16 @@ COLUMN LOGIC
 */
 .row [class*="col-"] {
     float: left;
+    padding: 30px;
+
+}
+.row [class*="col-"]:first-child {
+    padding-left:0px;
+    /*background:#F00;*/
+}
+.row [class*="col-"]:last-child{
+    padding-right:0px;
+    /*background:blue;*/
 }
 .col-1 { width: calc((100%/12)*1) ;}
 .col-2 { width: calc((100%/12)*2) ;}
@@ -318,7 +328,7 @@ footer form button[type=submit]:hover {
     text-decoration:none;
     /*text-transform: uppercase;*/
     color:#FFF;
-    font-size:0.8em;
+    font-size:1em;
     transition:color 0.25s ease, padding 0.3s ease;
 }
 
@@ -353,3 +363,17 @@ footer form button[type=submit]:hover {
 .cookies__link-disagree {
     color:red;
 }
+
+/* LARGER THAN 1024 */
+@media screen and (max-width:1024px){
+    .row [class*="col-"] {
+        width:100%;
+    }
+}
+
+
+/*@media screen and (max-width:1024px){*/
+    /*.row [class*="col-"] {*/
+        /*width:100%;*/
+    /*}*/
+/*}*/
