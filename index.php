@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <title>Lomond Outdoor Adventures</title>
 
@@ -67,6 +67,9 @@
             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.</p>
             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.</p>
         </div>
+
+    </div>
+    <div class="row">
 
         <div class="col-6 col-m-10">
             <h1>THIRD</h1>
@@ -135,12 +138,12 @@
             <div class="newsletter">
                 <h2>Newsletter</h2>
                 <p>Keep up-to-date with our events</p>
-                <form action="" method="post">
+                <form method="post">
 
                     <div>
                         <label for="email">Email</label>
                         <div>
-                        <input type="text" placeholder="Enter your email" />
+                        <input type="text" id="email" name="email" placeholder="Enter your email" />
                         <button type="submit"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
                         </div>
                     </div>
