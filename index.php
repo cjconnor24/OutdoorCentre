@@ -70,6 +70,11 @@
     <div class="row">
         <div class="col-3">
             <h2>Contact Us</h2>
+            <ul class="footer__menu">
+                <li><a href="#"><i class="fa fa-phone"></i> 0141 123 1234</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> email@lomondoutdoors.com</a></li>
+                <li><a href="#"><i class="fa fa-map"></i> 123 Lomond Street, Loch Lomond</a></li>
+            </ul>
 
         </div>
 

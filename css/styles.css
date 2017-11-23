@@ -238,8 +238,8 @@ nav ul li a:hover::after {
 footer {
     color:#FFF;
     padding:2em 0 5em 0;
-    /*background:url(/img/nav-logo.svg) center center no-repeat;*/
-    /*background-size: auto;*/
+    background:url(/img/faded-logo@2x.png) center center no-repeat;
+    background-size: auto 100%;
 }
 footer h2 {
     font-size:1.2em;
@@ -312,18 +312,22 @@ footer form button[type=submit]:hover {
 }
 .footer__menu li {
     display:block;
-    padding:0.25em 0;
+    padding:0.4em 0;
 }
 .footer__menu li a {
     text-decoration:none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color:#FFF;
     font-size:0.8em;
     transition:color 0.25s ease, padding 0.3s ease;
 }
+
 .footer__menu li a:hover {
     color:#E17645;
     padding:0 0 0 10px;
+}
+.footer__address {
+    line-break: normal;
 }
 .cookies {
     height:60px;
