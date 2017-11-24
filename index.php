@@ -85,9 +85,17 @@
     </div>
 
 <?php include('ipsum.php');?>
-<?php include('ipsum.php');?>
+
+
 
 </div>
+
+    <div class="band">
+        <div class="container">
+        <?php include('ipsum.php');?>
+        </div>
+
+    </div>
 
 </div>
 

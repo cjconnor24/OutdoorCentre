@@ -211,6 +211,35 @@ nav ul li a:hover::after {
     max-width:1536px;
     margin:0 auto;
 }
+
+.band {
+    background:#E17645;
+    color:#FFF;
+    padding:2em 0;
+    margin:2em 0;
+    position:relative;
+}
+.band::before {
+    content: '';
+    height:100px;
+    background:url('/img/band-top.svg') bottom center  no-repeat;
+    width:100%;
+    display:block;
+    position:absolute;
+    left:0;
+    top:-99px;
+}
+.band::after{
+    content: '';
+    height:100px;
+    background:url('/img/band-top.svg') top center  no-repeat;
+    transform: rotate(180deg);
+    width:100%;
+    display:block;
+    position:absolute;
+    left:0;
+    bottom:-100px);
+}
 .overlap {
     position:relative;
     top:-10vh;
@@ -255,8 +284,9 @@ nav ul li a:hover::after {
 footer {
     color:#FFF;
     padding:2em 0 5em 0;
-    background:url(/img/faded-logo@2x.png) center center no-repeat;
-    background-size: auto 100%;
+    background:url(/img/faded-logo@2x.png) bottom center no-repeat fixed;
+    background-size: auto;
+    /*background-attachment: ;*/
 }
 footer h2 {
     font-size:1.2em;
