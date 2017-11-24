@@ -393,8 +393,17 @@ footer form button[type=submit]:hover {
         /*width:100%;*/
     /*}*/
 }
+/*1440*/
+@media screen and (min-width:1441px) {
 
+/*STYLES HERE FOR SUPER LARGE SCREENS*/
+    body {
+        font-size:1.15em;
+    }
+
+}
 /*1280*/
+
 /*1024*/
 
 /*768*/
