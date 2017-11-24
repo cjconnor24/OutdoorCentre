@@ -96,7 +96,8 @@
     <div class="container">
 
     <div class="row">
-        <div class="col-3">
+
+        <div class="col-4">
             <h2>Contact Us</h2>
             <ul class="footer__menu">
                 <li><a href="#"><i class="fa fa-phone"></i> 0141 123 1234</a></li>
@@ -106,7 +107,7 @@
 
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
             <h2>Facilities</h2>
             <ul class="footer__menu">
                 <?php
@@ -117,7 +118,7 @@
                 ?>
             </ul>
         </div>
-        <div class="col-3"><h2>Activities</h2>
+        <div class="col-2"><h2>Activities</h2>
             <ul class="footer__menu">
                 <?php
                 $activities = array('Hiking','Kayaking','Canoeing','Climbing','Sailing');
@@ -126,7 +127,8 @@
                 }
                 ?>
             </ul></div>
-        <div class="col-3"><h2>Social Media</h2>
+
+        <div class="col-4"><h2>Social Media</h2>
 
             <ul class="footer__socialmenu">
                 <li><a href="#"><i class="fa fa-linkedin"></i> <span>LinkedIn</span></a></li>
@@ -143,8 +145,8 @@
                     <div>
                         <label for="email">Email</label>
                         <div>
-                        <input type="text" id="email" name="email" placeholder="Enter your email" />
-                        <button type="submit"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
+                            <input type="text" id="email" name="email" placeholder="Enter your email" />
+                            <button type="submit"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
                         </div>
                     </div>
 
@@ -153,6 +155,9 @@
             </div>
 
         </div>
+
+
+
 
     </div>
 

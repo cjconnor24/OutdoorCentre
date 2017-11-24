@@ -1,5 +1,5 @@
 /*@import url('reset.css');*/
-/*@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');*/
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 html, * {
     padding:0;
     margin:0;
@@ -26,8 +26,7 @@ COLUMN LOGIC
 */
 .row [class*="col-"] {
     float: left;
-    padding: 30px;
-
+    padding: 20px;
 }
 .row [class*="col-"]:first-child {
     padding-left:0px;
@@ -37,6 +36,14 @@ COLUMN LOGIC
     padding-right:0px;
     /*background:blue;*/
 }
+/*TEMP FOR VISUAL DEBUG*/
+/*.row [class*="col-"]:nth-child(even){*/
+    /*background:rgba(155,0,155,0.3);*/
+/*}*/
+/*.row [class*="col-"]:nth-child(odd){*/
+    /*background:rgba(155,155,0,0.3);*/
+/*}*/
+
 .col-1 { width: calc((100%/12)*1) ;}
 .col-2 { width: calc((100%/12)*2) ;}
 .col-3 { width: calc((100%/12)*3) ;}
@@ -296,7 +303,9 @@ footer form button[type=submit]:hover {
     background:#ff9455;
 }
 
-
+.footer__socialmenu {
+    padding:0 0 1em 0;
+}
 .footer__socialmenu li {
     display:inline-block;
 }
@@ -312,10 +321,11 @@ footer form button[type=submit]:hover {
     color:#FFF;
     font-size:1.5em;
     border-radius:3px;
-    transition: background-color 0.25s ease-out;
+    transition: background-color 0.25s ease-out, font-size 0.3s ease;
 }
 .footer__socialmenu li a:hover {
     background:#ff9455;
+    /*font-size:1.8em;*/
 }
 .footer__socialmenu li a span {
     display:none;
