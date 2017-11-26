@@ -48,6 +48,10 @@
         <li><a href="#">Contact Us</a></li>
     </ul>
 
+        <div class="nav__telephone">
+            <a href="tel:01236123456"><i class="fa fa-phone"></i></a>
+        </div>
+
         <div class="nav__hamburger">
             <span></span>
             <span></span>
@@ -128,7 +132,7 @@
 
     <div class="row">
 
-        <div class="col-4">
+        <div class="col-4 col-m-6">
             <h2>Contact Us</h2>
             <ul class="footer__menu">
                 <li><a href="#"><i class="fa fa-phone"></i> 0141 123 1234</a></li>
@@ -138,7 +142,7 @@
 
         </div>
 
-        <div class="col-2">
+        <div class="col-2 col-m-6">
             <h2>Facilities</h2>
             <ul class="footer__menu">
                 <?php
@@ -149,7 +153,7 @@
                 ?>
             </ul>
         </div>
-        <div class="col-2"><h2>Activities</h2>
+        <div class="col-2 col-m-6"><h2>Activities</h2>
             <ul class="footer__menu">
                 <?php
                 $activities = array('Hiking','Kayaking','Canoeing','Climbing','Sailing');
@@ -159,7 +163,7 @@
                 ?>
             </ul></div>
 
-        <div class="col-4"><h2>Social Media</h2>
+        <div class="col-4 col-m-6"><h2>Social Media</h2>
 
             <ul class="footer__socialmenu">
                 <li><a href="#"><i class="fa fa-linkedin"></i> <span>LinkedIn</span></a></li>
