@@ -507,7 +507,17 @@ footer form button[type=submit]:hover {
     footer .row [class*="col-"] {
     width:100%;
     }
-
+    .nav__submenu {
+        display:none;
+        position:static;
+        opacity:1;
+        left:0;
+        top:0;
+    }
+    .nav__menu li:nth-child(3):hover .nav__submenu,
+    .nav__menu li:nth-child(4):hover .nav__submenu {
+        display:none;
+    }
     .nav__brand {
         left:calc(50% - 55px);
     }
