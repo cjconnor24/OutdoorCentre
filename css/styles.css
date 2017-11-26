@@ -241,7 +241,7 @@ nav ul li a:hover::after {
     display:block;
     position:absolute;
     left:0;
-    bottom:-100px);
+    bottom:-100px;
 }
 .overlap {
     position:relative;
@@ -272,7 +272,7 @@ nav ul li a:hover::after {
     top:150px;
     left:-3em;
     background:#FFF;
-    box-shadow:0px 0px 100px #FFF;
+    box-shadow:0 0 100px #FFF;
     display:block;
     z-index:-1;
 }
@@ -427,8 +427,12 @@ footer form button[type=submit]:hover {
     /*}*/
 }
 
-@media screen and (min-width:1441px) {
+@media screen and (min-width: 768px) and (max-width:860px)  {
 
+    .nav__menu li a {
+        padding:0 0 0 1em;
+
+    }
 
 }
 
@@ -476,7 +480,7 @@ footer form button[type=submit]:hover {
         top:0;
         text-align: center;
         position:absolute;
-        font-size:40px;
+        font-size:48px;
     }
     .nav__telephone a {
         text-decoration:none;
@@ -491,7 +495,7 @@ footer form button[type=submit]:hover {
         top:0;
         left:0;
         transition:0.25s ease;
-        box-shadow:0px 0px 30px #000;
+        box-shadow:0 0 30px #000;
         z-index:100;
     }
     .nav__menu.open {
@@ -507,6 +511,9 @@ footer form button[type=submit]:hover {
         display:block;
         border-bottom:1px solid #FFF;
     }
+    .nav__menu li a:hover {
+        color:#FFF;
+    }
     .nav__hamburger {
         display:block;
         height:44px;
@@ -517,18 +524,17 @@ footer form button[type=submit]:hover {
         cursor: pointer;
         transform: rotate(0deg);
         transition: .5s ease-in-out;
-        cursor: pointer;
     }
     .nav__hamburger span {
-        height:6px;
+        height:7px;
         background:#FFF;
         left: 0;
         width:100%;
         display:block;
         position:absolute;
-        border-radius:8px;
+        border-radius:4px;
         transform: rotate(0deg);
-        transition: .25s ease-in-out;
+        transition: .2s ease-in-out;
     }
 
     .nav__hamburger span:nth-child(2),.nav__hamburger span:nth-child(3) {
@@ -545,7 +551,7 @@ footer form button[type=submit]:hover {
         transform: rotate(-45deg);
     }
     .nav__hamburger.open span:nth-child(1),.nav__hamburger.open span:nth-child(4) {
-        width: 0%;
+        width: 0;
         left: 50%;
     }
 
@@ -557,7 +563,7 @@ footer form button[type=submit]:hover {
 @media screen and (max-width:640px){
     .row [class*="col-"] {
         width:100%;
-        padding-left:0px;
-        padding-right:0px;
+        padding-left:0;
+        padding-right:0;
     }
 }
