@@ -44,7 +44,15 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Facilites</a></li>
-        <li><a href="#">Activities</a></li>
+        <li><a href="#">Activities</a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Facilites</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </li>
         <li><a href="#">Contact Us</a></li>
     </ul>
 

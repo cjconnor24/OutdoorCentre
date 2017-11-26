@@ -140,15 +140,15 @@ nav::after {
 .nav__hamburger, .nav__telephone {
     display:none;
 }
-nav ul {
+.nav__menu {
 font-family: 'Oswald', sans-serif;
     float:right;
 
 }
-nav ul li {
+.nav__menu li {
 float:left;
 }
-nav ul li a {
+.nav__menu li a {
     text-decoration: none;
     text-transform: uppercase;
     padding:0 1em;
@@ -158,11 +158,11 @@ nav ul li a {
     display:block;
     position:relative;
 }
-nav ul li a:hover {
+.nav__menu li a:hover {
     color:#E17645;
     text-shadow: 0 0 5px #333;
 }
-nav ul li a::after {
+.nav__menu li a::after {
     content:'';
     position:absolute;
     width:25px;
@@ -173,10 +173,11 @@ nav ul li a::after {
     opacity:0;
     transition: opacity 0.25s;
 }
-nav ul li a:hover::after {
+.nav__menu li a:hover::after {
     opacity:0.8;
     box-shadow:0 0 10px #EEE;
 }
+
 
 .hero {
     width:100%;
