@@ -8,10 +8,25 @@
 
     <link rel="shortcut icon" href="favicon.ico">
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css" media="screen">
 
     <script type="text/javascript" src="/js/slider.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.nav__hamburger').click(function(){
+                $(this).toggleClass('open');
+                $( ".nav__menu" ).toggleClass( "open" );
+
+
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -25,13 +40,21 @@
 <nav>
     <div class="container">
     <a href="#" class="nav__brand"><span class="nav__brand__span">Lomond Adventures</span></a>
-    <ul class="nav__menu">
+    <ul class="nav__menu open">
         <li><a href="#">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Facilites</a></li>
         <li><a href="#">Activities</a></li>
         <li><a href="#">Contact Us</a></li>
     </ul>
+
+        <div class="nav__hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
     </div>
 </nav>
 
