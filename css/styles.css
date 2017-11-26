@@ -143,6 +143,7 @@ nav::after {
 .nav__menu {
 font-family: 'Oswald', sans-serif;
     float:right;
+    position:relative;
 
 }
 .nav__menu li {
@@ -178,6 +179,43 @@ float:left;
     box-shadow:0 0 10px #EEE;
 }
 
+.nav__submenu {
+    background:rgba(255,255,255,1);
+    position:absolute;
+    top:75px;
+    left:300%;
+    display:block;
+    width:100%;
+    opacity:0;
+    padding:1em 0 0 0;
+    box-shadow:0 10px 10px #666;
+    transition:left 0.5s ease-out,opacity 1s ease;
+}
+.nav__submenu li {
+    float:left;
+    width:calc(50% - 1em);
+    display:block;
+
+}
+.nav__submenu li a {
+    color:#E17645;
+}
+.nav__submenu li a:hover {
+    text-shadow:none;
+    color:#ff9455;
+}
+.nav__submenu li a img {
+    width:50%;
+    padding:0 1em 0 0;
+}
+/*DISPLAY ON HOVER*/
+.nav__menu li:nth-child(3):hover .nav__submenu,
+.nav__menu li:nth-child(4):hover .nav__submenu {
+    top:75px;
+    left:0;
+    opacity: 1;
+    display:block;
+}
 
 .hero {
     width:100%;
