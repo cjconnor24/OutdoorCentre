@@ -403,7 +403,7 @@ footer {
     background:url(/img/faded-logo@2x.png) bottom center no-repeat fixed;
     background-size: auto;
     position:relative;
-    z-index:100;
+    /*z-index:100;*/
     /*background-attachment: ;*/
 }
 footer h2 {
