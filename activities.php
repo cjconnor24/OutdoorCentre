@@ -1,5 +1,5 @@
 <?php include('includes/header.php');?>
-
+<h1>THIS IS ACTIVITIES</h1>
 <div class="hero">
 
     <div class="container">
