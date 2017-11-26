@@ -254,33 +254,34 @@ float:left;
     margin:0 auto;
 }
 
+/* PRESENTATION BAND */
 .band {
     background:#E17645;
     color:#FFF;
-    padding:2em 0;
-    margin:2em 0;
+    padding:75px 0;
     position:relative;
+    background:linear-gradient(#E17645,#E17645, #ff9455, #FF9455);
 }
+
+.band::after,
 .band::before {
     content: '';
-    height:100px;
-    background:url('/img/band-top.svg') bottom center  no-repeat;
+    height:calc(100vw * 0.034722222);
+    background-size:100%;
     width:100%;
     display:block;
     position:absolute;
     left:0;
-    top:-99px;
+
 }
-.band::after{
-    content: '';
-    height:100px;
-    background:url('/img/band-top.svg') top center  no-repeat;
-    transform: rotate(180deg);
-    width:100%;
-    display:block;
-    position:absolute;
-    left:0;
-    bottom:-100px;
+.band::before {
+    background:url('/img/band-top.svg') top center no-repeat #FFF;
+    top:-0px;
+}
+.band::after {
+    background:url('/img/band-bottom.svg') bottom center  no-repeat #FFF;
+    bottom:0;
+
 }
 .overlap {
     position:relative;
