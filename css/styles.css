@@ -75,6 +75,7 @@ colors
     border: none;
     color: #FFF;
     padding:10px 20px;
+    margin:0 0 0.5em 0;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -134,6 +135,12 @@ nav::after {
     float:left;
     position:relative;
     top:20px;
+    box-shadow:0 0 10px #333;
+    border-radius:50%;
+    transition:0.5s;
+}
+.nav__brand:hover {
+    box-shadow:0 0 30px #333;
 }
 .nav__brand__span {
     display:none;
@@ -561,7 +568,7 @@ form .slider {
     transition: .4s;
     border-radius:35px;
 }
-.slider:before {
+form .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -573,15 +580,15 @@ form .slider {
     transition: .4s;
     border-radius:50%;
 }
-input:checked + .slider {
+form input:checked + .slider {
     background-color: #687561;
 }
 
-input:focus + .slider {
+form input:focus + .slider {
     box-shadow: 0 0 1px #687561;
 }
 
-input:checked + .slider:before {
+form input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
