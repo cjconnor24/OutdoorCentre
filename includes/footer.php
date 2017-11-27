@@ -55,11 +55,30 @@
                             <label for="email">Email</label>
                             <div>
                                 <input type="text" id="email" name="email" placeholder="Enter your email" />
-                                <button type="submit"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
+                                <button type="submit" id="newsletter-signup"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
                             </div>
                         </div>
 
                     </form>
+
+                    <script type="text/javascript">
+
+                        $("#newsletter-signup").click(function(e){
+
+                            e.preventDefault();
+                            console.log('THIS WAS CLICKED');
+//                          console
+//                            $.post("newsletter.php",
+//                                {
+//                                    name: "Donald Duck",
+//                                    city: "Duckburg"
+//                                },
+//                                function(data, status){
+//                                    alert("Data: " + data + "\nStatus: " + status);
+//                                });
+                        });
+
+                    </script>
 
                 </div>
 

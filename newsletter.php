@@ -24,6 +24,12 @@
             echo "This is not a valid email";
         }
 
+    } else {
+        header("HTTP/1.1 500 Invalid Address");
+        $errors = array("errors");
+        $errors[][] = "Invalid email";
+        $errors[][] = "Invalid Not working";
+        echo json_encode($errors);
     }
 
 //    echo "HELLO";
