@@ -510,6 +510,92 @@ footer form button[type=submit]:hover {
     text-align:center;
     box-sizing: border-box;
 }
+
+form input[type=text], form input[type=email] {
+    border:1px solid #CCC;
+    height:40px;
+    line-height:40px;
+    padding:0 0 0 1em;
+    border-radius: 4px;
+    display:block;
+    width:100%;
+}
+form input[type=text].error {
+    border:1px solid #F00;
+    box-shadow:0px 0px 5px #F00;
+    color:#F00;
+}
+form textarea {
+    display:block;
+    width:100%;
+    padding:1em;
+    border:1px solid #CCC;
+    border-radius:4px;
+    min-height: 200px;
+}
+form select {
+    display:block;
+    width:100%;
+    height:40px;
+    border:1px solid #CCC;
+    background:#FFF;
+    padding:0 0 0 1em;
+}
+form .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    border-radius:34px;
+}
+form .switch input {display:none;}
+form .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius:35px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius:50%;
+}
+input:checked + .slider {
+    background-color: #687561;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #687561;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+form label {
+    display:block;
+    font-weight:bold;
+    padding:0 0 10px 0;
+}
+.form-group {
+    padding:0 0 1em 0;
+}
+
 .cookies__message {
     line-height:60px;
 }

@@ -21,5 +21,5 @@
             <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Walking</a></li>
         </ul>
     </li>
-    <li><a href="#">Contact Us</a></li>
+    <li><a href="contact.php">Contact Us</a></li>
 </ul>
