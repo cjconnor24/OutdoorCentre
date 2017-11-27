@@ -51,7 +51,7 @@
                     <p>Keep up-to-date with our events</p>
                     <form method="post" id="newsletter-signup-form">
                     <div class="result">
-                        <p>Your email address was successfully added.</p>
+                        <p class="text">Your email address was successfully added.</p>
                     </div>
                         <div>
                             <label for="email">Email</label>
