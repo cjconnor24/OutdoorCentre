@@ -69,8 +69,8 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn btn-orng btn-lg">Contact Us</button>
-                    <button type="reset" class="btn btn-khak btn-lg">Clear Form</button>
+                    <button type="submit" class="btn btn-orng"><i class="fa fa-envelope"></i> Contact Us</button>
+                    <button type="reset" class="btn btn-khak"><i class="fa fa-pencil"></i> Clear Form</button>
 
                 </div>
 
