@@ -137,10 +137,11 @@ nav::after {
     top:20px;
     box-shadow:0 0 10px #333;
     border-radius:50%;
-    transition:0.5s;
+    transition:0.4s ease-in-out;
 }
 .nav__brand:hover {
     box-shadow:0 0 30px #333;
+    transform: rotate(360deg);
 }
 .nav__brand__span {
     display:none;
