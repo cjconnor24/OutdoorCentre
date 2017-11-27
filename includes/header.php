@@ -8,10 +8,8 @@
 
     <link rel="shortcut icon" href="/favicon.ico">
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-    <script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-        crossorigin="anonymous"></script>
+<!--    ADDING JQUERY LOCALLY FOR OFFLINE DEV-->
+    <script src="/js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css" media="screen">
 

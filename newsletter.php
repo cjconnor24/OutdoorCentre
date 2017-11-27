@@ -1,42 +1,58 @@
 <?php
 
-
-/**
- * Created by PhpStorm.
- * User: chrisconnor
- * Date: 26/11/2017
- * Time: 18:29
- */
-
 // s
 //if(is_ajax()){
-    header('Content-Type: application/json');
+//    header('Content-Type: application/json');
 
-    if(isset($_POST['email'])){
+    if(isset($_POST['email']) || !empty($_POST['email'])){
 
         $email = $_POST['email'];
+        $response = array();
 
+        // CHECK EMAIL IS VALID
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+            include('includes/dbConnect.php');
+
+            // CHECK IF IT EXISTS FIRST
+            $query = $conn->prepare("SELECT id FROM newsletter WHERE email=?");
+            $query->bindParam(1,$email);
+            $query->execute();
+            $count = $query->rowCount();
+
+            // CHECK IF EXISTS, IF NOT, ADD TO DB
+            // DON'T OUTPUT FALSE RESULT FOR SECURITY
+            if($count==0) {
+
+                $query = $conn->prepare("INSERT INTO newsletter (email,datetime) values(?,NOW())");
+                $query->bindParam(1, $email);
+                $query->execute();
+
+            }
+
+
+//            DITCH THE CONNECTION
+            $conn = null;
+
+
             header("HTTP/1.1 200 OK");
-            echo "This is a valid email";
+            $response[] = array("Your email address was added to mailing list.");
+            echo json_encode($response);
+
         } else {
-            header("HTTP/1.1 500 Invalid Address");
-            echo "This is not a valid email";
+
+            header("HTTP/1.1 500 Invalid Email Address");
+            $response[] = "Invalid email";
+            echo json_encode($response);
+
         }
 
     } else {
-        header("HTTP/1.1 500 Invalid Address");
-        $errors = array("errors");
-        $errors[][] = "Invalid email";
-        $errors[][] = "Invalid Not working";
-        echo json_encode($errors);
+
+        header("HTTP/1.1 500 No Email Address");
+        $response[] = "Email address cannot be empty";
+        echo json_encode($response);
     }
-
-//    echo "HELLO";
-//} else {
-//    echo "THIS IS NOT AJAX";
-//}
-
 
 function is_ajax() {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
