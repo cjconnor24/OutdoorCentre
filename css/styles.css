@@ -623,6 +623,24 @@ form label {
     color:red;
 }
 
+/* UTILITY STUFF FOR RE-USE */
+.result {
+    transition:0.5s background-color;
+    padding:1em;
+    margin:1em 0 1em 0;
+    border-radius:4px;
+    font-size:0.9em;
+    display:none;
+}
+.bg-success {
+    background: #28a745;
+    color:#FFF;
+}
+.bg-error {
+    background: #8b0000;
+    color: #FFF;
+}
+
 /* larger than 1024 */
 @media screen and (max-width:1024px){
 
