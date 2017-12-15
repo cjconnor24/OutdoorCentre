@@ -50,15 +50,16 @@
                     <h2>Newsletter</h2>
                     <p>Keep up-to-date with our events</p>
                     <form method="post" id="newsletter-signup-form">
-                    <div class="result">
-                        <p class="text">Your email address was successfully added.</p>
-                    </div>
+
                         <div>
                             <label for="email">Email</label>
                             <div>
                                 <input type="text" id="email" name="email" placeholder="Enter your email" />
                                 <button type="submit" id="newsletter-signup"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
                             </div>
+                        </div>
+                        <div class="result">
+                            <p class="text"><i class="fa fa-envelope"></i> <span class="message"></span></p>
                         </div>
 
                     </form>
@@ -67,21 +68,50 @@
                     $(document).ready(function(){
 
                         console.log("Doc is ready");
+                        console.log($('#newsletter-signup-form').serialize());
                         $('#newsletter-signup-form').submit(function(e){
 
                             e.preventDefault();
-                            console.log("Form submitted newsletter");
+
                             $.ajax({
                                 type: "POST",
+                                dataType: 'json',
                                 url: '/newsletter.php',
                                 data: $('#newsletter-signup-form').serialize(),
                                 success: function(resp){
-                                    console.log(resp.responseJSON);
-                                },
-                                error: function(resp){
-                                    console.log(resp.responseJSON);
-                                },
-                                dataType: 'json'
+
+                                    var resultBox = $("#newsletter-signup-form").find(".result");
+
+
+                                    if(resp.status=="success"){
+
+                                        // ADD THE JSON MESSAGE
+                                        resultBox.find('.message').html(resp.message);
+                                        resultBox.removeClass('bg-error')
+                                            .addClass('bg-success');
+
+                                        // CLEAR THE EMAIL ADDRESS
+                                        $("#email").val('');
+
+                                        // SLIDE DOWN AND DISPLAY THE BOX - REMOVE ANY ERRORS
+                                        resultBox.slideDown('slow',function(){
+
+                                            resultBox
+                                                .delay(5000)
+                                                .slideUp('slow');
+
+                                        });
+
+                                    } else {
+                                        //TODO: ADD ERROR CLASS AND MESSAGE
+                                        resultBox.find('.message').html(resp.message);
+
+                                        // ADD CLASS BEFORE SHOTING
+                                        resultBox.addClass('bg-error');
+                                        resultBox.slideDown('fast');
+
+                                    }
+                                }
                             });
 
 
