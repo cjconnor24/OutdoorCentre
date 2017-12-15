@@ -1,13 +1,11 @@
 <?php
 
-// s
-//if(is_ajax()){
-//    header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
-    if(isset($_POST['email']) || !empty($_POST['email'])){
+    if(isset($_POST['email']) || !empty($_POST['email']) || $_POST['email']==''){
 
         $email = $_POST['email'];
-        $response = array();
+
 
         // CHECK EMAIL IS VALID
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -21,7 +19,7 @@
             $count = $query->rowCount();
 
             // CHECK IF EXISTS, IF NOT, ADD TO DB
-            // DON'T OUTPUT FALSE RESULT FOR SECURITY
+            // DON'T OUTPUT FALSE RESULT FOR SECURITY REASONS
             if($count==0) {
 
                 $query = $conn->prepare("INSERT INTO newsletter (email,datetime) values(?,NOW())");
@@ -31,26 +29,22 @@
             }
 
 
-//            DITCH THE CONNECTION
+            // DITCH THE CONNECTION
             $conn = null;
 
-
-            header("HTTP/1.1 200 OK");
-            $response[] = array("Your email address was added to mailing list.");
+            $response = array("status"=>"success","message"=>"Your email address was added to mailing list.");
             echo json_encode($response);
 
         } else {
 
-            header("HTTP/1.1 500 Invalid Email Address");
-            $response[] = "Invalid email";
+            $response = array("status"=>"error","message"=>$email." is not a  valid email address.");
             echo json_encode($response);
 
         }
 
     } else {
 
-        header("HTTP/1.1 500 No Email Address");
-        $response[] = "Email address cannot be empty";
+        $response = array("status"=>"error","message"=>"Your email cannot be empty.");
         echo json_encode($response);
     }
 
