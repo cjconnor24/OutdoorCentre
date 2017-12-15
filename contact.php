@@ -19,7 +19,13 @@
         <h1>Get in Touch!</h1>
 
         <p>To get in contact with us, simply fill in the form below. Alternatively you can email us.</p>
+<pre>
+    <?php
 
+    print_r($_POST);
+
+    ?>
+</pre>
         <form action="" method="post">
 
             <div class="row">
