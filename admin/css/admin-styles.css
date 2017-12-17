@@ -84,7 +84,6 @@ nav ul li a i {
 .table {
     width:100%;
     border-collapse: collapse;
-    table-layout: fixed;
 
 }
 
@@ -109,7 +108,7 @@ nav ul li a i {
     margin:0 5px 0 0;
     transition:0.2s ease-in-out;
 }
-.table tbody td a {
+.table tbody td:nth-child(2) a {
     text-decoration:none;
     color:cornflowerblue;
 }
@@ -127,8 +126,8 @@ nav ul li a i {
 .table__button:nth-child(1):hover{ background: #75c6ff; }
 .table__button:nth-child(2){ background:#33374b; }
 .table__button:nth-child(2):hover{ background: #6e778e; }
-.table__button:nth-child(3){ background:#8b0000; }
-.table__button:nth-child(3):hover{ background: #ce0000; }
+.table__button.remove{ background:#8b0000; }
+.table__button.remove:hover{ background: #ce0000; }
 .table__button span {
     display:none;
 }
