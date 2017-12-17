@@ -54,7 +54,7 @@
                         <div>
                             <label for="email">Email</label>
                             <div>
-                                <input type="text" id="email" name="email" placeholder="Enter your email" />
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required/>
                                 <button type="submit" id="newsletter-signup"><i class="fa fa-pencil-square-o"></i> Sign Up</button>
                             </div>
                         </div>
@@ -67,8 +67,6 @@
                     <script type="text/javascript">
                     $(document).ready(function(){
 
-                        console.log("Doc is ready");
-                        console.log($('#newsletter-signup-form').serialize());
                         $('#newsletter-signup-form').submit(function(e){
 
                             e.preventDefault();
@@ -82,12 +80,12 @@
 
                                     var resultBox = $("#newsletter-signup-form").find(".result");
 
-
                                     if(resp.status=="success"){
 
                                         // ADD THE JSON MESSAGE
                                         resultBox.find('.message').html(resp.message);
-                                        resultBox.removeClass('bg-error')
+                                        resultBox
+                                            .removeClass('bg-error')
                                             .addClass('bg-success');
 
                                         // CLEAR THE EMAIL ADDRESS
