@@ -26,7 +26,8 @@
 
     ?>
 </pre>
-        <form action="" method="post">
+
+        <form action="" method="post" id="contact-form">
 
             <div class="row">
 
@@ -83,7 +84,16 @@
             </div>
 
         </form>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#contact-form').submit(function(e){
+                    e.preventDefault();
+                    console.log($(this).serialize());
+                });
+            });
 
+
+        </script>
         <?php include('ipsum.php');?>
     </div>
 
