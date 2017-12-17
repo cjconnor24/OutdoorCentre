@@ -1,5 +1,72 @@
 <?php
+// AJAX RESPONSE
+
+// CHECK IF
+if(isset($_POST['message'])){
+
+        // SET ASIDE A SPACE FOR ERRORS
+        $errors = array();
+
+        // CHECK THE MESSAGE ISNT BLANK
+        if(!isset($_POST['message']) && $_POST['message']==""){
+
+                $errors[] = "The message cannot be blank";
+
+        } else {
+
+                $message = $_POST['message'];
+
+        }
+
+        // CHECK THE ENQUIRY ID IS SET
+        if(!isset($_POST['enquiryid']) && $_POST['enquiryid']==""){
+
+                $errors[] = "There was an issue creating the response";
+
+        } else {
+
+                $enquiryid = $_POST['enquiryid'];
+
+        }
+
+    //TODO: UPDATE THIS TO LOGGED IN USER
+    $userid = 1;
+
+        // CHECK FOR ERRORS BEFORE PROCEEDING
+    if(count($errors)==0){
+
+        include('../includes/dbConnect.php');
+        $query = $conn->prepare("INSERT INTO response (message,enquiry,user,created_at) VALUES(:message,:enquiryid,:userid,NOW());");
+        $query->bindParam(":message",$message);
+        $query->bindParam(":enquiryid",$enquiryid);
+
+        $query->bindParam(":userid",$userid);
+
+        // IF SUCCESS
+        if($query->execute()){
+                // TODO: SEND SUCCESS JSON
+            echo "<p>This was added to the DB";
+        } else {
+                // TODO: SEND ERROR JSON
+            echo "<p>There was an issue adding it to the DB";
+        }
+
+    } else {
+            // TODO: SEND ERROR JSON
+    }
+
+    exit();
+}
+
+?>
+
+<?php
+//
+
 include('includes/header.php');
+?>
+<p><a href="/admin/enquiries.php" class="btn btn-small"><i class="fa fa-arrow-circle-left"></i> Return to Enquiries</a></p>
+<?php
 
 // MAKE SURE ID IS SET AND IS A NUMBER
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -62,16 +129,45 @@ enquiry.name,
 
             </div>
 
-            <h2>Response</h2>
-            <p>You can respond to the enquiry below.</p>
+            <p><a href="#" class="btn"><i class="fa fa-reply"></i> Reply to Enquiry</a></p>
 
-            <form action="post">
 
-                    <textarea name="message" class="text-box" id="message" required></textarea>
+            <div class="response">
+                    <h2>Response</h2>
+                    <p>You can respond to the enquiry below.</p>
 
-                    <input type="submit" name="submit" class="btn"  value="Send Response">
+                    <form action="" method="post" id="enquiry-response-form">
 
-            </form>
+                            <textarea name="message" class="text-box" id="message" required></textarea>
+                            <input type="hidden" name="enquiryid" value="<?php echo $results->id;?>">
+
+                            <input type="submit" name="submit" class="btn"  value="Send Response">
+
+                    </form>
+
+            </div>
+
+            <script type="text/javascript">
+
+                //                $(document).ready(function(){
+                //
+                //                    $("#enquiry-response-form").submit(function(e){
+                //
+                //                        e.preventDefault();
+                //                        console.log($(this).serialize());
+                //
+                //                        var formData = $(this).serialize();
+                //
+                //                        $.post('view-enquiry.php',
+                //                        formData,function(resp){
+                //                            console.log(resp);
+                //                            })
+                //
+                //                    })
+                //
+                //                });
+
+            </script>
 
         <?php
     } else {
