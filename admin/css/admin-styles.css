@@ -75,7 +75,12 @@ nav ul li a:hover {
 }
 nav ul li a i {
     padding:0 1em 0 2em;
+    transition:color 0.25s ease;
 }
+nav ul li a:hover i {
+    color:deepskyblue;
+}
+
 #main-body {
     width:100%;
     padding:2em 100px 2em 350px;
@@ -110,7 +115,7 @@ nav ul li a i {
 }
 .table tbody td:nth-child(2) a {
     text-decoration:none;
-    color:cornflowerblue;
+    color:deepskyblue;
 }
 .table tbody tr {
     transition:0.25s background-color ease;
@@ -122,7 +127,7 @@ nav ul li a i {
     border-bottom:1px solid #e5e8eb;
 }
 /*.table tbody td:nth-child(4){ text-align: right;}*/
-.table__button:nth-child(1){ background:cornflowerblue; }
+.table__button:nth-child(1){ background:deepskyblue; }
 .table__button:nth-child(1):hover{ background: #75c6ff; }
 .table__button:nth-child(2){ background:#33374b; }
 .table__button:nth-child(2):hover{ background: #6e778e; }
@@ -145,7 +150,8 @@ nav ul li a i {
 .btn {
     display:inline-block;
     padding:0.5em 1em;
-    background:#202334;
+    margin:0 0 1em 0;
+    background:deepskyblue;
     text-transform: uppercase;
     text-decoration:none;
     font-family:Oswald,Helvetica,Arial,sans-serif;
@@ -154,6 +160,9 @@ nav ul li a i {
     border:none;
     font-size:1em;
     transition:background-color 0.5s ease;
+}
+.btn-small {
+    font-size:0.8em;
 }
 .btn:hover {
     background:#33374b;
@@ -166,4 +175,38 @@ nav ul li a i {
     width:100%;
     padding:1em;
     font-size:1.5em;
+}
+
+/* STYLE SPECIFIC MEDIA QUERIES */
+@media screen and (max-width:1024px) {
+
+    #side-bar {
+        width: 200px;
+    }
+
+    #main-body {
+        padding:2em 100px 2em 250px;
+    }
+}
+@media screen and (max-width:768px) {
+    #side-bar {
+        width:100px;
+    }
+    #main-body {
+        padding:2em 100px 2em 150px;
+    }
+    .side-bar__logo { margin:0 auto 1em auto;}
+    .side-bar__heading {display:none;}
+    .side-bar__user {display:none;}
+    nav {
+        padding:0;
+        text-align:center;
+    }
+    nav ul li a i {
+        padding:0;
+    }
+    nav ul li a span {
+        display:none;
+    }
+
 }
