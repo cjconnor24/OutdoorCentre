@@ -281,6 +281,14 @@ float:left;
     max-width:1536px;
     margin:0 auto;
 }
+/* MAP STYLING CONTACT PAGE*/
+#location-map {
+    margin:75px 0 0 0;
+    height:50vh;
+    width:100%;
+    display:block;
+    z-index:-2;
+}
 
 /* presentation band */
 .band {
