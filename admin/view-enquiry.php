@@ -90,7 +90,7 @@ enquiry.name,
 
         $results = $query->fetchObject();
 
-        $conn = null;
+//        $conn = null;
         ?>
             <h1>Enquiry #<?php echo $results->id; ?></h1>
             <p>Below are the details for Enquiry # <?php echo $results->id;?></p>
@@ -129,10 +129,19 @@ enquiry.name,
 
             </div>
 
-            <p><a href="#" class="btn"><i class="fa fa-reply"></i> Reply to Enquiry</a></p>
-
-
             <div class="response">
+
+                <?php
+
+                $query = $conn->prepare("SELECT id FROM response WHERE enquiry = :enquiryid");
+                $query->bindParam(":enquiryid",$_GET['id']);
+
+                $query->execute();
+                $count = $query->rowCount();
+
+                if($count==0){
+
+                ?>
                     <h2>Response</h2>
                     <p>You can respond to the enquiry below.</p>
 
@@ -144,6 +153,40 @@ enquiry.name,
                             <input type="submit" name="submit" class="btn"  value="Send Response">
 
                     </form>
+                <?php
+                } else {
+                        ?>
+                    <h2>Reponse</h2>
+                    <p>You responded below here are the details.</p>
+
+                    <div class="row">
+                            <div class="col-6">
+                                    <table class="table">
+                                            <tr>
+                                                    <td>User</td>
+                                                    <td>Chris Connor</td>
+                                            </tr>
+                                            <tr>
+                                                    <td>Email</td>
+                                                    <td>cjconnor24@connordesign.com</td>
+                                            </tr>
+                                            <tr>
+                                                    <td>Date</td>
+                                                    <td>11/10/1987</td>
+                                            </tr>
+
+                                    </table>
+                            </div>
+                            <div class="col-6">
+
+                            </div>
+                    </div>
+                    <?php
+                }
+
+                // FINALLY CLOSE THE CONNECTION
+                $conn = NULL;
+                ?>
 
             </div>
 
