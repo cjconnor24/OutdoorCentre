@@ -77,7 +77,7 @@
             } else {
                 $response = array(
                     "status"=>"error",
-                    "message"=>"We encountered some errors trying to process your enquiry.",
+                    "message"=>"We encountered some errors trying to process your enquiry:",
                     "errors"=>array("There was a problem saving your enquiry. (SQL ERROR)")
                 );
                 echo json_encode($response);
