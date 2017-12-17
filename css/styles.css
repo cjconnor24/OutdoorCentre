@@ -359,8 +359,8 @@ float:left;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
 .activity__heading {
     color:#e17645;
     text-transform: uppercase;
