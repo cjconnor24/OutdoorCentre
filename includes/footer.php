@@ -101,7 +101,7 @@
                                         });
 
                                     } else {
-                                        //TODO: ADD ERROR CLASS AND MESSAGE
+
                                         resultBox.find('.message').html(resp.message);
 
                                         // ADD CLASS BEFORE SHOTING
