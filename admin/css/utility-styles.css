@@ -117,6 +117,7 @@ body {
 
 /*1024*/
 @media screen and (max-width:1024px){
+
     .row [class*="col-"] {
         width:100%;
         padding-left:0;
