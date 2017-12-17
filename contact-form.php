@@ -56,7 +56,7 @@
 
             include('includes/dbConnect.php');
 
-            $prequery = "INSERT INTO enquiry (name,email,telephone,category,message,created_at) values(?,?,?,?,?,NOW())";
+            $prequery = "INSERT INTO enquiry (name,email,telephone,activity,message,created_at) values(?,?,?,?,?,NOW())";
 
             $query = $conn->prepare($prequery);
             $query->bindParam(1, $name);
