@@ -23,6 +23,7 @@
     <div id="side-bar">
         <img class="side-bar__logo" src="/admin/img/admin-logo.svg" alt="Admin Logo">
         <h2 class="side-bar__heading">Admin Section</h2>
+        <p class="side-bar__user"><i class="fa fa-user"></i> Chris Connor</p>
         <nav>
             <ul>
                 <?php include('navigation.php'); ?>

@@ -41,6 +41,12 @@ html, body {
     margin:0.5em 0;
     text-shadow: 1px 1px 1px #101020;
 }
+.side-bar__user {
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:1em;
+    text-align: center;
+    color:deepskyblue;
+}
 .side-bar__copyright {
     font-family:Arial,Helvetica,sans-serif;
     font-size:0.6em;
@@ -52,7 +58,7 @@ html, body {
 
 }
 nav ul li a {
-    font-size:1.2em;
+    font-size:1.1em;
     text-transform:uppercase;
     text-decoration: none;
     display:block;
@@ -78,12 +84,17 @@ nav ul li a i {
 .table {
     width:100%;
     border-collapse: collapse;
+    table-layout: fixed;
 
 }
 
 .table td, .table th {
     text-align:left;
-    padding:0.75em;
+    padding:0.8em;
+}
+.table thead {
+    background:#202334;
+    color:#FFF;
 }
 .table__button {
     font-size:1.2em;
@@ -95,9 +106,29 @@ nav ul li a i {
     text-align:center;
     line-height:40px;
     color:#FFF;
+    margin:0 5px 0 0;
+    transition:0.2s ease-in-out;
 }
+.table tbody td a {
+    text-decoration:none;
+    color:cornflowerblue;
+}
+.table tbody tr {
+    transition:0.25s background-color ease;
+}
+.table tbody tr:hover {
+    background:#ededed;
+}
+.table tbody td {
+    border-bottom:1px solid #e5e8eb;
+}
+/*.table tbody td:nth-child(4){ text-align: right;}*/
+.table__button:nth-child(1){ background:cornflowerblue; }
+.table__button:nth-child(1):hover{ background: #75c6ff; }
 .table__button:nth-child(2){ background:#33374b; }
+.table__button:nth-child(2):hover{ background: #6e778e; }
 .table__button:nth-child(3){ background:#8b0000; }
+.table__button:nth-child(3):hover{ background: #ce0000; }
 .table__button span {
     display:none;
 }
