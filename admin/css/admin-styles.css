@@ -221,8 +221,24 @@ nav ul li a:hover i {
     #main-body {
         padding:2em 100px 2em 250px;
     }
+    .hide {
+        display:none;
+    }
+    /*REMOVE FLEX*/
+    .row {
+        display:block;
+    }
+    .row [class*="col-"] {
+        width:100%;
+        padding-left:0;
+        padding-right:0;
+    }
+
 }
 @media screen and (max-width:768px) {
+
+
+
     #side-bar {
         width:100px;
     }
