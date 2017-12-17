@@ -185,12 +185,20 @@
 
                 <div class="form-group">
                     <label for="category">Enquiry Category</label>
-                    <select name="category" id="category">
+                    <select name="category" id="category" required>
                         <option value="">Please select</option>
-                        <option value="1">Kayaking</option>
-                        <option value="2">Climbing</option>
-                        <option value="3">Hill Walking</option>
-                        <option value="4">Swimming</option>
+                        <?php
+                        include('includes/dbConnect.php');
+
+                        $query = $conn->prepare("SELECT id, name FROM activity ORDER BY name ASC;");
+
+                        $query->execute();
+                        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach($results as $rows){
+                        ?>
+                        <option value="<?php echo $rows['id'];?>"><?php echo $rows['name'];?></option>
+                        <?php  } ?>
                     </select>
                 </div>
 
