@@ -2,7 +2,7 @@
 // AJAX RESPONSE
 
 // CHECK IF
-if(isset($_POST['message'])){
+if(isset($_POST['message']) && isset($_POST['enquiryid'])){
 
         // SET ASIDE A SPACE FOR ERRORS
         $errors = array();
@@ -36,28 +36,53 @@ if(isset($_POST['message'])){
     if(count($errors)==0){
 
         include('../includes/dbConnect.php');
-        $query = $conn->prepare("INSERT INTO response (message,enquiry,user,created_at) VALUES(:message,:enquiryid,:userid,NOW());");
-        $query->bindParam(":message",$message);
+
+        // MAKE SURE NO RESPONSES ALREADY
+        $query = $conn->prepare("SELECT id FROM response WHERE enquiry = :enquiryid");
         $query->bindParam(":enquiryid",$enquiryid);
+        $query->execute();
+        $count = $query->rowCount();
 
-        $query->bindParam(":userid",$userid);
-                $temp=array('message'=>$message,'encid'=>$enquiryid,'userid'=>$userid);
-        print_r($temp);
+        // IF THERE ARENT - ADD TO DB
+        if($count==0) {
 
-        // IF SUCCESS
-        if($query->execute()){
-                // TODO: SEND SUCCESS JSON
-            echo "<p>This was added to the DB";
+            $query = $conn->prepare("INSERT INTO response (message,enquiry,user,created_at) VALUES(:message,:enquiryid,:userid,NOW());");
+            $query->bindParam(":message", $message);
+            $query->bindParam(":enquiryid", $enquiryid);
+
+            $query->bindParam(":userid", $userid);
+            $temp = array('message' => $message, 'encid' => $enquiryid, 'userid' => $userid);
+
+            // IF SUCCESS
+            if ($query->execute()) {
+
+                // SEND SUCCESS JSON
+                $response = array('status' => 'success', 'message' => 'The response was saved to the database.');
+                echo json_encode($response);
+
+                //TODO: ACTULLY SEND THE MAIL
+
+            } else {
+                // SEND ERROR JSON
+                $response = array('status' => 'error', 'message' => 'There was an issue adding to the DB.');
+                echo json_encode($response);
+            }
+
         } else {
-                // TODO: SEND ERROR JSON
-            echo "<p>There was an issue adding it to the DB";
+            // SEND ERROR JSON - ALREADY RESPONDED TO
+            $response = array('status' => 'error', 'message' => 'Someone has already responded to this enquiry.');
+            echo json_encode($response);
         }
 
     } else {
-            // TODO: SEND ERROR JSON
+            // SEND ERROR JSON - ALREADY RESPONDED TO
+        $response = array('status'=>'error','message'=>'There were some errors.','errors'=>$errors);
+        echo json_encode($response);
     }
 
+    // EXIT THIS SCRIPT
     exit();
+
 }
 
 ?>
@@ -218,24 +243,33 @@ CONCAT(users.fname,\" \",users.lname) fullname
             <p><a href="/admin/enquiries.php" class="btn btn-small"><i class="fa fa-arrow-circle-left"></i> Return to Enquiries</a></p>
 
             <script type="text/javascript">
+                // AJAX TO PASS TO FORM
+                                $(document).ready(function(){
 
-                //                $(document).ready(function(){
-                //
-                //                    $("#enquiry-response-form").submit(function(e){
-                //
-                //                        e.preventDefault();
-                //                        console.log($(this).serialize());
-                //
-                //                        var formData = $(this).serialize();
-                //
-                //                        $.post('view-enquiry.php',
-                //                        formData,function(resp){
-                //                            console.log(resp);
-                //                            })
-                //
-                //                    })
-                //
-                //                });
+                                    $("#enquiry-response-form").submit(function(e) {
+
+                                        e.preventDefault();
+
+                                        var formData = $(this).serialize();
+
+                                        var r = confirm("Are you sure you want to send this response?");
+                                        if (r == true) {
+
+                                            $.post('view-enquiry.php', formData, function (resp) {
+
+                                                if (resp.status == "success") {
+                                                    location.reload();
+                                                } else {
+                                                    alert(resp.message);
+                                                }
+
+                                            }, 'json');
+
+                                        }
+                                    });
+
+
+                                });
 
             </script>
 
