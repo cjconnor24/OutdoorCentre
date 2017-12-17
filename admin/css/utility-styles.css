@@ -1,0 +1,149 @@
+/*@import url('reset.css');*/
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+html, * {
+    padding:0;
+    margin:0;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* typogrpahy */
+ul {list-style:none;padding:0;margin:0;}
+h1{ font-size: 2em;font-family: 'oswald', sans-serif;font-weight:400;}
+h2{ font-size: 1.5em;font-family: 'oswald', sans-serif;font-weight:400;}
+h3{ font-size: 1.17em;font-family: 'oswald', sans-serif;font-weight:400;}
+h4{ font-size: 1em;font-family: 'oswald', sans-serif;font-weight:400;}
+h5{ font-size: 0.83em;font-family: 'oswald', sans-serif;font-weight:400;}
+h6{ font-size: 0.75em;font-family: 'oswald', sans-serif;font-weight:400;}
+
+
+p { line-height: 1.5;
+    margin: 0 0 1em;    }
+
+/*
+column logic
+*/
+.row [class*="col-"] {
+    float: left;
+    padding: 20px;
+}
+.row [class*="col-"]:first-child {
+    padding-left:0;
+    /*background:#f00;*/
+}
+.row [class*="col-"]:last-child{
+    padding-right:0;
+    /*background:blue;*/
+}
+/*temp for visual debug*/
+/*.row [class*="col-"]:nth-child(even){*/
+    /*background:rgba(155,0,155,0.3);*/
+/*}*/
+/*.row [class*="col-"]:nth-child(odd){*/
+    /*background:rgba(155,155,0,0.3);*/
+/*}*/
+
+.col-1 { width: calc((100%/12)*1) ;}
+.col-2 { width: calc((100%/12)*2) ;}
+.col-3 { width: calc((100%/12)*3) ;}
+.col-4 { width: calc((100%/12)*4) ;}
+.col-5 { width: calc((100%/12)*5) ;}
+.col-6 { width: calc((100%/12)*6) ;}
+.col-7 { width: calc((100%/12)*7) ;}
+.col-8 { width: calc((100%/12)*8) ;}
+.col-9 { width: calc((100%/12)*9) ;}
+.col-10 { width: calc((100%/12)*10) ;}
+.col-11 { width: calc((100%/12)*11) ;}
+.col-12 { width: calc((100%/12)*12) ;}
+.row::after {
+	content:'';
+	display:block;
+	clear:both;
+}
+
+/*
+green #687561
+orange #e17645
+
+colors
+ */
+
+
+
+body {
+    font-size:16px;
+    font-family:helvetica,arial,sans-serif;
+
+}
+
+
+/* larger than 1024 */
+@media screen and (max-width:1024px){
+
+    .col-m-1 { width: calc((100%/12)*1) ;}
+    .col-m-2 { width: calc((100%/12)*2) ;}
+    .col-m-3 { width: calc((100%/12)*3) ;}
+    .col-m-4 { width: calc((100%/12)*4) ;}
+    .col-m-5 { width: calc((100%/12)*5) ;}
+    .col-m-6 { width: calc((100%/12)*6) ;}
+    .col-m-7 { width: calc((100%/12)*7) ;}
+    .col-m-8 { width: calc((100%/12)*8) ;}
+    .col-m-9 { width: calc((100%/12)*9) ;}
+    .col-m-10 { width: calc((100%/12)*10) ;}
+    .col-m-11 { width: calc((100%/12)*11) ;}
+    .col-m-12 { width: calc((100%/12)*12) ;}
+    /*.row [class*="col-"] {*/
+        /*width:100%;*/
+    /*}*/
+}
+
+@media screen and (min-width: 768px) and (max-width:860px)  {
+
+
+
+}
+
+/*1440*/
+@media screen and (min-width:1441px) {
+
+/*styles here for super large screens*/
+    body {
+        font-size:1.15em;
+    }
+
+}
+/*1280*/
+
+/*1024*/
+
+/*768*/
+@media screen and (max-width:768px){
+
+    .col-s-1 { width: calc((100%/12)*1) ;}
+    .col-s-2 { width: calc((100%/12)*2) ;}
+    .col-s-3 { width: calc((100%/12)*3) ;}
+    .col-s-4 { width: calc((100%/12)*4) ;}
+    .col-s-5 { width: calc((100%/12)*5) ;}
+    .col-s-6 { width: calc((100%/12)*6) ;}
+    .col-s-7 { width: calc((100%/12)*7) ;}
+    .col-s-8 { width: calc((100%/12)*8) ;}
+    .col-s-9 { width: calc((100%/12)*9) ;}
+    .col-s-10 { width: calc((100%/12)*10) ;}
+    .col-s-11 { width: calc((100%/12)*11) ;}
+    .col-s-12 { width: calc((100%/12)*12) ;}
+
+    footer .row [class*="col-"] {
+    width:100%;
+    }
+
+}
+
+/*640*/
+@media screen and (max-width:640px){
+    .row [class*="col-"] {
+        width:100%;
+        padding-left:0;
+        padding-right:0;
+    }
+}

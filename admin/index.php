@@ -1,7 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: chrisconnor
- * Date: 17/12/2017
- * Time: 16:37
- */
+<?php include('includes/header.php'); ?>
+
+        <?php include('../ipsum.php');?>
+
+<?php include('includes/footer.php'); ?>
+
