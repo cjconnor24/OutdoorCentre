@@ -78,7 +78,7 @@ nav ul li a i {
 }
 #main-body {
     width:100%;
-    padding:2em 2em 2em 350px;
+    padding:2em 100px 2em 350px;
 }
 /*ENQUIRIES CSS*/
 .table {
@@ -140,4 +140,30 @@ nav ul li a i {
     margin:1em 0 1em 0;
     white-space: pre-wrap;
     position:relative;
+}
+/* ADMIN BTNS */
+.btn {
+    display:inline-block;
+    padding:0.5em 1em;
+    background:#202334;
+    text-transform: uppercase;
+    text-decoration:none;
+    font-family:Oswald,Helvetica,Arial,sans-serif;
+    border-radius:5px;
+    color:#FFF;
+    border:none;
+    font-size:1em;
+    transition:background-color 0.5s ease;
+}
+.btn:hover {
+    background:#33374b;
+}
+.text-box {
+    display:block;
+    border:1px solid #eee;
+    border-radius:10px;
+    margin:0 0 1em 0;
+    width:100%;
+    padding:1em;
+    font-size:1.5em;
 }
