@@ -138,6 +138,9 @@
             disableDefaultUI: true
         });
         map.setOptions({styles: style['retro']});
+
+        map.data.loadGeoJson('/routes/test-route.json');
+
         var marker = new google.maps.Marker({
             position: lochlomond,
             map: map

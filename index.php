@@ -1,8 +1,12 @@
 <?php include('includes/header.php');?>
 
+
+
 <div class="hero fullscreen">
 
     <div class="container">
+
+
 
 
         <h1 class="hero__header">Welcome to Lomond Adventures</h1>
@@ -20,7 +24,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="container nooverlap">
         <?php include('ipsum.php');?>
     </div>
 

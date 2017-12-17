@@ -2,7 +2,11 @@
 
 <div class="hero">
 
-    <div class="container"></div>
+    <div class="container">
+        <h1>Activities</h1>
+        <p>There are a wide range of activities and sports on offer at Lomond adventures.</p>
+        <p>Take a look below for more information on everything that we offer.</p>
+    </div>
 
 </div>
 
@@ -13,7 +17,7 @@
 
 
         <?php
-        $activities = array("Kayaking","Canoeing","Climbing","Walking");
+        $activities = array("Canoeing","Kayaking","Climbing","Hill Walking");
         for($i = 0; $i<4; $i++) {
 
         ?>
