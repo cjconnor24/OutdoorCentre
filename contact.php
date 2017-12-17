@@ -100,7 +100,7 @@
 
                         updateResult(resp.message,'bg-success','fa-check');
 
-                        $(".result").slideDown('slow');
+                        $(".result:first").slideDown(500);
 
                         scrollToResult();
 
@@ -113,12 +113,12 @@
                         updateResult(resp.message,'bg-error','fa-times');
 
                         // BUILD A UL LIST WITH THE ERRORS
-                        var list = $(".result").append('<ul></ul>').find('ul');
+                        var list = $(".result:first").append('<ul></ul>').find('ul');
                         $(resp.errors).each(function(key,val){
                             list.append('<li>'+val+'</li>');
                         })
 
-                        $(".result").slideDown('fast');
+                        $(".result:first").slideDown(500);
 
                         scrollToResult();
 
@@ -131,10 +131,10 @@
 
         function updateResult(message,bgClass,faClass){
 
-            var resultBox = $('.result');
+            var resultBox = $('.result:first');
             resultBox.find('.message').text(message);
-            $(".result").addClass(bgClass);
-            $(".result").find('.fa').addClass(faClass);
+            $(".result:first").addClass(bgClass);
+            $(".result:first").find('.fa').addClass(faClass);
 
         }
 
@@ -142,7 +142,7 @@
         function scrollToResult(){
 
             $('html, body').animate({
-                scrollTop: $(".result").offset().top-200
+                scrollTop: $(".result:first").offset().top-200
             }, 500);
 
             return true;
@@ -155,7 +155,7 @@
         function clearResult(){
 
 
-            var resultBox = $(".result");
+            var resultBox = $(".result:first");
             resultBox.find('.message').text('');
 
             // REMOVE THE CLASSES
