@@ -137,6 +137,40 @@ nav ul li a:hover i {
     display:none;
 }
 
+/* SOME PANEL CSS LIKE BOOTSTRAP */
+/*SMALL FLEX HACK TO STRETCH PANELS*/
+.row {
+    display:flex;
+}
+.panel {
+    display:block;
+    width:100%;
+    height:100%;
+    border:1px solid #eee;
+    border-radius:5px;
+}
+.panel-body, .panel-heading {
+    padding:1em;
+    display:block;
+
+}
+.panel-body {
+    white-space:pre-line;
+}
+.panel-heading {
+
+    border-radius:5px 5px 0 0;
+
+}
+.panel-heading {
+    background:#202334;
+    color:#FFF;
+}
+.panel.panel-green .panel-heading {
+    background:#44B7AF;
+    color:#FFF;
+}
+
 .enquiry__message {
     padding:2em;
     font-size:1.2em;
