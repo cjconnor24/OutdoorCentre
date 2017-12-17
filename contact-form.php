@@ -67,7 +67,41 @@
 
             if($query->execute()){
 
+                // IF USER WISHES TO BE ADDED TO NEWSLETTER, ADD THEM
+                if(isset($newsletter)) {
+
+                    include('includes/config.php');
+
+                    // ADD THE ADDRESS TO THE MAILING LIST ALSO
+                    $url = $localurl.'newsletter.php';
+
+                    // PREPARE THE DATA AND POST TO THE NEWSLETTER SCRIPT
+                    $data = array(
+                        'email' => $email
+                    );
+
+                    $postvars = http_build_query($data);
+                    $ch = curl_init();
+
+                    // SETUP THE CURL REQUEST
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_POST, count($data));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                    // GET THE RESULT
+                    $result = curl_exec($ch);
+                    $json = json_decode($result,true);
+
+                    // CLOSE THE CONNECTION
+                    curl_close($ch);
+
+                }
+
+                // GET THE ID OF THE ENQUIRY
                 $refno = $conn->lastInsertId();
+
+                // TODO: ACTUALLY MAIL THE CLIENT AND THE ADMINISTRATOR WITH THE INFO
 
                 $response = array(
                     "status"=>"success",
