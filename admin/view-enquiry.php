@@ -41,6 +41,8 @@ if(isset($_POST['message'])){
         $query->bindParam(":enquiryid",$enquiryid);
 
         $query->bindParam(":userid",$userid);
+                $temp=array('message'=>$message,'encid'=>$enquiryid,'userid'=>$userid);
+        print_r($temp);
 
         // IF SUCCESS
         if($query->execute()){
@@ -75,12 +77,21 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     include("../includes/dbConnect.php");
 
-    $query = $conn->prepare("SELECT enquiry.id,
+    $query = $conn->prepare("SELECT 
+enquiry.id enquiryid,
 enquiry.name,
- enquiry.email,
- enquiry.message,
- enquiry.created_at,
- activity.name AS activity FROM enquiry LEFT JOIN activity ON enquiry.activity = activity.id WHERE enquiry.id = :enquiryid;");
+enquiry.email enquiryemail,
+enquiry.created_at received,
+enquiry.message enquirymessage,
+activity.name activity,
+response.id responseid,
+response.message responsemessage,
+response.created_at sent,
+users.email,
+CONCAT(users.fname,\" \",users.lname) fullname
+ FROM enquiry LEFT JOIN response ON enquiry.id = response.enquiry
+ LEFT JOIN activity ON enquiry.activity = activity.id
+  LEFT JOIN users ON response.user = users.id WHERE enquiry.id = :enquiryid;");
     $query->bindParam(':enquiryid',$enquiryid);
 
     $query->execute();
@@ -89,58 +100,58 @@ enquiry.name,
     if($count==1){
 
         $results = $query->fetchObject();
-
-//        $conn = null;
+        $conn = null;
         ?>
-            <h1>Enquiry #<?php echo $results->id; ?></h1>
-            <p>Below are the details for Enquiry # <?php echo $results->id;?></p>
+            <h1>Enquiry #<?php echo $results->enquiryid; ?></h1>
+            <p>Below are the details for Enquiry # <?php echo $results->enquiryid;?></p>
 
             <div class="row">
 
                     <div class="col-6">
 
-                            <h2>Customer Information</h2>
-
-                            <table class="table">
-                                    <tr>
-                                            <td>User</td>
-                                            <td><?php echo $results->name; ?></td>
-                                    </tr>
-                                    <tr>
-                                            <td>Email</td>
-                                            <td><?php echo $results->email; ?></td>
-                                    </tr>
-                                    <tr>
-                                            <td>Submitted</td>
-                                            <td><?php echo date('d-m-Y',strtotime($results->created_at)); ?></td>
-                                    </tr>
-                                    <tr>
-                                            <td>Activity</td>
-                                            <td><?php echo $results->activity; ?></td>
-                                    </tr>
-                            </table>
+                            <div class="panel">
+                                    <div class="panel-heading"><i class="fa fa-user"></i> Customer Information</div>
+                                    <div class="panel-body">
+                                            <table class="table">
+                                                    <tr>
+                                                            <td><strong>User</strong></td>
+                                                            <td><?php echo $results->name; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td><strong>Email</strong></td>
+                                                            <td><?php echo $results->enquiryemail; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td><strong>Received</strong></td></td>
+                                                            <td><?php echo date('d-m-Y H:m',strtotime($results->received)); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td><strong>Activity</strong></td>
+                                                            <td><?php echo $results->activity; ?></td>
+                                                    </tr>
+                                            </table>
+                                    </div>
+                            </div>
 
                     </div>
                     <div class="col-6">
-                            <h2>Message</h2>
-                            <div class="enquiry__message"><?php echo $results->message; ?></div>
+                            <div class="panel">
+                                    <div class="panel-heading"><i class="fa fa-envelope-open"></i> Customer Enquiry</div>
+                                    <div class="panel-body">
+                            <?php echo $results->enquirymessage; ?>
+                                    </div>
+                            </div>
                     </div>
 
 
             </div>
 
+
             <div class="response">
 
                 <?php
-
-                $query = $conn->prepare("SELECT id FROM response WHERE enquiry = :enquiryid");
-                $query->bindParam(":enquiryid",$_GET['id']);
-
-                $query->execute();
-                $count = $query->rowCount();
-
-                if($count==0){
-
+                // IF THE RESPONSE ID IS NULL, THIS HASNT BEEN REPLIED TO YET
+                if($results->responseid==NULL){
                 ?>
                     <h2>Response</h2>
                     <p>You can respond to the enquiry below.</p>
@@ -148,7 +159,7 @@ enquiry.name,
                     <form action="" method="post" id="enquiry-response-form">
 
                             <textarea name="message" class="text-box" id="message" required></textarea>
-                            <input type="hidden" name="enquiryid" value="<?php echo $results->id;?>">
+                            <input type="hidden" name="enquiryid" value="<?php echo $results->enquiryid;?>">
 
                             <input type="submit" name="submit" class="btn"  value="Send Response">
 
@@ -156,29 +167,45 @@ enquiry.name,
                 <?php
                 } else {
                         ?>
-                    <h2>Reponse</h2>
-                    <p>You responded below here are the details.</p>
 
+
+                    <h1>Reponse</h1>
+                    <p>You responded below here are the details.</p>
                     <div class="row">
                             <div class="col-6">
-                                    <table class="table">
-                                            <tr>
-                                                    <td>User</td>
-                                                    <td>Chris Connor</td>
-                                            </tr>
-                                            <tr>
-                                                    <td>Email</td>
-                                                    <td>cjconnor24@connordesign.com</td>
-                                            </tr>
-                                            <tr>
-                                                    <td>Date</td>
-                                                    <td>11/10/1987</td>
-                                            </tr>
 
-                                    </table>
+
+                                    <div class="panel panel-green">
+                                            <div class="panel-heading"><i class="fa fa-user-circle"></i> Staff Info</div>
+                                            <div class="panel-body">
+                                                    <table class="table">
+                                                            <tr>
+                                                                    <td>Staff</td>
+                                                                    <td><?php echo $results->fullname;?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td>Email</td>
+                                                                    <td><?php echo $results->email;?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                    <td>Date Sent</td>
+                                                                    <td><?php echo date('d-m-Y',strtotime($results->sent)); ?></td>
+                                                            </tr>
+
+                                                    </table>
+                                            </div>
+                                    </div>
+
+
                             </div>
-                            <div class="col-6">
 
+                            <div class="col-6">
+                                    <div class="panel panel-green">
+                                            <div class="panel-heading"><i class="fa fa-envelope"></i> Response</div>
+                                            <div class="panel-body">
+                                    <?php echo $results->responsemessage;?></div>
+                                    </div>
+                            </div>
                             </div>
                     </div>
                     <?php
@@ -188,7 +215,7 @@ enquiry.name,
                 $conn = NULL;
                 ?>
 
-            </div>
+            <p><a href="/admin/enquiries.php" class="btn btn-small"><i class="fa fa-arrow-circle-left"></i> Return to Enquiries</a></p>
 
             <script type="text/javascript">
 
@@ -219,6 +246,7 @@ enquiry.name,
 
 }
 ?>
+
 
 <?php include('includes/footer.php'); ?>
 
