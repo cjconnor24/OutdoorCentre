@@ -131,3 +131,13 @@ nav ul li a i {
 .table__button span {
     display:none;
 }
+
+.enquiry__message {
+    padding:2em;
+    font-size:1.2em;
+    border-radius:5px;
+    background:#eee;
+    margin:1em 0 1em 0;
+    white-space: pre-wrap;
+    position:relative;
+}

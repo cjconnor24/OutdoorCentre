@@ -5,7 +5,7 @@
 <?php
 include('../includes/dbConnect.php');
 
-$query = $conn->prepare("SELECT enquiry.id, enquiry.name, enquiry.email, enquiry.created_at, activity.name AS activity FROM enquiry LEFT JOIN activity ON enquiry.activity = activity.id");
+$query = $conn->prepare("SELECT enquiry.id, enquiry.name, enquiry.email, enquiry.created_at, activity.name AS activity FROM enquiry LEFT JOIN activity ON enquiry.activity = activity.id ORDER BY enquiry.created_at DESC");
 
 $query->execute();
 $count = $query->rowCount();
@@ -36,7 +36,7 @@ if($count > 0) {
                 <td><i class="fa fa-calendar"></i> <?php echo $row['created_at'];?></td>
                 <td><strong><?php echo $row['activity'];?></strong></td>
                 <td>
-                    <a href="#<?php echo $row['id'];?>" title="View Enquiry" class="table__button"><i class="fa fa-envelope-open"></i> <span>Read</span></a>
+                    <a href="view-enquiry.php?id=<?php echo $row['id'];?>" title="View Enquiry" class="table__button"><i class="fa fa-envelope-open"></i> <span>Read</span></a>
                     <a href="#<?php echo $row['id'];?>" title="Reply to Enquiry" class="table__button"><i class="fa fa-reply"></i>
                         <span>Read</span></a>
                     <a href="#<?php echo $row['id'];?>" title="Delete Enquiry" class="table__button remove"><i class="fa fa-trash"></i>
