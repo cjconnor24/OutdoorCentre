@@ -116,6 +116,13 @@ body {
 /*1280*/
 
 /*1024*/
+@media screen and (max-width:1024px){
+    .row [class*="col-"] {
+        width:100%;
+        padding-left:0;
+        padding-right:0;
+    }
+}
 
 /*768*/
 @media screen and (max-width:768px){
