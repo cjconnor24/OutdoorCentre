@@ -351,22 +351,25 @@ float:left;
     position:relative;
     min-height:300px;
     background-size:300px auto;
-    padding:1em 3em 1em 50%;
+    padding:1em 5em 1em 40%;
     color:#fff;
     border-radius:5px;
     margin:0 0 2em 0;
     vertical-align: middle;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 .activity__heading {
     color:#e17645;
+    text-transform: uppercase;
+    font-size:2em;
 }
 .activity__img {
     height:300px;
-    width:calc(50% - 3em);
+    width:calc(40% - 3em);
+    /*max-width:600px;*/
     position:absolute;
     overflow:hidden;
     left:0;
@@ -374,16 +377,11 @@ float:left;
     border-radius:4px;
 }
 .activity__img img {
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*bottom: 0;*/
-    margin: auto;
-    width:150%;
-    min-width: 100%;
-    min-height: 100%;
-    /*overflow-x: hidden;*/
+    max-width:800px;
+    max-height:300px;
+    position: absolute;
+    left: -0%;
+    top: -0%;
 }
 
 .activity__button {
@@ -394,7 +392,7 @@ float:left;
     font-size:1.5em;
     line-height:50px;
     height:50px;
-    width:55%;
+
     padding:0 0 0 1em;
     border-radius:3px;
     text-decoration: none;
@@ -659,6 +657,22 @@ form label {
     background: #8b0000;
     color: #FFF;
 }
+.txt-left {text-align:left;}
+.txt-right {text-align:right;}
+.txt-center {text-align:center;}
+.heading {
+    text-align: center;
+    color:#687561;
+    text-transform: uppercase;
+    border-bottom:1px solid #e17645;
+    padding:0 0 0.5em 0;
+    margin:0 0 1.5em 0;
+}
+h1.heading {font-size:2.5em;}
+h2.heading {font-size:2em;}
+h3.heading {font-size:1.75em;}
+h4.heading {font-size:1.5em;}
+h5.heading {font-size:1.25em;}
 
 /* larger than 1024 */
 @media screen and (max-width:1024px){
