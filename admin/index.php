@@ -10,47 +10,72 @@
         <div class="col-6">
                 <div class="panel">
                         <div class="panel-heading">Enquiries By Category</div>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="enquiry-by-category" width="400" height="400"></canvas>
                 </div>
         </div>
+
+        <div class="col-6">
+                <div class="panel">
+                        <div class="panel-heading">Newsletter Signups This Month</div>
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+        </div>
+
 </div>
 
 <script>
 
         $(document).ready(function(){
 
-            $.getJSON('/admin/chart-api.php',function(resp){
+            // BUILD A CHART
+            buildChart('#enquiry-by-category',1,'pie','Enquiries By Category');
+            buildChart('#myChart',3,'bar','A New One','Signups Per Day');
 
-                var chartdata = resp.data;
-                var chartlabels = ['asdsa','32424','iuiyuiyu','poipip'];
+            function buildChart(canvasid,chartnumber,charttype,charttitle,datalabel = false) {
 
-                console.log(chartdata);
-                console.log(chartlabels);
+                $.getJSON('/admin/chart-api.php?id='+chartnumber, function (resp) {
 
-                var ctx = $("#myChart");
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: resp.labels,
-                        datasets: [{
-                            data: resp.data,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)'
+                    // SETUP THE DATA
+                    var chartdata = resp.data;
+                    var chartlabels = resp.labels;
+
+                    var line = (charttype=='bar' ? true : false);
+
+                    var ctx = $(canvasid);
+                    var myChart = new Chart(ctx, {
+                        type: charttype,
+                        data: {
+                            labels: chartlabels,
+                            datasets: [{
+
+                                label: datalabel ? datalabel : false,
+                                data: chartdata,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)'
                                 ]
-                        }],
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: 'Enquiries By Activity'
+                            }],
+                        },
+                        options: {
+//                            scales: (line ? {yAxes: [{ticks: {beginAtZero:false}}]} : false),
+                            title: {
+                                display: true,
+                                text: charttitle
+                            }
                         }
+                    })
+
+                    if(charttype=='bar') {
+                        console.log('this ran');
+//                        myChart.options.scales.yAxes[0].ticks.min = 0;
+                        myChart.options.scales.yAxes[0].ticks.beginAtZero = true;
                     }
+
                 })
 
-            })
+            }
 
         });
 
