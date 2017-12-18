@@ -17,15 +17,42 @@
     <script type="text/javascript">
         // SHOW AND HIDE MOBILE MENU - ANIMATE HAMBURGER
         $(document).ready(function(){
+
             $('.nav__hamburger').click(function(){
                 $(this).toggleClass('open');
                 $(".nav__menu").toggleClass( "open" );
             });
+
+            $('#close-weather').click(function(){
+                $('#overlay').fadeOut('fast');
+            })
+
+            $('.check-weather').click(function(e){
+                e.preventDefault();
+                $('#overlay').fadeIn('fast');
+
+            })
+
         });
+
+
+        //
+
     </script>
 </head>
 <body>
 
+<div id="overlay">
+
+
+
+    <div class="weather">
+        <i class="fa fa-times" id="close-weather" title="Close Window"></i>
+        <h1> Weather Information</h1>
+        <p>Here is the weather</p>
+    </div>
+
+</div>
 
 <!--EU COOKIE LAW DISCLAIMER-->
 <!--<div class="cookies">-->
