@@ -16,6 +16,8 @@ include("includes/header.php");
 <!--        <source src="/video/bg-video.mp4" type="video/mp4">-->
 <!--    </video>-->
 
+<div id="full-size-map">as</div>
+
 
 
 
@@ -98,14 +100,28 @@ include("includes/header.php");
         function initMap() {
 
             var lochlomond = {lat: 56.085865, lng: -4.548176};
-            var map = new google.maps.Map(document.getElementById('route-12'), {
+            var map = new google.maps.Map(document.getElementById('full-size-map'), {
                 zoom: 14,
                 center: lochlomond,
-                disableDefaultUI: true,
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: true,
+                streetViewControl: false,
+                rotateControl: true,
+                fullscreenControl: true,
+//                disableDefaultUI: true,
                 mapTypeId: 'terrain'
             });
 
-            map.data.loadGeoJson('/routes/test-route-2.json');
+            map.data.loadGeoJson('/routes/larger-geojson.geojson');
+
+            console.log(map.data);
+
+            map.data.setStyle({
+                fillColor: 'green',
+                strokeWeight: 5,
+                strokeColor: '#e17645'
+            });
 
             var marker = new google.maps.Marker({
                 position: lochlomond,

@@ -290,6 +290,13 @@ nav::after {
     display:block;
     z-index:-2;
 }
+#full-size-map {
+    height:calc(100vh - 75px);
+    margin-top:calc(75px);
+    width:100%;
+    display:block;
+    background:#CCC;
+}
 
 /* presentation band */
 .band {
