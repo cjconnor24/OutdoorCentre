@@ -133,17 +133,22 @@
 
         var lochlomond = {lat: 56.085865, lng: -4.548176};
         var map = new google.maps.Map(document.getElementById('location-map'), {
-            zoom: 14,
+            zoom: 15,
             center: lochlomond,
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            mapTypeId: 'terrain'
         });
         map.setOptions({styles: style['retro']});
 
-        map.data.loadGeoJson('/routes/test-route.json');
+//        map.data.loadGeoJson('/routes/test-route.json');
+        var image = new google.maps.MarkerImage("/img/center-marker.png", null, null, null, new google.maps.Size(53,80));
 
         var marker = new google.maps.Marker({
             position: lochlomond,
-            map: map
+            map: map,
+            icon: image,
+            animation: google.maps.Animation.DROP,
+            html: '<h1>Center</h1>'
         });
     }
 </script>
