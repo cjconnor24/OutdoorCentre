@@ -50,14 +50,10 @@ include("includes/header.php");
         $result = curl_exec($ch);
         $json = json_decode($result);
 
-
-
-        //        echo "<pre>";
-
-
-
+        // LOOP THROUGH THE FEATURES
         foreach($json->{'features'} as $walk) {
 
+        // MAKE SURE LINE STRING AND NOT POINT
         if ($walk->{'geometry'}->{'type'} == "LineString") {
 
         $props = $walk->{'properties'};
@@ -68,23 +64,11 @@ include("includes/header.php");
 
             <div class="route__info">
                 <h3><?php echo $props->{'name'}; ?></h3>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <p>This is a lovely wee walk.</p>
 
                 <h3>Route Statistic</h3>
                 <div class="route__info__stats">
                     <table>
-                        <tr>
-                            <td>Name</td>
-                            <td>Another</td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>Another</td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>Another</td>
-                        </tr>
                         <tr>
                             <td>Name</td>
                             <td>Another</td>
@@ -98,47 +82,28 @@ include("includes/header.php");
 
         </div>
 
-        <?php } }?>
-
-
-
-    <!--<div id="test" style="height: 500px;width:500px;display:block;"></div>-->
+        <?php
+        } // END IF
+        } // END LOOP
+        ?>
 
     <script type="text/javascript">
 
         $(document).ready(function(){
 
-            $("a[href^='#']").click(function(e) {
-                e.preventDefault();
-
-                var position = $($(this).attr("href")).offset().top;
-
-                $("body, html").animate({
-                    scrollTop: position
-                } /* speed */ );
-            });
-
 
             $.getJSON( "/routes/larger-geojson.json", function( resp ) {
 
-//            console.log(data);
-//            var items = [];
                 $.each( resp, function( key, val ) {
-//
-//                console.log(val[0].properties.name);
-////                items.push( "<li id='" + key + "'>" + val + "</li>" );
+                    // DO SOMETHING
                 });
-//            });
-//
-//            $( "<ul/>", {
-//                "class": "my-new-list",
-//                html: items.join( "" )
-//            }).appendTo( "body" );
+
             });
 
 
-//        TEMP WEATHER STUFF
+            // TEMP WEATHER STUFF
             $("#weatherButton").click(function(e){
+
                 e.preventDefault();
                 var apikey  = "<?php echo $weatherapi;?>";
                 var apiurl = 'https://api.openweathermap.org/data/2.5/weather?lat=56.085865&lon=-4.548176'+'&APPID='+apikey;
@@ -160,6 +125,7 @@ include("includes/header.php");
     </script>
 
     <script>
+        // INITIALISE THE MAP
         function initMap() {
 
             var lochlomond = {lat: 56.085865, lng: -4.548176};
@@ -175,11 +141,13 @@ include("includes/header.php");
 //                mapTypeId: 'terrain'
             });
 
+            // LOAD IN THE ROUTES FROM GEOJSON
             map.data.loadGeoJson('/routes/larger-geojson.json');
 
+            // CREATE AN INFO WINDOW TO WORK WITH
             var infowindow = new google.maps.InfoWindow();
 
-            // When the user clicks, open an infowindow
+            // WHEN USER CLICKS ROUTE
             map.data.addListener('click', function(event) {
 
                 // ZOOM FIRST
@@ -212,14 +180,6 @@ include("includes/header.php");
                 infowindow.open(map);
             });
 
-
-
-//            map.data.setStyle({
-//                fillColor: 'green',
-//                strokeWeight: 5,
-//                strokeColor: '#e17645'
-//            });
-
             // ZOOM TO SHOW ALL THE ROUTES
             var bounds = new google.maps.LatLngBounds();
             map.data.addListener('addfeature', function(e) {
@@ -227,12 +187,6 @@ include("includes/header.php");
                 map.fitBounds(bounds);
             });
 
-            // WHEN CLICKED - ZOOM TO SPECIFIC ROUTE
-//            map.data.addListener('click', function(e) {
-//                var bounds = new google.maps.LatLngBounds();
-//                processPoints(e.feature.getGeometry(), bounds.extend, bounds);
-//                map.fitBounds(bounds);
-//            });
 
             // MOUSE OVER MAKE STROKE THICK
             map.data.addListener('mouseover', function(event) {
@@ -247,7 +201,12 @@ include("includes/header.php");
 
             // GET STROKE COLOR FROM GEOJSON
             map.data.setStyle(function(feature) {
-                var color = feature.getProperty('stroke');
+
+//                if((feature.getGeometry() instanceof google.maps.Data.Point)) {
+//                    console.log("THIS ONE WAS A POINT");
+//                }
+
+                    var color = feature.getProperty('stroke');
 
                 return {
                     strokeColor: color
@@ -288,6 +247,7 @@ include("includes/header.php");
             }
         }
 
+        // BUILD THE CONTENT FOR THE WINDOW
         function generateContent(title,body){
 
             var contentstring = "";
