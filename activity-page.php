@@ -16,9 +16,18 @@ include("includes/header.php");
     <!--        <source src="/video/bg-video.mp4" type="video/mp4">-->
     <!--    </video>-->
 
-    <div id="full-size-map">as</div>
 
 
+    <div id="full-size-map"></div>
+
+    <div id="overlay">
+
+        <div class="weather">
+            <h1> Weather Information</h1>
+            <p>Here is the weather</p>
+        </div>
+
+    </div>
 
 
     <div class="container nooverlap nohero">
@@ -266,6 +275,8 @@ include("includes/header.php");
     </script>
 
     </div>
+
+
 
 <?php
 include("includes/footer.php");
