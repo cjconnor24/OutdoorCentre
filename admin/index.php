@@ -3,6 +3,26 @@
         <h1>Admin Dashboard</h1>
         <p>Welcome to the Lomond Outdoor Administration below</p>
 
+<h1>Un-responded Enquiries</h1>
+
+<?php
+include('../includes/dbConnect.php');
+
+$query = $conn->prepare("SELECT enquiry.id enquiryid,
+enquiry.name enquiryname,
+enquiry.email enquiryemail,
+enquiry.created_at received,
+NULL responseid,
+activity.name activityname FROM enquiry, activity WHERE enquiry.activity = activity.id AND enquiry.id NOT IN (select enquiry FROM response) ;");
+
+$query->execute();
+$count = $query->rowCount();
+
+include('_partials/_enquiry-table.php');
+
+?>
+
+
         <h2>Visulisations</h2>
 <p>Below is the latest information from the system.</p>
 
