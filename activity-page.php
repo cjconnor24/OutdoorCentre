@@ -3,20 +3,20 @@ include('includes/config.php');
 include("includes/header.php");
 ?>
 
-<!--    <div class="hero">-->
-<!---->
-<!--        <div class="container">-->
-<!--            <h1>Activities</h1>-->
-<!--            <p>There are a wide range of activities and sports on offer at Lomond adventures.</p>-->
-<!--            <p>Take a look below for more information on everything that we offer.</p>-->
-<!--        </div>-->
-<!---->
-<!--    </div>-->
-<!--    <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">-->
-<!--        <source src="/video/bg-video.mp4" type="video/mp4">-->
-<!--    </video>-->
+    <!--    <div class="hero">-->
+    <!---->
+    <!--        <div class="container">-->
+    <!--            <h1>Activities</h1>-->
+    <!--            <p>There are a wide range of activities and sports on offer at Lomond adventures.</p>-->
+    <!--            <p>Take a look below for more information on everything that we offer.</p>-->
+    <!--        </div>-->
+    <!---->
+    <!--    </div>-->
+    <!--    <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">-->
+    <!--        <source src="/video/bg-video.mp4" type="video/mp4">-->
+    <!--    </video>-->
 
-<div id="full-size-map">as</div>
+    <div id="full-size-map">as</div>
 
 
 
@@ -52,39 +52,22 @@ include("includes/header.php");
 
 
 
-        echo "<pre>";
+        //        echo "<pre>";
 
 
 
         foreach($json->{'features'} as $walk) {
 
-            if ($walk->{'geometry'}->{'type'} == "LineString") {
+        if ($walk->{'geometry'}->{'type'} == "LineString") {
 
-                $props = $walk->{'properties'};
-
-                echo $props->{'name'};
-
-            }
-
-
-//            $walk->{'properties'}->{'name'} . "<br />";
-        }
-
-//        print_r($json);
-
-
-//        foreach($json as $row){
-//            print_r($row);
-//        }
-        echo "</pre>";
+        $props = $walk->{'properties'};
         ?>
+        <div class="route">
 
-        <div class="route" id="route-1">
-
-            <div class="route__map" id="route-12"></div>
+            <div class="route__map"></div>
 
             <div class="route__info">
-                <h3>Route Name</h3>
+                <h3><?php echo $props->{'name'}; ?></h3>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
                 <h3>Route Statistic</h3>
@@ -109,69 +92,72 @@ include("includes/header.php");
                     </table>
                 </div>
 
-                <p><a href="#" id="weatherButton">Weather </a></p>
+                <p><a href="#" class="btn btn-orng"><i class="fa fa-cloud"></i> Check Weather</a></p>
 
             </div>
 
         </div>
 
-    </div>
-<!--<div id="test" style="height: 500px;width:500px;display:block;"></div>-->
-
-<script type="text/javascript">
-
-    $(document).ready(function(){
-
-        $("a[href^='#']").click(function(e) {
-            e.preventDefault();
-
-            var position = $($(this).attr("href")).offset().top;
-
-            $("body, html").animate({
-                scrollTop: position
-            } /* speed */ );
-        });
+        <?php } }?>
 
 
-        $.getJSON( "/routes/larger-geojson.json", function( resp ) {
+
+    <!--<div id="test" style="height: 500px;width:500px;display:block;"></div>-->
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $("a[href^='#']").click(function(e) {
+                e.preventDefault();
+
+                var position = $($(this).attr("href")).offset().top;
+
+                $("body, html").animate({
+                    scrollTop: position
+                } /* speed */ );
+            });
+
+
+            $.getJSON( "/routes/larger-geojson.json", function( resp ) {
 
 //            console.log(data);
 //            var items = [];
-            $.each( resp, function( key, val ) {
+                $.each( resp, function( key, val ) {
 //
 //                console.log(val[0].properties.name);
 ////                items.push( "<li id='" + key + "'>" + val + "</li>" );
-            });
+                });
 //            });
 //
 //            $( "<ul/>", {
 //                "class": "my-new-list",
 //                html: items.join( "" )
 //            }).appendTo( "body" );
-        });
+            });
 
 
 //        TEMP WEATHER STUFF
-        $("#weatherButton").click(function(e){
-            e.preventDefault();
-            var apikey  = "<?php echo $weatherapi;?>";
-            var apiurl = 'https://api.openweathermap.org/data/2.5/weather?lat=56.085865&lon=-4.548176'+'&APPID='+apikey;
+            $("#weatherButton").click(function(e){
+                e.preventDefault();
+                var apikey  = "<?php echo $weatherapi;?>";
+                var apiurl = 'https://api.openweathermap.org/data/2.5/weather?lat=56.085865&lon=-4.548176'+'&APPID='+apikey;
 
-            $.get(apiurl,function(resp){
+                $.get(apiurl,function(resp){
 
-                console.log(resp);
-                var sunset = new Date(resp.sys.sunset*1000);
-                console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
+                    console.log(resp);
+                    var sunset = new Date(resp.sys.sunset*1000);
+                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
+
+                });
 
             });
 
+
+
         });
 
-
-
-    });
-
-</script>
+    </script>
 
     <script>
         function initMap() {
@@ -216,7 +202,7 @@ include("includes/header.php");
                 }
 
                 var myHTML = event.feature.getProperty("name");
-                infowindow.setContent(generateContent(myHTML,myHTML));
+                infowindow.setContent(generateContent(myHTML,(distancekm ? distancekm : '')));
                 // position the infowindow on the marker
 //                infowindow.setPosition(event.feature.getGeometry());
                 infowindow.setPosition(event.latLng);
@@ -308,7 +294,8 @@ include("includes/header.php");
             contentstring+= "<div class='map-info-window'>";
             contentstring+= "<h1>"+title+"</h1>";
             contentstring+= "<p>Here is some info on the route</p>";
-            contentstring+= "<p><a href='#route-1' class='btn btn-orng'><i class='fa fa-eye'></i> View Route Data</a></p>";
+            contentstring+= "<p>"+body+"</p>";
+            contentstring+= "<p><a href='#route-1' id='weatherButton' class='btn btn-orng'><i class='fa fa-eye'></i> View Route Data</a></p>";
             contentstring+= "</div>";
 
             return contentstring;
@@ -317,6 +304,8 @@ include("includes/header.php");
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbs8Wb7fnp6cMbiuuWfJbX-3X3ItHC2Rw&callback=initMap&libraries=geometry">
     </script>
+
+    </div>
 
 <?php
 include("includes/footer.php");
