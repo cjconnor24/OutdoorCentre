@@ -101,10 +101,11 @@ include("includes/header.php");
             var map = new google.maps.Map(document.getElementById('route-12'), {
                 zoom: 14,
                 center: lochlomond,
-                disableDefaultUI: true
+                disableDefaultUI: true,
+                mapTypeId: 'terrain'
             });
 
-            map.data.loadGeoJson('/routes/test-route.json');
+            map.data.loadGeoJson('/routes/test-route-2.json');
 
             var marker = new google.maps.Marker({
                 position: lochlomond,
