@@ -201,14 +201,19 @@ include("includes/header.php");
                 processPoints(event.feature.getGeometry(), bounds.extend, bounds);
                 map.fitBounds(bounds);
 
-                // GET THE DISTANCE OF THE ROUTE - OMG THIS TOOK A WHILE
-                var distance = google.maps.geometry.spherical.computeLength(event.feature.getGeometry().getArray());
-                var distancekm = distance/1000;
-                var distancemiles = distance * 0.000621371;
+                // MAKE SURE ISNT A POINT BEFORE CALULCATING DISTANCE
+                if(!(event.feature.getGeometry() instanceof google.maps.Data.Point)) {
 
-                console.log("DISTANCE IN MILES: "+distancemiles);
-                console.log("DISTANCE IN METERS: "+distance);
-                console.log("DISTANCE IN KMS: "+distancekm);
+                    // GET THE DISTANCE OF THE ROUTE - OMG THIS TOOK A WHILE
+                    var distance = google.maps.geometry.spherical.computeLength(event.feature.getGeometry().getArray());
+                    var distancekm = distance / 1000;
+                    var distancemiles = distance * 0.000621371;
+
+                    console.log("DISTANCE IN MILES: " + distancemiles);
+                    console.log("DISTANCE IN METERS: " + distance);
+                    console.log("DISTANCE IN KMS: " + distancekm);
+
+                }
 
                 var myHTML = event.feature.getProperty("name");
                 infowindow.setContent(generateContent(myHTML,myHTML));
