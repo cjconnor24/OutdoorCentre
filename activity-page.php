@@ -20,14 +20,7 @@ include("includes/header.php");
 
     <div id="full-size-map"></div>
 
-    <div id="overlay">
 
-        <div class="weather">
-            <h1> Weather Information</h1>
-            <p>Here is the weather</p>
-        </div>
-
-    </div>
 
 
     <div class="container nooverlap nohero">
@@ -85,7 +78,7 @@ include("includes/header.php");
                     </table>
                 </div>
 
-                <p><a href="#" class="btn btn-orng"><i class="fa fa-cloud"></i> Check Weather</a></p>
+                <p><a href="#" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Check Weather</a></p>
 
             </div>
 
