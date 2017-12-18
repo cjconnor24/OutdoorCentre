@@ -75,6 +75,25 @@ include("includes/header.php");
 
     $(document).ready(function(){
 
+        $.getJSON( "/routes/larger-geojson.geojson", function( data ) {
+
+//            console.log(data);
+//            var items = [];
+            $.each( data, function( key, val ) {
+//
+//                console.log(val[0].properties.name);
+////                items.push( "<li id='" + key + "'>" + val + "</li>" );
+            });
+//            });
+//
+//            $( "<ul/>", {
+//                "class": "my-new-list",
+//                html: items.join( "" )
+//            }).appendTo( "body" );
+        });
+
+
+//        TEMP WEATHER STUFF
         $("#weatherButton").click(function(e){
             e.preventDefault();
             var apikey  = "<?php echo $weatherapi;?>";
@@ -115,7 +134,7 @@ include("includes/header.php");
 
             map.data.loadGeoJson('/routes/larger-geojson.geojson');
 
-            console.log(map.data);
+
 
             map.data.setStyle({
                 fillColor: 'green',
@@ -123,10 +142,56 @@ include("includes/header.php");
                 strokeColor: '#e17645'
             });
 
+            // zoom to show all the features
+            var bounds = new google.maps.LatLngBounds();
+            map.data.addListener('addfeature', function(e) {
+                processPoints(e.feature.getGeometry(), bounds.extend, bounds);
+                map.fitBounds(bounds);
+            });
+
+            // zoom to the clicked feature
+            map.data.addListener('click', function(e) {
+                var bounds = new google.maps.LatLngBounds();
+                processPoints(e.feature.getGeometry(), bounds.extend, bounds);
+                map.fitBounds(bounds);
+            });
+
+            // MOUSE OVER TEST
+            map.data.addListener('mouseover', function(event) {
+                map.data.revertStyle();
+                map.data.overrideStyle(event.feature, {strokeWeight: 8});
+            });
+
+            map.data.addListener('mouseout', function(event) {
+                map.data.revertStyle();
+            });
+
+            // GET STYLES FROM GEOJSON
+            map.data.setStyle(function(feature) {
+                var color = feature.getProperty('stroke');
+
+                return {
+                    strokeColor: color
+                };
+            });
+
             var marker = new google.maps.Marker({
                 position: lochlomond,
                 map: map
             });
+        }
+
+//COPIED FROM STACK OVERFLOW
+        function processPoints(geometry, callback, thisArg) {
+            if (geometry instanceof google.maps.LatLng) {
+                callback.call(thisArg, geometry);
+            } else if (geometry instanceof google.maps.Data.Point) {
+                callback.call(thisArg, geometry.get());
+            } else {
+                geometry.getArray().forEach(function(g) {
+                    processPoints(g, callback, thisArg);
+                });
+            }
         }
     </script>
     <script async defer
