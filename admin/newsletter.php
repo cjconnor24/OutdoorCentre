@@ -18,7 +18,7 @@ if($count > 0) {
     <table class="table">
         <thead>
         <tr>
-            <th># User Id</th>
+            <th class="hide"># User Id</th>
             <th>Email</th>
             <td>Actions</td>
         </tr>
@@ -29,7 +29,7 @@ if($count > 0) {
     foreach($results as $row){
     ?>
             <tr>
-                <td>#<?php echo $row['id'];?></td>
+                <td class="hide">#<?php echo $row['id'];?></td>
                 <td><strong><a href="mailto:<?php echo $row['email'];?>"><?php echo $row['email'];?></a></strong><br><em></a></em></td>
                 <td>
                     <a href="mailto:<?php echo $row['email'];?>" title="Email User" class="table__button"><i class="fa fa-envelope"></i>
