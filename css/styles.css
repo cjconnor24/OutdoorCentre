@@ -297,6 +297,14 @@ nav::after {
     display:block;
     background:#CCC;
 }
+.map-info-window {
+    color:#687561;
+    width:300px;
+
+}
+.map-info-window h1 {
+    font-family:Oswald,Arial;
+}
 
 /* presentation band */
 .band {
