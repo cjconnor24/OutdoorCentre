@@ -127,29 +127,28 @@ include("includes/header.php");
                 scaleControl: true,
                 streetViewControl: false,
                 rotateControl: true,
-                fullscreenControl: true,
-//                disableDefaultUI: true,
-                mapTypeId: 'terrain'
+                fullscreenControl: true
+//                mapTypeId: 'terrain'
             });
 
             map.data.loadGeoJson('/routes/larger-geojson.geojson');
 
 
 
-            map.data.setStyle({
-                fillColor: 'green',
-                strokeWeight: 5,
-                strokeColor: '#e17645'
-            });
+//            map.data.setStyle({
+//                fillColor: 'green',
+//                strokeWeight: 5,
+//                strokeColor: '#e17645'
+//            });
 
-            // zoom to show all the features
+            // ZOOM TO SHOW ALL THE ROUTES
             var bounds = new google.maps.LatLngBounds();
             map.data.addListener('addfeature', function(e) {
                 processPoints(e.feature.getGeometry(), bounds.extend, bounds);
                 map.fitBounds(bounds);
             });
 
-            // zoom to the clicked feature
+            // WHEN CLICKED - ZOOM TO SPECIFIC ROUTE
             map.data.addListener('click', function(e) {
                 var bounds = new google.maps.LatLngBounds();
                 processPoints(e.feature.getGeometry(), bounds.extend, bounds);
@@ -175,19 +174,25 @@ include("includes/header.php");
                 };
             });
 
-            var marker = new google.maps.Marker({
-                position: lochlomond,
-                map: map
-            });
+    //            var marker = new google.maps.Marker({
+    //                position: lochlomond,
+    //                map: map
+    //            });
         }
 
-//COPIED FROM STACK OVERFLOW
+        // FUNCTION TO CALCULATE THE BOUNDS OF THE ROUTE FOR ZOOMING
         function processPoints(geometry, callback, thisArg) {
+
             if (geometry instanceof google.maps.LatLng) {
+
                 callback.call(thisArg, geometry);
+
             } else if (geometry instanceof google.maps.Data.Point) {
+
                 callback.call(thisArg, geometry.get());
+
             } else {
+
                 geometry.getArray().forEach(function(g) {
                     processPoints(g, callback, thisArg);
                 });
