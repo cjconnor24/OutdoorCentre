@@ -13,7 +13,7 @@
     </li>
     <li><a href="activity.php">Activities</a>
         <ul class="nav__submenu">
-            <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Second</a></li>
+            <li><a href="/activity-page.php"><img src="/img/placeholder-1.jpg" alt="Placeholder">Second</a></li>
             <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Climbing</a></li>
             <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Canoeing</a></li>
             <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Walking</a></li>
