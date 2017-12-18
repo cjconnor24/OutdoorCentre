@@ -1,0 +1,8 @@
+// GET TOTAL COUNT OF ENQUIRY BY ACTIVITY
+SELECT COUNT(*) total, activity.name FROM enquiry LEFT JOIN activity ON enquiry.activity = activity.id GROUP BY activity.name;
+
+// GET COUNT OF QUERIES PER DAY
+SELECT COUNT(*), DAY(created_at), MONTH(created_at), YEAR(created_at) date from enquiry GROUP BY YEAR(created_at), MONTH(created_at), DAY(created_at);
+
+// OUTSTANDING ENQUIRIES
+SELECT * FROM enquiry WHERE id NOT IN (SELECT enquiry FROM response);
