@@ -145,17 +145,7 @@ include("includes/header.php");
 
         $(document).ready(function(){
 
-
-            $.getJSON( "/routes/larger-geojson.json", function( resp ) {
-
-                $.each( resp, function( key, val ) {
-                    // DO SOMETHING
-                });
-
-            });
-
-
-            // TEMP WEATHER STUFF
+            // WHEN WEATHER BUTTON CLICKED
             $(".check-weather").click(function(e){
 
                 e.preventDefault();
@@ -179,56 +169,36 @@ include("includes/header.php");
                     var firsttimeblock = Math.ceil(Math.ceil(n/3)*3);
 
                     var days = ["Sunday","Monday","Tuesday",'Wednesday','Thursday','Friday','Saturday'];
-                    // CREATE DAY, THEN ADD WEATHER
-//                    <h4 class="accordion-toggle">Today</h4>
-//                        <div class="accordion-content">
-//                        <p>Cras malesuada ultrices augue molestie risus.</p>
-//                    </div>var weatherline= $("<li></li>")
 
-                    var weatherheading = $("</h4>");
+
+                    var weatherheading = $("<h4></h4>");
                     weatherheading.addClass('accordian-toggle');
+
+//                    weatherheading.text(days[d.getDay()]);
+                    weatherheading.text('TUESDAY');
+                    $('#accordion').append(weatherheading);
+
                     var weatherbody = $("</div>");
                     weatherbody.addClass('accordian-content');
 
                     var weatherlist= $("<ul></ul>");
 
-
-
+                    // LOOP THROUGH THE RESULTS
                     $(hourly).each(function(key,val){
 
                         // GET THE DATE FROM THE CURRENT
                         var weatherdate = new Date(val.dt*1000);
-                        console.log(weatherdate.getHours());
-
-                        // FIRST ITERATION BUILD HEADING
-                        if(key==0){
-
-                            // CREATE THE TODAYS DAT HEADING FIRST
-                            weatherheading.text(days[d.getDate()]);
-                            $('#accordion').append(weatherheading);
-
-                        }
-
-                        if(weatherdate.getDate()==today) {
-
-                            // EXTRACTING DATA
-                            var temperature = val.main.temp;
-                            var wind = {direction: val.wind.deg, speed: val.wind.speed};
-                            var description = val.weather[0].description;
 
 
-                            var weatherline= $("<li></li>").text(weatherdate.getDate()+"Temp. "+temperature+" Wind Direction: "+wind.direction+ " Speed: "+wind.speed+" Descript:"+description);
-                            weatherlist.append(weatherline);
 
-                        } else {
+                        //                        CHECK STILL SAME DAY
+                        if(weatherdate.getDate()!=today) {
 
-                            // NOW A NEW DAY
-                            today = weatherdate.getDate();
+                            // CLOSE EXISTING LIST
+                            console.log("WEAHTER DAY DOESNT EQ TODAY - FIRIGIN  THIS LOGI ROW:"+key);
 
-                            console.log("ON TO THE NEXT DAY");
-
-                            // HEAD TO ACCORDING
-                            $('#accordion').append(weatherheading)
+                            // HEAD TO ACCORDIAN
+//                            $('#accordion').append(weatherheading);
 
                             // LIST TO BODY
                             weatherbody.append(weatherlist);
@@ -236,37 +206,45 @@ include("includes/header.php");
                             // BODY TO ACCORDIAN
                             $('#accordion').append(weatherbody);
 
+                            // NOW A NEW DAY
+                            today = weatherdate.getDate();
 
+                            console.log("NOW ON TO NEXT DAY - NEW LISTS AND BODYS");
 
-//                            $('#accordion').append(weatherheading).append(weatherbody);
-//                            weatherbody.append(weatherlist);
 
                             weatherheading = $("<h4 class='accordion-toggle'></h4>");
                             weatherheading.text(days[weatherdate.getDay()]);
+                            $('#accordion').append(weatherheading);
+
                             weatherbody = $("<div class='accordion-content'></div>");
-
-
-
-                            $
 
                             weatherlist = $("<ul></ul>");
 
                         }
 
+                        // EXTRACTING DATA
+                        var temperature = val.main.temp;
+                        var wind = {direction: val.wind.deg, speed: val.wind.speed};
+                        var description = val.weather[0].description;
+
+                        var longtime = weatherdate.getFullYear()+'-'+weatherdate.getMonth()+'-'+weatherdate.getDate()+' '+weatherdate.getHours()+':'+weatherdate.getMinutes();
+
+                        // BUILD THE LINE, APPEND TO LIST
+                        var weatherline= $("<li></li>").text(longtime+' '+weatherdate.getDate()+"Temp. "+temperature+" Wind Direction: "+wind.direction+ " Speed: "+wind.speed+" Descript:"+description);
+                        weatherlist.append(weatherline);
+
+                        console.log(weatherlist);
 
 
-//                        console.log(JSON.stringify(val));
 
-                        //                    var sunset = new Date(resp.sys.sunset*1000);
-//                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
+                    });
 
-//                        console.log("The weather is: "+val.weather.description);
-//                        console.log("The temperature is: "+);
-//                        console.log("The wind is: "++" at "++"km ph");
+
 //                        li.appendTo(list)
 
-                        console.log(val);
-                    })
+//                        console.log(val);
+
+                    },'json');
 
 //                    list.appendTo(this);
 //                    var sunset = new Date(resp.sys.sunset*1000);
@@ -288,10 +266,6 @@ include("includes/header.php");
 
 
             });
-
-
-
-        });
 
     </script>
 
