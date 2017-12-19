@@ -124,7 +124,7 @@ if($count == 1) {
         <div class="form-group">
             <label for="description">Enable Route</label>
             <label class="switch">
-                <input type="checkbox" name="enabled">
+                <input type="checkbox" name="enabled" <?php echo ($results['enabled']==1 ? 'checked' : '');?>>
                 <span class="slider"></span>
             </label>
         </div>
