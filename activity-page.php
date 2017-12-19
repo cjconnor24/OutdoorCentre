@@ -41,18 +41,8 @@ include("includes/header.php");
 
         <!-- HTML -->
         <div id="accordion">
-<!--            <h4 class="accordion-toggle">Today</h4>-->
-<!--            <div class="accordion-content">-->
-<!--                <p>Cras malesuada ultrices augue molestie risus.</p>-->
-<!--            </div>-->
-<!--            <h4 class="accordion-toggle">Tommorow</h4>-->
-<!--            <div class="accordion-content">-->
-<!--                <p>Lorem ipsum dolor sit amet mauris eu turpis.</p>-->
-<!--            </div>-->
-<!--            <h4 class="accordion-toggle">Thursday</h4>-->
-<!--            <div class="accordion-content">-->
-<!--                <p>Vivamus facilisisnibh scelerisque laoreet.</p>-->
-<!--            </div>-->
+            <h3>HELLO</h3>
+
         </div>
 
 
@@ -64,6 +54,8 @@ include("includes/header.php");
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
         <h2 class="heading">Routes</h2>
+
+        <div id="weather-box"></div>
 
         <?php
 
@@ -145,6 +137,9 @@ include("includes/header.php");
 
         $(document).ready(function() {
 
+
+
+
             function getWeatherData(lat,long) {
 
                 var apikey  = "<?php echo $weatherapi;?>";
@@ -156,49 +151,150 @@ include("includes/header.php");
 
                 $.get(apiurl,function(resp){
 
-                    var weatherlines = resp.list;
+//                    var weatherlines = resp.list;
+//
+//                    // LOOP THROUGH THE RESULTS
+//                    $(weatherlines).each(function(key,val){
+//
+////                        // GET THE DATE FROM THE CURRENT
+////                        var weatherdate = new Date(val.dt*1000);
+////
+////                        // BUILD AN OBJECT
+////                        var weatherRow = {
+////                            datetime: val.dt*1000,
+////                            stringdatetime: weatherdate.getFullYear()+'-'+weatherdate.getMonth()+'-'+weatherdate.getDate()+' '+weatherdate.getHours()+':'+weatherdate.getMinutes(),
+////                            temp:val.main.temp,
+////                            wind: {
+////                                direction: val.wind.deg,
+////                                speed: val.wind.speed
+////                            },
+////                            description: val.weather[0].description,
+////                            icon: val.weather[0].icon
+////
+////                        }
+////
+////                        // ATTACH TO ARRAY
+////                        weatherData.push(weatherRow);
+//
+//
+//                    }); // END FOR EACH
 
-                    // LOOP THROUGH THE RESULTS
-                    $(weatherlines).each(function(key,val){
+                },'json').done(receiver);
 
-                        // GET THE DATE FROM THE CURRENT
-                        var weatherdate = new Date(val.dt*1000);
 
-                        // BUILD AN OBJECT
-                        var weatherRow = {
-                            datetime: val.dt*1000,
-                            stringdatetime: weatherdate.getFullYear()+'-'+weatherdate.getMonth()+'-'+weatherdate.getDate()+' '+weatherdate.getHours()+':'+weatherdate.getMinutes(),
-                            temp:val.main.temp,
-                            wind: {
-                                direction: val.wind.deg,
-                                speed: val.wind.speed
-                            },
-                            description: val.weather[0].description,
-                            icon: val.weather[0].icon
+            }
+
+            // CALL BACK FUNCTION
+            function receiver(data, textStatus, XMLHttpRequest) {
+
+                var weatherData = [];
+
+                // LOOP THROUGH THE RESULTS
+                $(data.list).each(function(key,val) {
+
+                    // GET THE DATE FROM THE CURRENT
+                    var weatherdate = new Date(val.dt * 1000);
+
+                    console.log(val.weather);
+
+                    // BUILD AN OBJECT
+                    var weatherRow = {
+                        datetime: val.dt * 1000,
+                        stringdatetime: weatherdate.getFullYear() + '-' + weatherdate.getMonth() + '-' + weatherdate.getDate() + ' ' + weatherdate.getHours() + ':' + weatherdate.getMinutes(),
+                        temp: val.main.temp,
+                        wind: {
+                            direction: val.wind.deg,
+                            speed: val.wind.speed
+                        },
+                        description: val.weather[0].description,
+                        icon: val.weather[0].icon
+
+                    }
+
+                    // ATTACH TO ARRAY
+                    weatherData.push(weatherRow);
+
+                });
+
+
+
+//                var table = $('<table id="weathertable"></table>');
+//                table.append('<thead><tr><th>Time</th><th>Temp</th><th>Wind</th><th>Description<td></thead>');
+//                var tbody = $('</tbody>');
+
+                var tstring = '<table style="width:100%;text-align:left;">'
+
+                var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
+
+//                console.log(table);
+
+//                table.appendTo("#accordion");
+                tstring += "<thead>";
+                tstring += "<tr>";
+                tstring += "<th></th>";
+                tstring += "<th>DATETIME</th>";
+                tstring += "<th>Temperature</th>";
+                tstring += "<th>Wind Speed</th>";
+                tstring += "<th>Description</th>";
+                tstring += "</thead>";
+
+                var curtime = new Date();
+                var d = curtime.getDate();
+
+
+                    for(i = 0; i < weatherData.length; i++){
+
+
+                        var weatherDate = new Date(weatherData[i].datetime);
+
+                        console.log(weatherDate);
+
+                        if(weatherDate.getDate()!=d){
+
+                            tstring += '</table>';
+                            tstring += '<table style="width:100%">';
+                            tstring += "<thead>";
+                            tstring += "<tr>";
+                            tstring += "<th></th>";
+                            tstring += "<th>DATETIME</th>";
+                            tstring += "<th>Temperature</th>";
+                            tstring += "<th>Wind Speed</th>";
+                            tstring += "<th>Description</th>";
+                            tstring += "</thead>";
+
+                            d = weatherDate.getDate();
 
                         }
 
-                        // ATTACH TO ARRAY
-                        weatherData.push(weatherRow);
+                        tstring += "<tr>";
+                        tstring += "<td><img src='http://openweathermap.org/img/w/"+weatherData[i].icon+".png' ></td>";
+                        tstring += "<td>"+weatherDate.getHours()+":00</td>";
+                        tstring += "<td>"+weatherData[i].temp+"c</td>";
+                        tstring += "<td>"+weatherData[i].wind.speed+" km/ph</td>";
+                        tstring += "<td>"+weatherData[i].description+"</td>";
+                        tstring += "</tr>";
 
+                        console.log(weatherData[i]);
+//                        // TEMP
+//                        $("</td>").text(weatherData[i].temp).appendTo(row);
+//                        // WIND
+//                        $("</td>").text(weatherData[i].wind.speed).appendTo(row);
+//                        // DESCRIPTION
+//                        $("</td>").text(weatherData[i].description).appendTo(row);
+                    }
 
-                    }); // END FOR EACH
+                tstring += '</table>'
 
-//                    console.log(weatherData);
+                $('#weather-box').append(tstring);
+                    console.log(tstring);
 
+//                table.appendTo("#weather-box");
 
+//            console.log(table);
 
-                },'json').done(function(data){
-                    console.log(data);
-                    console.log('this was finished');
-                    console.log(weatherData);
-                    return weatherData;
-                });
-
-//                return weatherData;
-//                console.log('inside function: ');
 //                console.log(weatherData);
-//                console.log('end');
+//                console.log('There are '+weatherData.length);
+//                console.log('There are '+weatherData[0].wind.speed);
 
             }
 
@@ -217,8 +313,8 @@ include("includes/header.php");
                 var list = $('</table>');
 
 
-                console.log(weatherdata);
-                console.log(JSON.stringify(weatherdata))
+//                console.log(weatherdata);
+//                console.log(JSON.stringify(weatherdata))
 
 
 
