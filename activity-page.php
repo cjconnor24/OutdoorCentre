@@ -28,39 +28,31 @@ include("includes/header.php");
         <!-- JS -->
         <script type="text/javascript">
             $(document).ready(function($) {
-                $('#accordion').find('.accordion-toggle').click(function(){
 
-                    //Expand or collapse this panel
-                    $(this).next().slideToggle('fast');
-
-                    //Hide the other panels
-                    $(".accordion-content").not($(this).next()).slideUp('fast');
-
-                });
             });
         </script>
 
         <!-- CSS -->
         <style>
             .accordion-toggle {cursor: pointer;}
-            .accordion-content {display: none;}
+            /*.accordion-content {display: none;}*/
             .accordion-content.default {display: block;}
         </style>
 
         <!-- HTML -->
         <div id="accordion">
-            <h4 class="accordion-toggle">Today</h4>
-            <div class="accordion-content">
-                <p>Cras malesuada ultrices augue molestie risus.</p>
-            </div>
-            <h4 class="accordion-toggle">Tommorow</h4>
-            <div class="accordion-content">
-                <p>Lorem ipsum dolor sit amet mauris eu turpis.</p>
-            </div>
-            <h4 class="accordion-toggle">Thursday</h4>
-            <div class="accordion-content">
-                <p>Vivamus facilisisnibh scelerisque laoreet.</p>
-            </div>
+<!--            <h4 class="accordion-toggle">Today</h4>-->
+<!--            <div class="accordion-content">-->
+<!--                <p>Cras malesuada ultrices augue molestie risus.</p>-->
+<!--            </div>-->
+<!--            <h4 class="accordion-toggle">Tommorow</h4>-->
+<!--            <div class="accordion-content">-->
+<!--                <p>Lorem ipsum dolor sit amet mauris eu turpis.</p>-->
+<!--            </div>-->
+<!--            <h4 class="accordion-toggle">Thursday</h4>-->
+<!--            <div class="accordion-content">-->
+<!--                <p>Vivamus facilisisnibh scelerisque laoreet.</p>-->
+<!--            </div>-->
         </div>
 
 
@@ -186,34 +178,81 @@ include("includes/header.php");
                     var today = d.getDate();
                     var firsttimeblock = Math.ceil(Math.ceil(n/3)*3);
 
+                    var days = ["Sunday","Monday","Tuesday",'Wednesday','Thursday','Friday','Saturday'];
                     // CREATE DAY, THEN ADD WEATHER
 //                    <h4 class="accordion-toggle">Today</h4>
 //                        <div class="accordion-content">
 //                        <p>Cras malesuada ultrices augue molestie risus.</p>
 //                    </div>var weatherline= $("<li></li>")
-                    var weatherlist= $("<ul></ul>")
+
+                    var weatherheading = $("</h4>");
+                    weatherheading.addClass('accordian-toggle');
+                    var weatherbody = $("</div>");
+                    weatherbody.addClass('accordian-content');
+
+                    var weatherlist= $("<ul></ul>");
+
+
 
                     $(hourly).each(function(key,val){
 
+                        // GET THE DATE FROM THE CURRENT
                         var weatherdate = new Date(val.dt*1000);
+                        console.log(weatherdate.getHours());
+
+                        // FIRST ITERATION BUILD HEADING
+                        if(key==0){
+
+                            // CREATE THE TODAYS DAT HEADING FIRST
+                            weatherheading.text(days[d.getDate()]);
+                            $('#accordion').append(weatherheading);
+
+                        }
 
                         if(weatherdate.getDate()==today) {
 
+                            // EXTRACTING DATA
                             var temperature = val.main.temp;
                             var wind = {direction: val.wind.deg, speed: val.wind.speed};
                             var description = val.weather[0].description;
 
-                            var weatherline= $("<li></li>").text("Temp. "+temperature+" Wind Direction: "+wind.direction+ " Speed: "+wind.speed+" Descript:"+description);
+
+                            var weatherline= $("<li></li>").text(weatherdate.getDate()+"Temp. "+temperature+" Wind Direction: "+wind.direction+ " Speed: "+wind.speed+" Descript:"+description);
                             weatherlist.append(weatherline);
 
                         } else {
 
+                            // NOW A NEW DAY
                             today = weatherdate.getDate();
+
                             console.log("ON TO THE NEXT DAY");
+
+                            // HEAD TO ACCORDING
+                            $('#accordion').append(weatherheading)
+
+                            // LIST TO BODY
+                            weatherbody.append(weatherlist);
+
+                            // BODY TO ACCORDIAN
+                            $('#accordion').append(weatherbody);
+
+
+
+//                            $('#accordion').append(weatherheading).append(weatherbody);
+//                            weatherbody.append(weatherlist);
+
+                            weatherheading = $("<h4 class='accordion-toggle'></h4>");
+                            weatherheading.text(days[weatherdate.getDay()]);
+                            weatherbody = $("<div class='accordion-content'></div>");
+
+
+
+                            $
+
+                            weatherlist = $("<ul></ul>");
 
                         }
 
-                        $('#accordion').append(weatherlist);
 
 
 //                        console.log(JSON.stringify(val));
@@ -233,7 +272,20 @@ include("includes/header.php");
 //                    var sunset = new Date(resp.sys.sunset*1000);
 //                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
 
+                    //                ADD ACCORDIAN
+                    $('#accordion').find('.accordion-toggle').click(function(){
+
+                        //Expand or collapse this panel
+                        $(this).next().slideToggle('fast');
+
+                        //Hide the other panels
+                        $(".accordion-content").not($(this).next()).slideUp('fast');
+
+                    });
+
                 });
+
+
 
             });
 
