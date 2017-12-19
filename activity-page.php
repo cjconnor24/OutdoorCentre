@@ -143,130 +143,79 @@ include("includes/header.php");
 
     <script type="text/javascript">
 
-        $(document).ready(function(){
+        $(document).ready(function() {
 
-            // WHEN WEATHER BUTTON CLICKED
-            $(".check-weather").click(function(e){
-
-                e.preventDefault();
-
-                var lat =$(this).attr("data-lat");
-                var long =$(this).attr("data-long");
+            function getWeatherData(lat,long) {
 
                 var apikey  = "<?php echo $weatherapi;?>";
+
                 //weather or forecase
                 var apiurl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+long+'&APPID='+apikey+'&mode=json&units=metric';
 
+                var weatherData  = [];
 
                 $.get(apiurl,function(resp){
 
-                    var hourly = resp.list;
-
-                    // WORK OUT THE FIRST FORECAST
-                    var d = new Date();
-                    var n = d.getHours();
-                    var today = d.getDate();
-                    var firsttimeblock = Math.ceil(Math.ceil(n/3)*3);
-
-                    var days = ["Sunday","Monday","Tuesday",'Wednesday','Thursday','Friday','Saturday'];
 
 
-                    var weatherheading = $("<h4></h4>");
-                    weatherheading.addClass('accordian-toggle');
+                    var weatherlines = resp.list;
 
-//                    weatherheading.text(days[d.getDay()]);
-                    weatherheading.text('TUESDAY');
-                    $('#accordion').append(weatherheading);
 
-                    var weatherbody = $("</div>");
-                    weatherbody.addClass('accordian-content');
-
-                    var weatherlist= $("<ul></ul>");
 
                     // LOOP THROUGH THE RESULTS
-                    $(hourly).each(function(key,val){
+                    $(weatherlines).each(function(key,val){
+
+
+//                        console.log(val);
 
                         // GET THE DATE FROM THE CURRENT
                         var weatherdate = new Date(val.dt*1000);
 
-
-
-                        //                        CHECK STILL SAME DAY
-                        if(weatherdate.getDate()!=today) {
-
-                            // CLOSE EXISTING LIST
-                            console.log("WEAHTER DAY DOESNT EQ TODAY - FIRIGIN  THIS LOGI ROW:"+key);
-
-                            // HEAD TO ACCORDIAN
-//                            $('#accordion').append(weatherheading);
-
-                            // LIST TO BODY
-                            weatherbody.append(weatherlist);
-
-                            // BODY TO ACCORDIAN
-                            $('#accordion').append(weatherbody);
-
-                            // NOW A NEW DAY
-                            today = weatherdate.getDate();
-
-                            console.log("NOW ON TO NEXT DAY - NEW LISTS AND BODYS");
-
-
-                            weatherheading = $("<h4 class='accordion-toggle'></h4>");
-                            weatherheading.text(days[weatherdate.getDay()]);
-                            $('#accordion').append(weatherheading);
-
-                            weatherbody = $("<div class='accordion-content'></div>");
-
-                            weatherlist = $("<ul></ul>");
+                        // BUILD AN OBJECT
+                        var weatherRow = {
+                            datetime: val.dt*1000,
+                            stringdatetime: weatherdate.getFullYear()+'-'+weatherdate.getMonth()+'-'+weatherdate.getDate()+' '+weatherdate.getHours()+':'+weatherdate.getMinutes(),
+                            temp:val.main.temp,
+                            wind: {
+                                direction: val.wind.deg,
+                                speed: val.wind.speed
+                            },
+                            description: val.weather[0].description,
+                            icon: val.weather[0].icon
 
                         }
 
-                        // EXTRACTING DATA
-                        var temperature = val.main.temp;
-                        var wind = {direction: val.wind.deg, speed: val.wind.speed};
-                        var description = val.weather[0].description;
+                        // ATTACH TO ARRAY
+                        weatherData.push(weatherRow);
 
-                        var longtime = weatherdate.getFullYear()+'-'+weatherdate.getMonth()+'-'+weatherdate.getDate()+' '+weatherdate.getHours()+':'+weatherdate.getMinutes();
+                    }); // END FOR EACH
 
-                        // BUILD THE LINE, APPEND TO LIST
-                        var weatherline= $("<li></li>").text(longtime+' '+weatherdate.getDate()+"Temp. "+temperature+" Wind Direction: "+wind.direction+ " Speed: "+wind.speed+" Descript:"+description);
-                        weatherlist.append(weatherline);
-
-                        console.log(weatherlist);
+//                    console.log(weatherData);
 
 
 
-                    });
+                },'json');
+                return weatherData;
+            }
 
+            // WHEN WEATHER BUTTON CLICKED
+            $(".check-weather").click(function (e) {
 
-//                        li.appendTo(list)
+                e.preventDefault();
 
-//                        console.log(val);
+                // GET THE LAT AND LONG
+                var lat = $(this).attr("data-lat");
+                var long = $(this).attr("data-long");
 
-                    },'json');
+                // GET THE WEATHER
+                var data = getWeatherData(lat,long);
 
-//                    list.appendTo(this);
-//                    var sunset = new Date(resp.sys.sunset*1000);
-//                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
-
-                    //                ADD ACCORDIAN
-                    $('#accordion').find('.accordion-toggle').click(function(){
-
-                        //Expand or collapse this panel
-                        $(this).next().slideToggle('fast');
-
-                        //Hide the other panels
-                        $(".accordion-content").not($(this).next()).slideUp('fast');
-
-                    });
-
-                });
-
+                console.log(data);
 
 
             });
 
+        });
     </script>
 
     <script>
