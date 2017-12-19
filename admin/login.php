@@ -162,6 +162,13 @@ if(is_ajax()) {
             font-size:1em;
             border-radius:5px;
         }
+        .login-box__return a {
+            text-align:center;
+            text-decoration: none;
+            color:deepskyblue;
+            font-size:0.9em;
+        }
+
         .error {
             background:#8b0000;
         }
@@ -297,6 +304,7 @@ if(is_ajax()) {
         </script>
 
 
+        <p class="login-box__return"><a href="/"><i class="fa fa-arrow-left"></i> Return to Lomond Adventure</a></p>
 
     </div>
 
