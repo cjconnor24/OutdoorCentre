@@ -25,6 +25,45 @@ include("includes/header.php");
 
     <div class="container nooverlap nohero">
 
+        <!-- JS -->
+        <script type="text/javascript">
+            $(document).ready(function($) {
+                $('#accordion').find('.accordion-toggle').click(function(){
+
+                    //Expand or collapse this panel
+                    $(this).next().slideToggle('fast');
+
+                    //Hide the other panels
+                    $(".accordion-content").not($(this).next()).slideUp('fast');
+
+                });
+            });
+        </script>
+
+        <!-- CSS -->
+        <style>
+            .accordion-toggle {cursor: pointer;}
+            .accordion-content {display: none;}
+            .accordion-content.default {display: block;}
+        </style>
+
+        <!-- HTML -->
+        <div id="accordion">
+            <h4 class="accordion-toggle">Today</h4>
+            <div class="accordion-content">
+                <p>Cras malesuada ultrices augue molestie risus.</p>
+            </div>
+            <h4 class="accordion-toggle">Tommorow</h4>
+            <div class="accordion-content">
+                <p>Lorem ipsum dolor sit amet mauris eu turpis.</p>
+            </div>
+            <h4 class="accordion-toggle">Thursday</h4>
+            <div class="accordion-content">
+                <p>Vivamus facilisisnibh scelerisque laoreet.</p>
+            </div>
+        </div>
+
+
         <h1 class="heading">Activites</h1>
 
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
@@ -141,23 +180,30 @@ include("includes/header.php");
 
                     var hourly = resp.list;
 
+                    // WORK OUT THE FIRST FORECAST
                     var d = new Date();
                     var n = d.getHours();
+                    var today = d.getDate();
+                    var firsttimeblock = Math.ceil(Math.ceil(n/3)*3);
 
-                    var finalblck = Math.ceil(Math.ceil(n/3)*3);
-
-                    console.log("The Current hour is" + n);
-                    console.log("The next block will be " + finalblck);
-
-//                    var list = $('<ul/>');
 
                     $(hourly).each(function(key,val){
 
-//                        var li = $("<li/>");
-                        var temperature = val.main.temp;
-                        var wind = { direction: val.wind.deg, speed: val.wind.speed };
-                        var description = val.weather[0].description;
-                        var datetime = new Date(val.dt*1000);
+                        var weatherdate = new Date(val.dt*1000);
+
+                        if(weatherdate.getDate()==today) {
+
+                            var temperature = val.main.temp;
+                            var wind = {direction: val.wind.deg, speed: val.wind.speed};
+                            var description = val.weather[0].description;
+
+                        } else {
+
+                            today = weatherdate.getDate();
+                            console.log("ON TO THE NEXT DAY");
+
+                        }
+
 
 //                        console.log(JSON.stringify(val));
 
