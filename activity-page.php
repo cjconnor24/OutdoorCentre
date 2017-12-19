@@ -36,8 +36,14 @@ include("includes/header.php");
 
         <?php
 
+        if(isset($_GET['activity'])){
+            $activity = $_GET['activity'];
+        } else {
+            $activity = 5;
+        }
+
         include('includes/config.php');
-        $url = $localurl."/routes/larger-geojson.json";
+        $url = $localurl."/routes/get-routes.php?activity=$activity";
         $ch = curl_init();
 
         // SETUP THE CURL REQUEST
@@ -52,6 +58,11 @@ include("includes/header.php");
         $result = curl_exec($ch);
         $json = json_decode($result);
 
+//        print_r($result);
+//
+//        print_r($json);
+//        exit();
+
         // LOOP THROUGH THE FEATURES
         foreach($json->{'features'} as $walk) {
 
@@ -65,20 +76,24 @@ include("includes/header.php");
             <div class="route__map"></div>
 
             <div class="route__info">
-                <h3><?php echo $props->{'name'}; ?></h3>
-                <p>This is a lovely wee walk.</p>
+                <h3 class="route__name"><?php echo $props->{'name'}; ?></h3>
+                <p class="route__description"><?php echo $props->{'description'}; ?></p>
 
-                <h3>Route Statistic</h3>
+                <h3>Route Statistics</h3>
                 <div class="route__info__stats">
                     <table>
                         <tr>
-                            <td>Name</td>
-                            <td>Another</td>
+                            <td>Difficulty</td>
+                            <td><?php echo $props->{'difficulty'}; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Distance</td>
+                            <td><?php echo round($props->{'distance'},2); ?>km</td>
                         </tr>
                     </table>
                 </div>
 
-                <p><a href="#" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Check Weather</a></p>
+                <p><a href="#" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Check Weather</a> <a href="#" class="btn btn-orng check-weather"><i class="fa fa-map-marker"></i> View Route on Map</a></p>
 
             </div>
 
@@ -144,7 +159,11 @@ include("includes/header.php");
             });
 
             // LOAD IN THE ROUTES FROM GEOJSON
-            map.data.loadGeoJson('/routes/larger-geojson.json');
+//            map.data.loadGeoJson('/routes/larger-geojson.json');
+
+            map.data.loadGeoJson('/routes/get-routes.php?activity=<?php echo $activity;?>');
+
+//            http://outdoor.localhost
 
             // CREATE AN INFO WINDOW TO WORK WITH
             var infowindow = new google.maps.InfoWindow();

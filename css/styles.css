@@ -423,6 +423,12 @@ video#bgvid {
     padding:2em;
     /*display: flex;*/
 }
+.route__description {
+    white-space: pre-line;
+}
+.route__info__stats {
+    margin:1em 0;
+}
 
 /*activity styles*/
 .activity {
