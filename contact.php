@@ -13,7 +13,7 @@
 <!---->
 <!--</div>-->
 <div id="location-map">
-<h1>TEST</h1>
+
 </div>
 
 <script>
