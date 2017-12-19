@@ -6,7 +6,7 @@ include('includes/header.php'); ?>
  <h1>Edit Route</h1>
 <p>Please edit the route below</p>
 
-<p><strong style="color:red;">NOTE:</strong> This has not been secured...it's simply for testing purpose and importing test data.</p>
+<p><strong style="color:red;">NOTE:</strong> This has not been secured...it's simply for testing purpose and importing test data. You <strong>MUST</strong> upload a GEO jSon file from <a href="http://geojson.io/">geojSon</a>.</p>
 
 <?php
 
