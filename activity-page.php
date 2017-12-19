@@ -99,7 +99,7 @@ include("includes/header.php");
                     </table>
                 </div>
 
-                <p><a href="#" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Check Weather</a> <a href="#" class="btn btn-orng check-weather"><i class="fa fa-map-marker"></i> View Route on Map</a></p>
+                <p><a href="#" data-long="<?php echo $latlong[0];?>" data-lat="<?php echo $latlong[1];?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Check Weather</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a></p>
 
             </div>
 
@@ -125,17 +125,56 @@ include("includes/header.php");
 
 
             // TEMP WEATHER STUFF
-            $("#weatherButton").click(function(e){
+            $(".check-weather").click(function(e){
 
                 e.preventDefault();
+
+                var lat =$(this).attr("data-lat");
+                var long =$(this).attr("data-long");
+
                 var apikey  = "<?php echo $weatherapi;?>";
-                var apiurl = 'https://api.openweathermap.org/data/2.5/weather?lat=56.085865&lon=-4.548176'+'&APPID='+apikey;
+                //weather or forecase
+                var apiurl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+long+'&APPID='+apikey+'&mode=json&units=metric';
+
 
                 $.get(apiurl,function(resp){
 
-                    console.log(resp);
-                    var sunset = new Date(resp.sys.sunset*1000);
-                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
+                    var hourly = resp.list;
+
+                    var d = new Date();
+                    var n = d.getHours();
+
+                    var finalblck = Math.ceil(Math.ceil(n/3)*3);
+
+                    console.log("The Current hour is" + n);
+                    console.log("The next block will be " + finalblck);
+
+//                    var list = $('<ul/>');
+
+                    $(hourly).each(function(key,val){
+
+//                        var li = $("<li/>");
+                        var temperature = val.main.temp;
+                        var wind = { direction: val.wind.deg, speed: val.wind.speed };
+                        var description = val.weather[0].description;
+                        var datetime = new Date(val.dt*1000);
+
+//                        console.log(JSON.stringify(val));
+
+                        //                    var sunset = new Date(resp.sys.sunset*1000);
+//                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
+
+//                        console.log("The weather is: "+val.weather.description);
+//                        console.log("The temperature is: "+);
+//                        console.log("The wind is: "++" at "++"km ph");
+//                        li.appendTo(list)
+
+                        console.log(val);
+                    })
+
+//                    list.appendTo(this);
+//                    var sunset = new Date(resp.sys.sunset*1000);
+//                    console.log("Sunset is at: "+sunset.getHours() + ':' + sunset.getMinutes());
 
                 });
 
