@@ -152,21 +152,14 @@ include("includes/header.php");
                 //weather or forecase
                 var apiurl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+long+'&APPID='+apikey+'&mode=json&units=metric';
 
-                var weatherData  = [];
+                var weatherData = [];
 
                 $.get(apiurl,function(resp){
 
-
-
                     var weatherlines = resp.list;
-
-
 
                     // LOOP THROUGH THE RESULTS
                     $(weatherlines).each(function(key,val){
-
-
-//                        console.log(val);
 
                         // GET THE DATE FROM THE CURRENT
                         var weatherdate = new Date(val.dt*1000);
@@ -188,14 +181,25 @@ include("includes/header.php");
                         // ATTACH TO ARRAY
                         weatherData.push(weatherRow);
 
+
                     }); // END FOR EACH
 
 //                    console.log(weatherData);
 
 
 
-                },'json');
-                return weatherData;
+                },'json').done(function(data){
+                    console.log(data);
+                    console.log('this was finished');
+                    console.log(weatherData);
+                    return weatherData;
+                });
+
+//                return weatherData;
+//                console.log('inside function: ');
+//                console.log(weatherData);
+//                console.log('end');
+
             }
 
             // WHEN WEATHER BUTTON CLICKED
@@ -208,9 +212,14 @@ include("includes/header.php");
                 var long = $(this).attr("data-long");
 
                 // GET THE WEATHER
-                var data = getWeatherData(lat,long);
+                var weatherdata = getWeatherData(lat,long);
 
-                console.log(data);
+                var list = $('</table>');
+
+
+                console.log(weatherdata);
+                console.log(JSON.stringify(weatherdata))
+
 
 
             });
