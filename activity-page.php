@@ -189,6 +189,8 @@ include("includes/header.php");
 
                 var weatherData = [];
 
+                $("#weather-box").html();
+
                 // LOOP THROUGH THE RESULTS
                 $(data.list).each(function(key,val) {
 
@@ -220,20 +222,23 @@ include("includes/header.php");
                 var tstring = '<table style="width:100%;text-align:left;">'
                 var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
 
+                var table = $("<table style='width:100%;text-align:left;'></table>");
+                var thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th>OVERVIEW</th></thead>");
+                var tbody = $("<tbody></tbody>");
 
                 var curtime = new Date();
                 var d = curtime.getDate();
 
-                $('<h3></h3>').text(days[curtime.getDay()]).appendTo('#weather-box');
+                $('<h1></h1>').text(days[curtime.getDay()]).appendTo('#weather-box');
 
-                tstring += "<thead>";
-                tstring += "<tr>";
-                tstring += "<th>"+days[curtime.getDay()]+"</th>";
-                tstring += "<th>DATETIME</th>";
-                tstring += "<th>Temperature</th>";
-                tstring += "<th>Wind Speed</th>";
-                tstring += "<th>Description</th>";
-                tstring += "</thead>";
+//                tstring += "<thead>";
+//                tstring += "<tr>";
+//                tstring += "<th>"+days[curtime.getDay()]+"</th>";
+//                tstring += "<th>DATETIME</th>";
+//                tstring += "<th>Temperature</th>";
+//                tstring += "<th>Wind Speed</th>";
+//                tstring += "<th>Description</th>";
+//                tstring += "</thead>";
 
                 // LOOP AND BUILD TABLE
                     for(i = 0; i < weatherData.length; i++){
@@ -244,35 +249,76 @@ include("includes/header.php");
 
                         if(weatherDate.getDate()!=d){
 
-                            tstring += '</table>';
-                            tstring += '<table style="width:100%">';
-                            tstring += "<thead>";
-                            tstring += "<tr>";
-                            tstring += "<th>"+days[weatherDate.getDay()]+"</th>";
-                            tstring += "<th>DATETIME</th>";
-                            tstring += "<th>Temperature</th>";
-                            tstring += "<th>Wind Speed</th>";
-                            tstring += "<th>Description</th>";
-                            tstring += "</thead>";
+                            thead.appendTo(table);
+                            tbody.appendTo(table);
+
+                            $('#weather-box').append(table);
+
+                            $('<h1></h1>').text(days[weatherDate.getDay()]).appendTo('#weather-box');
+
+
+                            table = $("<table style='width:100%;text-align:left;'></table>");
+                            thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th>OVERVIEW</th></thead>");
+                            tbody = $("<tbody></tbody>");
+
+//                            tstring += '</table>';
+//                            tstring += '<table style="width:100%">';
+//                            tstring += "<thead>";
+//                            tstring += "<tr>";
+//                            tstring += "<th>"+days[weatherDate.getDay()]+"</th>";
+//                            tstring += "<th>DATETIME</th>";
+//                            tstring += "<th>Temperature</th>";
+//                            tstring += "<th>Wind Speed</th>";
+//                            tstring += "<th>Description</th>";
+//                            tstring += "</thead>";
 
                             d = weatherDate.getDate();
 
                         }
 
-                        tstring += "<tr>";
-                        tstring += "<td><img src='http://openweathermap.org/img/w/"+weatherData[i].icon+".png' ></td>";
-                        tstring += "<td>"+weatherDate.getHours()+":00</td>";
-                        tstring += "<td>"+weatherData[i].temp+"c</td>";
-                        tstring += "<td>"+weatherData[i].wind.speed+" km/ph</td>";
-                        tstring += "<td>"+weatherData[i].description+"</td>";
-                        tstring += "</tr>";
+                        var trow = $("<tr>");
+
+                        var iconcell = $("<td></td>");
+                        var iconurl = 'http://openweathermap.org/img/w/'+weatherData[i].icon+'.png';
+                        var icon = $("<img>").attr("src",iconurl);
+                        icon.appendTo(iconcell);
+                        iconcell.appendTo(trow);
+//                        $("<td><img src='http://openweathermap.org/img/w/"+weatherData[i].icon+"</td>").appendTo(trow);
+
+                        $("<td></td>").text(('0' + (weatherDate.getHours()+1)).slice(-2)+'00').appendTo(trow);
+                        $("<td></td>").html(Math.round(weatherData[i].temp)+'&#8451;').appendTo(trow);
+                        $("<td></td>").text(Math.round(weatherData[i].wind.speed)+' kmph').appendTo(trow);
+                        $("<td></td>").text(weatherData[i].wind.speed+' degrees').appendTo(trow);
+                        $("<td></td>").text(weatherData[i].description).appendTo(trow);
+
+//                        tstring += "<tr>";
+//                        tstring += "<td><img src='http://openweathermap.org/img/w/"+weatherData[i].icon+".png' ></td>";
+//                        tstring += "<td>"+weatherDate.getHours()+":00</td>";
+//                        tstring += "<td>"+weatherData[i].temp+"c</td>";
+//                        tstring += "<td>"+weatherData[i].wind.speed+" km/ph</td>";
+//                        tstring += "<td>"+weatherData[i].description+"</td>";
+//                        tstring += "</tr>";
+
+                        trow.appendTo(tbody);
 
                         console.log(weatherData[i]);
                     }
 
-                tstring += '</table>'
+//                tstring += '</table>'
 
-                $('#weather-box').append(tstring);
+                thead.appendTo(table);
+                tbody.appendTo(table);
+//                table.appendTo('#weather-box')
+                $('#weather-box').append(table);
+                // TABLE
+                // BODY
+                // HEAD
+                // ROW
+
+
+
+
+//                $('#weather-box').append(tstring);
 
             }
 
