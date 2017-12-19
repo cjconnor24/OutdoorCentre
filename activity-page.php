@@ -136,7 +136,7 @@ include("includes/header.php");
                     // GET THE DATE FROM THE CURRENT
                     var weatherdate = new Date(val.dt * 1000);
 
-                    console.log(val.weather);
+                    console.log(val);
 
                     // BUILD AN OBJECT
                     var weatherRow = {
@@ -161,14 +161,14 @@ include("includes/header.php");
 //                var tstring = '<table>'
                 var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
 
-                var table = $("<table></table>");
+                var table = $("<table class='accordion-content default'></table>");
                 var thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
                 var tbody = $("<tbody></tbody>");
 
                 var curtime = new Date();
                 var d = curtime.getDate();
 
-                $('<h2></h2>').text(days[curtime.getDay()]).appendTo('#weather-box');
+                $('<h2 class="accordion-toggle"></h2>').text(days[curtime.getDay()]).appendTo('#weather-box');
 
 
                 // LOOP AND BUILD TABLE
@@ -188,7 +188,7 @@ include("includes/header.php");
                             $('<h2></h2>').text(days[weatherDate.getDay()]).appendTo('#weather-box');
 
 
-                            table = $("<table style='width:100%;text-align:left;'></table>");
+                            table = $("<table></table>");
                             thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
                             tbody = $("<tbody></tbody>");
 
