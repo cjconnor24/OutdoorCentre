@@ -48,7 +48,7 @@ if($_POST) {
 
 include('includes/header.php'); ?>
 
-<p><a href="/admin/routes.php" class="btn"><i class="fa fa-arrow-left"></i> Return to Routes.</a></p>
+<p><a href="/admin/routes.php" class="btn"><i class="fa fa-map-o"></i> Return to Routes.</a></p>
 
  <h1>Edit Route</h1>
 <p>Please edit the route below</p>
