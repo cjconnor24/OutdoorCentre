@@ -22,7 +22,7 @@ if($count > 0) {
             <th>Enabled</th>
             <th>Name</th>
             <th class="hide">Activity</th>
-<!--            <th>Actions</th>-->
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -33,15 +33,15 @@ if($count > 0) {
         foreach($results as $row){
             ?>
             <tr>
-                <td><a href="/admin/route-edit.php?id=<?php echo $row['routeid'];?>">#<?php echo $row['routeid'];?></a></td>
+                <td>#<?php echo $row['routeid'];?></td>
                 <td><?php echo $row['enabled'];?></td>
                 <td><strong><?php echo $row['routename'];?></strong><br></td>
                 <td class="hide"><strong><?php echo $row['activityname'];?></strong></td>
-<!--                <td>-->
-<!--                    <a href="view-enquiry.php?id=--><?php //echo $row['enquiryid'];?><!--" title="View Enquiry" class="table__button--><?php //echo ($row['responseid']==NULL ? " remove" : "");?><!--"><i class="fa fa-envelope--><?php //echo ($row['responseid']==NULL ? "" : "-open");?><!--"></i> <span>Read</span></a>-->
+                <td>
+                    <a href="route-edit.php?id=<?php echo $row['routeid'];?>" title="View Enquiry" class="table__button"><i class="fa fa-pencil"></i> <span>Read</span></a>
 <!--                    <a href="#--><?php //echo $row['enquiryid'];?><!--" title="Reply to Enquiry" class="table__button"><i class="fa fa-reply"></i> <span>Read</span></a>-->
-<!--                    <a href="#--><?php //echo $row['enquiryid'];?><!--" title="Delete Enquiry" class="table__button remove"><i class="fa fa-trash"></i> <span>Read</span></a>-->
-<!--                </td>-->
+                    <a href="javascript:alert('ToDo');" title="Delete Enquiry" class="table__button remove"><i class="fa fa-trash"></i> <span>Read</span></a>
+                </td>
             </tr>
         <?php } ?>
         </tbody>
