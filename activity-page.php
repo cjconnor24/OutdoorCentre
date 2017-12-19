@@ -36,6 +36,10 @@ include("includes/header.php");
 
         <?php
 
+        //TODO: NOW THAT THIS ALL RESIDES IN DB - DON'T NEED TO CALL JSON
+        // COULD REFACTOR TO CALLL DIRECTLY IN DB TO REDUCE ADDITIONAL STRAIN
+        // ON SERVER BUILDER JSON TWICE FOR THIS PAGE
+
         if(isset($_GET['activity'])){
             $activity = $_GET['activity'];
         } else {
@@ -58,20 +62,22 @@ include("includes/header.php");
         $result = curl_exec($ch);
         $json = json_decode($result);
 
-//        print_r($result);
-//
-//        print_r($json);
-//        exit();
-
         // LOOP THROUGH THE FEATURES
         foreach($json->{'features'} as $walk) {
 
         // MAKE SURE LINE STRING AND NOT POINT
         if ($walk->{'geometry'}->{'type'} == "LineString") {
 
+        // GET PROPERTIES
         $props = $walk->{'properties'};
+
+        // GET AVERAGE LATLONG ON THE ROUTE FOR THE WEATHER
+        $totalplots = count(($walk->{'geometry'}->{'coordinates'}));
+        $middle = floor($totalplots/2);
+        $latlong = $walk->{'geometry'}->{'coordinates'}[$middle];
+
         ?>
-        <div class="route">
+        <div class="route" id="route-<?php echo $props->{'routeid'}; ?>">
 
             <div class="route__map"></div>
 
@@ -191,7 +197,8 @@ include("includes/header.php");
                 }
 
                 var myHTML = event.feature.getProperty("name");
-                infowindow.setContent(generateContent(myHTML,(distancekm ? distancekm : '')));
+                var routeID = event.feature.getProperty("routeid");
+                infowindow.setContent(generateContent(myHTML,(distancekm ? distancekm : ''),routeID));
                 // position the infowindow on the marker
 //                infowindow.setPosition(event.feature.getGeometry());
                 infowindow.setPosition(event.latLng);
@@ -269,14 +276,14 @@ include("includes/header.php");
         }
 
         // BUILD THE CONTENT FOR THE WINDOW
-        function generateContent(title,body){
+        function generateContent(title,body,routeid){
 
             var contentstring = "";
             contentstring+= "<div class='map-info-window'>";
-            contentstring+= "<h1>"+title+"</h1>";
+            contentstring+= "<h1>"+title+routeid+"</h1>";
             contentstring+= "<p>Here is some info on the route</p>";
             contentstring+= "<p>"+body+"</p>";
-            contentstring+= "<p><a href='#route-1' id='weatherButton' class='btn btn-orng'><i class='fa fa-eye'></i> View Route Data</a></p>";
+            contentstring+= "<p><a href='#route-"+routeid+"' id='weatherButton' class='btn btn-orng'><i class='fa fa-eye'></i> View Route Data</a></p>";
             contentstring+= "</div>";
 
             return contentstring;
