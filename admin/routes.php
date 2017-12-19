@@ -1,6 +1,10 @@
 <?php include('includes/header.php'); ?>
 
+
+
  <h1>Enquiries</h1>
+
+<p><a href="/admin/geo-json-importer.php" class="btn btn-small"><i class="fa fa-upload"></i> Import Geo jSon</a><br><strong style="color:red;">Testing Only:</strong> Please do not use this. It's a function I wrote for importing geoJson into categories in the DB.</p>
 
 <?php
 include('../includes/dbConnect.php');
