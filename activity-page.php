@@ -186,6 +186,12 @@ include("includes/header.php");
                     var today = d.getDate();
                     var firsttimeblock = Math.ceil(Math.ceil(n/3)*3);
 
+                    // CREATE DAY, THEN ADD WEATHER
+//                    <h4 class="accordion-toggle">Today</h4>
+//                        <div class="accordion-content">
+//                        <p>Cras malesuada ultrices augue molestie risus.</p>
+//                    </div>var weatherline= $("<li></li>")
+                    var weatherlist= $("<ul></ul>")
 
                     $(hourly).each(function(key,val){
 
@@ -197,12 +203,17 @@ include("includes/header.php");
                             var wind = {direction: val.wind.deg, speed: val.wind.speed};
                             var description = val.weather[0].description;
 
+                            var weatherline= $("<li></li>").text("Temp. "+temperature+" Wind Direction: "+wind.direction+ " Speed: "+wind.speed+" Descript:"+description);
+                            weatherlist.append(weatherline);
+
                         } else {
 
                             today = weatherdate.getDate();
                             console.log("ON TO THE NEXT DAY");
 
                         }
+
+                        $('#accordion').append(weatherlist);
 
 
 //                        console.log(JSON.stringify(val));
