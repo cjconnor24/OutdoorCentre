@@ -22,16 +22,16 @@
                 $(this).toggleClass('open');
                 $(".nav__menu").toggleClass( "open" );
             });
-
-            $('#close-weather').click(function(){
-                $('#overlay').fadeOut('fast');
-            })
-
-            $('.check-weather').click(function(e){
-                e.preventDefault();
-                $('#overlay').fadeIn('fast');
-
-            })
+//
+//            $('#close-weather').click(function(){
+//                $('#overlay').fadeOut('fast');
+//            })
+//
+//            $('.check-weather').click(function(e){
+//                e.preventDefault();
+//                $('#overlay').fadeIn('fast');
+//
+//            })
 
         });
 
