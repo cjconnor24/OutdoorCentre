@@ -217,33 +217,26 @@ include("includes/header.php");
                 });
 
 
-
-//                var table = $('<table id="weathertable"></table>');
-//                table.append('<thead><tr><th>Time</th><th>Temp</th><th>Wind</th><th>Description<td></thead>');
-//                var tbody = $('</tbody>');
-
                 var tstring = '<table style="width:100%;text-align:left;">'
-
                 var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
 
-//                console.log(table);
 
-//                table.appendTo("#accordion");
+                var curtime = new Date();
+                var d = curtime.getDate();
+
+                $('<h3></h3>').text(days[curtime.getDay()]).appendTo('#weather-box');
+
                 tstring += "<thead>";
                 tstring += "<tr>";
-                tstring += "<th></th>";
+                tstring += "<th>"+days[curtime.getDay()]+"</th>";
                 tstring += "<th>DATETIME</th>";
                 tstring += "<th>Temperature</th>";
                 tstring += "<th>Wind Speed</th>";
                 tstring += "<th>Description</th>";
                 tstring += "</thead>";
 
-                var curtime = new Date();
-                var d = curtime.getDate();
-
-
+                // LOOP AND BUILD TABLE
                     for(i = 0; i < weatherData.length; i++){
-
 
                         var weatherDate = new Date(weatherData[i].datetime);
 
@@ -255,7 +248,7 @@ include("includes/header.php");
                             tstring += '<table style="width:100%">';
                             tstring += "<thead>";
                             tstring += "<tr>";
-                            tstring += "<th></th>";
+                            tstring += "<th>"+days[weatherDate.getDay()]+"</th>";
                             tstring += "<th>DATETIME</th>";
                             tstring += "<th>Temperature</th>";
                             tstring += "<th>Wind Speed</th>";
@@ -275,26 +268,11 @@ include("includes/header.php");
                         tstring += "</tr>";
 
                         console.log(weatherData[i]);
-//                        // TEMP
-//                        $("</td>").text(weatherData[i].temp).appendTo(row);
-//                        // WIND
-//                        $("</td>").text(weatherData[i].wind.speed).appendTo(row);
-//                        // DESCRIPTION
-//                        $("</td>").text(weatherData[i].description).appendTo(row);
                     }
 
                 tstring += '</table>'
 
                 $('#weather-box').append(tstring);
-                    console.log(tstring);
-
-//                table.appendTo("#weather-box");
-
-//            console.log(table);
-
-//                console.log(weatherData);
-//                console.log('There are '+weatherData.length);
-//                console.log('There are '+weatherData[0].wind.speed);
 
             }
 
