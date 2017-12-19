@@ -55,7 +55,6 @@ include("includes/header.php");
 
         <h2 class="heading">Routes</h2>
 
-        <div id="weather-box"></div>
 
         <?php
 
@@ -137,9 +136,6 @@ include("includes/header.php");
 
         $(document).ready(function() {
 
-
-
-
             function getWeatherData(lat,long) {
 
                 var apikey  = "<?php echo $weatherapi;?>";
@@ -151,35 +147,9 @@ include("includes/header.php");
 
                 $.get(apiurl,function(resp){
 
-//                    var weatherlines = resp.list;
-//
-//                    // LOOP THROUGH THE RESULTS
-//                    $(weatherlines).each(function(key,val){
-//
-////                        // GET THE DATE FROM THE CURRENT
-////                        var weatherdate = new Date(val.dt*1000);
-////
-////                        // BUILD AN OBJECT
-////                        var weatherRow = {
-////                            datetime: val.dt*1000,
-////                            stringdatetime: weatherdate.getFullYear()+'-'+weatherdate.getMonth()+'-'+weatherdate.getDate()+' '+weatherdate.getHours()+':'+weatherdate.getMinutes(),
-////                            temp:val.main.temp,
-////                            wind: {
-////                                direction: val.wind.deg,
-////                                speed: val.wind.speed
-////                            },
-////                            description: val.weather[0].description,
-////                            icon: val.weather[0].icon
-////
-////                        }
-////
-////                        // ATTACH TO ARRAY
-////                        weatherData.push(weatherRow);
-//
-//
-//                    }); // END FOR EACH
+                    // DO NOTHING AND PASS TO CALLBACK
 
-                },'json').done(receiver);
+                },'json').done(receiver); // RUN THE CALLBACK FUNCTION
 
 
             }
@@ -189,7 +159,7 @@ include("includes/header.php");
 
                 var weatherData = [];
 
-                $("#weather-box").html();
+                $("#weather-box").html('');
 
                 // LOOP THROUGH THE RESULTS
                 $(data.list).each(function(key,val) {
@@ -219,26 +189,18 @@ include("includes/header.php");
                 });
 
 
-                var tstring = '<table style="width:100%;text-align:left;">'
+//                var tstring = '<table>'
                 var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
 
-                var table = $("<table style='width:100%;text-align:left;'></table>");
+                var table = $("<table></table>");
                 var thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th>OVERVIEW</th></thead>");
                 var tbody = $("<tbody></tbody>");
 
                 var curtime = new Date();
                 var d = curtime.getDate();
 
-                $('<h1></h1>').text(days[curtime.getDay()]).appendTo('#weather-box');
+                $('<h2></h2>').text(days[curtime.getDay()]).appendTo('#weather-box');
 
-//                tstring += "<thead>";
-//                tstring += "<tr>";
-//                tstring += "<th>"+days[curtime.getDay()]+"</th>";
-//                tstring += "<th>DATETIME</th>";
-//                tstring += "<th>Temperature</th>";
-//                tstring += "<th>Wind Speed</th>";
-//                tstring += "<th>Description</th>";
-//                tstring += "</thead>";
 
                 // LOOP AND BUILD TABLE
                     for(i = 0; i < weatherData.length; i++){
@@ -254,7 +216,7 @@ include("includes/header.php");
 
                             $('#weather-box').append(table);
 
-                            $('<h1></h1>').text(days[weatherDate.getDay()]).appendTo('#weather-box');
+                            $('<h2></h2>').text(days[weatherDate.getDay()]).appendTo('#weather-box');
 
 
                             table = $("<table style='width:100%;text-align:left;'></table>");
@@ -283,7 +245,6 @@ include("includes/header.php");
                         var icon = $("<img>").attr("src",iconurl);
                         icon.appendTo(iconcell);
                         iconcell.appendTo(trow);
-//                        $("<td><img src='http://openweathermap.org/img/w/"+weatherData[i].icon+"</td>").appendTo(trow);
 
                         $("<td></td>").text(('0' + (weatherDate.getHours()+1)).slice(-2)+'00').appendTo(trow);
                         $("<td></td>").html(Math.round(weatherData[i].temp)+'&#8451;').appendTo(trow);
@@ -291,36 +252,42 @@ include("includes/header.php");
                         $("<td></td>").text(weatherData[i].wind.speed+' degrees').appendTo(trow);
                         $("<td></td>").text(weatherData[i].description).appendTo(trow);
 
-//                        tstring += "<tr>";
-//                        tstring += "<td><img src='http://openweathermap.org/img/w/"+weatherData[i].icon+".png' ></td>";
-//                        tstring += "<td>"+weatherDate.getHours()+":00</td>";
-//                        tstring += "<td>"+weatherData[i].temp+"c</td>";
-//                        tstring += "<td>"+weatherData[i].wind.speed+" km/ph</td>";
-//                        tstring += "<td>"+weatherData[i].description+"</td>";
-//                        tstring += "</tr>";
 
+                        // APPEND THE ROW TO THE BODY
                         trow.appendTo(tbody);
 
-                        console.log(weatherData[i]);
                     }
 
-//                tstring += '</table>'
-
+                // BUILD THE REMAINING ELEMENTS
                 thead.appendTo(table);
                 tbody.appendTo(table);
-//                table.appendTo('#weather-box')
+
+
+                // UPDATE THE TABLE
                 $('#weather-box').append(table);
-                // TABLE
-                // BODY
-                // HEAD
-                // ROW
+                $('#overlay').fadeIn('fast');
+                $('body').addClass('noscrolling');
 
 
+                $('.loading-box').slideUp('slow',function(){
+                    $('#weather-box').slideDown('slow');
+                })
 
 
-//                $('#weather-box').append(tstring);
 
             }
+
+
+            $('#close-weather').click(function(){
+                $('body').removeClass('noscrolling');
+                $('#overlay').fadeOut('fast');
+            })
+
+//            $('.check-weather').click(function(e){
+//                e.preventDefault();
+//                $('#overlay').fadeIn('fast');
+//                $('body').addClass('noscrolling');
+//            })
 
             // WHEN WEATHER BUTTON CLICKED
             $(".check-weather").click(function (e) {

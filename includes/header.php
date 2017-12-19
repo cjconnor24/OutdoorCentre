@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css" media="screen">
 
-    <script type="text/javascript" src="/js/slider.js"></script>
+<!--    <script type="text/javascript" src="/js/slider.js"></script>-->
     <script type="text/javascript">
         // SHOW AND HIDE MOBILE MENU - ANIMATE HAMBURGER
         $(document).ready(function(){
@@ -22,16 +22,7 @@
                 $(this).toggleClass('open');
                 $(".nav__menu").toggleClass( "open" );
             });
-//
-//            $('#close-weather').click(function(){
-//                $('#overlay').fadeOut('fast');
-//            })
-//
-//            $('.check-weather').click(function(e){
-//                e.preventDefault();
-//                $('#overlay').fadeIn('fast');
-//
-//            })
+
 
         });
 
@@ -49,7 +40,17 @@
     <div class="weather">
         <i class="fa fa-times" id="close-weather" title="Close Window"></i>
         <h1> Weather Information</h1>
-        <p>Here is the weather</p>
+        <p>Below is the current 5-day forcast for [route].</p>
+
+        <div class="loading-box">
+            <img src="/img/logo.png" alt="Loading Graphic">
+            <p>Loading Data...</p>
+        </div>
+
+        <div id="weather-box"></div>
+
+        <p class="weather__copyright">Weather data provided by <a href="http://openweathermap.org/" target="_blank">&copy; OpenWeatherMap</a></p>
+
     </div>
 
 </div>
