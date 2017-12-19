@@ -3,25 +3,7 @@ include('includes/config.php');
 include("includes/header.php");
 ?>
 
-    <!--    <div class="hero">-->
-    <!---->
-    <!--        <div class="container">-->
-    <!--            <h1>Activities</h1>-->
-    <!--            <p>There are a wide range of activities and sports on offer at Lomond adventures.</p>-->
-    <!--            <p>Take a look below for more information on everything that we offer.</p>-->
-    <!--        </div>-->
-    <!---->
-    <!--    </div>-->
-    <!--    <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">-->
-    <!--        <source src="/video/bg-video.mp4" type="video/mp4">-->
-    <!--    </video>-->
-
-
-
     <div id="full-size-map"></div>
-
-
-
 
     <div class="container nooverlap nohero">
 
@@ -31,19 +13,6 @@ include("includes/header.php");
 
             });
         </script>
-
-        <!-- CSS -->
-        <style>
-            .accordion-toggle {cursor: pointer;}
-            /*.accordion-content {display: none;}*/
-            .accordion-content.default {display: block;}
-        </style>
-
-        <!-- HTML -->
-        <div id="accordion">
-            <h3>HELLO</h3>
-
-        </div>
 
 
         <h1 class="heading">Activites</h1>
@@ -193,7 +162,7 @@ include("includes/header.php");
                 var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
 
                 var table = $("<table></table>");
-                var thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th>OVERVIEW</th></thead>");
+                var thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
                 var tbody = $("<tbody></tbody>");
 
                 var curtime = new Date();
@@ -220,7 +189,7 @@ include("includes/header.php");
 
 
                             table = $("<table style='width:100%;text-align:left;'></table>");
-                            thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th>OVERVIEW</th></thead>");
+                            thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
                             tbody = $("<tbody></tbody>");
 
 //                            tstring += '</table>';
@@ -250,7 +219,7 @@ include("includes/header.php");
                         $("<td></td>").html(Math.round(weatherData[i].temp)+'&#8451;').appendTo(trow);
                         $("<td></td>").text(Math.round(weatherData[i].wind.speed)+' kmph').appendTo(trow);
                         $("<td></td>").text(weatherData[i].wind.speed+' degrees').appendTo(trow);
-                        $("<td></td>").text(weatherData[i].description).appendTo(trow);
+                        $("<td class='hide'></td>").text(weatherData[i].description).appendTo(trow);
 
 
                         // APPEND THE ROW TO THE BODY
@@ -265,7 +234,7 @@ include("includes/header.php");
 
                 // UPDATE THE TABLE
                 $('#weather-box').append(table);
-                $('#overlay').fadeIn('fast');
+
                 $('body').addClass('noscrolling');
 
 
@@ -273,26 +242,21 @@ include("includes/header.php");
                     $('#weather-box').slideDown('slow');
                 })
 
-
-
             }
 
-
+            // CLOSE THE OVERLAY
             $('#close-weather').click(function(){
                 $('body').removeClass('noscrolling');
                 $('#overlay').fadeOut('fast');
             })
 
-//            $('.check-weather').click(function(e){
-//                e.preventDefault();
-//                $('#overlay').fadeIn('fast');
-//                $('body').addClass('noscrolling');
-//            })
 
             // WHEN WEATHER BUTTON CLICKED
             $(".check-weather").click(function (e) {
 
                 e.preventDefault();
+
+                $('#overlay').fadeIn('fast');
 
                 // GET THE LAT AND LONG
                 var lat = $(this).attr("data-lat");
@@ -301,13 +265,7 @@ include("includes/header.php");
                 // GET THE WEATHER
                 var weatherdata = getWeatherData(lat,long);
 
-                var list = $('</table>');
-
-
-//                console.log(weatherdata);
-//                console.log(JSON.stringify(weatherdata))
-
-
+                // TODO: THE CALLBACKS ON THIS ARE A RIOT...WILL SORT ORDER IF GET TIME
 
             });
 

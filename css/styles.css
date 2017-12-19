@@ -810,7 +810,7 @@ h5.heading {font-size:1.25em;}
 }
 #overlay .weather {
     position:relative;
-    width:60%;
+    width:80%;
     top:75px;
     margin:0 auto 75px auto;
     padding:2em;
@@ -866,9 +866,12 @@ h5.heading {font-size:1.25em;}
     .col-m-10 { width: calc((100%/12)*10) ;}
     .col-m-11 { width: calc((100%/12)*11) ;}
     .col-m-12 { width: calc((100%/12)*12) ;}
-    /*.row [class*="col-"] {*/
-    /*width:100%;*/
-    /*}*/
+
+    /* WEATHER OVERLAY */
+    #overlay .weather {
+        width:85%;
+    }
+
 }
 
 @media screen and (min-width: 768px) and (max-width:860px)  {
@@ -908,6 +911,18 @@ h5.heading {font-size:1.25em;}
     .col-s-10 { width: calc((100%/12)*10) ;}
     .col-s-11 { width: calc((100%/12)*11) ;}
     .col-s-12 { width: calc((100%/12)*12) ;}
+
+    /* WEATHER OVERLAY */
+    #overlay .weather {
+        width:97%;
+    }
+    #weather-box table thead {
+        font-size:0.75em;
+
+    }
+    #weather-box .hide {
+        display:none;
+    }
 
     footer .row [class*="col-"] {
         width:100%;
