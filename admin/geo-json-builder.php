@@ -18,20 +18,45 @@ function distance($lat1, $lon1, $lat2, $lon2, $unit) {
     }
 }
 
-echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>";
-echo distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
-echo distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
+function calculateLineString($coordinates){
 
-echo distance(19.820664, -155.468066, 20.709722, -156.253333, "K") . " Kilometers HAWII<br>";
+    $runningTotal = 0;
+    $count = count($coordinates);
+
+//    echo "THere are $count rows";
+
+//    print_r($coordinates);
+
+    for($i = 1 ; $i < $count ; $i++){
+
+//        echo "$i<br>";
+
+        $current1 = $coordinates[$i-1];
+        $current2 = $coordinates[$i];
+
+        $runningTotal += distance($current1[1], $current1[0], $current2[1], $current2[0], 'K');
+
+    }
+
+    return $runningTotal;
 
 
-
-exit();
+}
+//
+//echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>";
+//echo distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
+//echo distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
+//
+//echo distance(19.820664, -155.468066, 20.709722, -156.253333, "K") . " Kilometers HAWII<br>";
+//
+//
+//
+//exit();
 
 header("Content-type: application/json");
 
 include('../includes/config.php');
-$url = $localurl."/routes/larger-geojson.json";
+$url = $localurl."/routes/noname.json";
 $ch = curl_init();
 
 // SETUP THE CURL REQUEST
@@ -45,17 +70,44 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 $json = json_decode($result,true);
 
+include('../includes/dbConnect.php');
+
 foreach($json['features'] as &$route){
 
-    // TODO: IMPORT THE PROPERTIES - NAME STROKE ETC.
-    // TODO: IMPORT THE CO-ORDINATES - ARRAY CONVERT TO JSON
+    // TODO: CHECK ITS LINE STRING
+    if($route['geometry']['type']=='LineString') {
 
-    $route['properties']['chris'] = 'connor';
+        // TODO: IMPORT THE PROPERTIES - NAME STROKE ETC.
+        $route['properties'];
+        $name = (isset($route['properties']['name']) ? $route['properties']['name'] : '');
 
-//    print_r($route['properties']);
+        // TODO: IMPORT THE CO-ORDINATES - ARRAY CONVERT TO JSON
+        $coordinates = json_encode($route['geometry']['coordinates']);
+
+        // TODO: IMPORT THE DISTANCE
+        $distance = calculateLineString($route['geometry']['coordinates']);
+
+        $activity = 5;
+
+        $insertstatement = "INSERT INTO route (name,coordinates,activity,distance) VALUES (:name,:coordinates,:activity,:distance)";
+        $query = $conn->prepare($insertstatement);
+        $query->bindParam(":name", $name);
+        $query->bindParam(":coordinates", $coordinates);
+        $query->bindParam(":activity", $activity);
+        $query->bindParam(":distance", $distance);
+
+        $query->execute();
+
+    }
+
 }
+
+
+$conn = NULL;
 
 //print_r($json);
 
-echo json_encode($json);
+//echo json_encode($json['features'][0]['geometry']['coordinates']);
+
+//echo json_encode($json);
 

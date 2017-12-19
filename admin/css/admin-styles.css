@@ -211,6 +211,130 @@ nav ul li a:hover i {
     font-size:1.5em;
 }
 
+/* FORM STYLES */
+
+form input[type=text], form input[type=email] {
+    border:1px solid #ccc;
+    height:40px;
+    line-height:40px;
+    padding:0 0 0 1em;
+    border-radius: 4px;
+    display:block;
+    width:100%;
+}
+form input[type=text].error {
+    border:1px solid #f00;
+    box-shadow:0 0 5px #f00;
+    color:#f00;
+}
+form textarea {
+    display:block;
+    width:100%;
+    padding:1em;
+    border:1px solid #ccc;
+    border-radius:4px;
+    min-height: 200px;
+}
+form select {
+    display:block;
+    width:100%;
+    height:40px;
+    border:1px solid #ccc;
+    background:#fff;
+    padding:0 0 0 1em;
+}
+form .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    border-radius:34px;
+}
+form .switch input {display:none;}
+form .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius:35px;
+}
+form .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius:50%;
+}
+form input:checked + .slider {
+    background-color: deepskyblue;
+}
+
+form input:focus + .slider {
+    box-shadow: 0 0 1px deepskyblue;
+}
+
+form input:checked + .slider:before {
+    -webkit-transform: translatex(26px);
+    -ms-transform: translatex(26px);
+    transform: translatex(26px);
+}
+
+form label {
+    display:block;
+    font-weight:bold;
+    padding:0 0 10px 0;
+}
+.form-group {
+    padding:0 0 1em 0;
+}
+/* RESULT HANDLING */
+/* UTILITY STUFF FOR RE-USE */
+.result {
+    transition:0.5s background-color;
+    padding:1em;
+    margin:1em 0 1em 0;
+    border-radius:4px;
+    font-size:0.9em;
+    display:none;
+}
+.result.lg {
+    font-size:1.4em;
+}
+.result ul {
+    list-style-type:circle;
+    padding:0 0 0 2em;
+    font-size:0.8em;
+}
+.result ul li {
+    padding:0 0 0.5em 0;
+}
+.result.lg .text {
+    padding:0 0 1em 0;
+    margin:0;
+}
+.result .text {
+    padding:0;
+    margin:0;
+}
+.bg-success {
+    background: #28a745;
+    color:#FFF;
+}
+.bg-error {
+    background: #8b0000;
+    color: #FFF;
+}
+
 /* STYLE SPECIFIC MEDIA QUERIES */
 @media screen and (max-width:1024px) {
 
