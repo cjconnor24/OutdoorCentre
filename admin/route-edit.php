@@ -107,7 +107,7 @@ if($count == 1) {
         <div class="form-group">
             <label for="name">Difficulty</label>
             <select name="difficulty" required>
-                <?php for($i = 1; $i <= 5; $i++){?>
+                <?php for($i = 1; $i <= 3; $i++){?>
                 <option value="<?php echo $i;?>" <?php echo ($results['routedifficulty']==$i ? 'selected' : '');?>><?php echo $i;?></option>
                 <?php }?>
             </select>
