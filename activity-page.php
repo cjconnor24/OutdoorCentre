@@ -502,22 +502,26 @@ include("includes/header.php");
                 map.fitBounds(bounds);
 
                 // MAKE SURE ISNT A POINT BEFORE CALULCATING DISTANCE
-                if(!(event.feature.getGeometry() instanceof google.maps.Data.Point)) {
+//                if(!(event.feature.getGeometry() instanceof google.maps.Data.Point)) {
+//
+//                    // GET THE DISTANCE OF THE ROUTE - OMG THIS TOOK A WHILE
+//                    var distance = google.maps.geometry.spherical.computeLength(event.feature.getGeometry().getArray());
+//                    var distancekm = distance / 1000;
+//                    var distancemiles = distance * 0.000621371;
+//
+//                    console.log("DISTANCE IN MILES: " + distancemiles);
+//                    console.log("DISTANCE IN METERS: " + distance);
+//                    console.log("DISTANCE IN KMS: " + distancekm);
+//
+//                }
 
-                    // GET THE DISTANCE OF THE ROUTE - OMG THIS TOOK A WHILE
-                    var distance = google.maps.geometry.spherical.computeLength(event.feature.getGeometry().getArray());
-                    var distancekm = distance / 1000;
-                    var distancemiles = distance * 0.000621371;
+                //routeid,title,distance,difficulty
 
-                    console.log("DISTANCE IN MILES: " + distancemiles);
-                    console.log("DISTANCE IN METERS: " + distance);
-                    console.log("DISTANCE IN KMS: " + distancekm);
-
-                }
-
-                var myHTML = event.feature.getProperty("name");
+                var routeName = event.feature.getProperty("name");
                 var routeID = event.feature.getProperty("routeid");
-                infowindow.setContent(generateContent(myHTML,(distancekm ? distancekm : ''),routeID));
+                var difficulty = event.feature.getProperty("difficulty");
+                var distance = parseFloat(event.feature.getProperty("distance")).toFixed(2);
+                infowindow.setContent(generateContent(routeID,routeName,distance,difficulty));
                 infowindow.setPosition(event.latLng);
 
                 // anchor the infowindow on the marker
@@ -548,7 +552,7 @@ include("includes/header.php");
             map.data.setStyle(function(feature) {
 
                 // SET COLOURS AND GET RATINGS
-                var ratings = ['#E14545','#E17645','#27C664'];
+                var ratings = ['#27C664','#E17645','#E14545'];
                 var color = ratings[feature.getProperty('difficulty')-1];
 
                 return {
@@ -594,14 +598,14 @@ include("includes/header.php");
         }
 
         // BUILD THE CONTENT FOR THE WINDOW
-        function generateContent(title,body,routeid){
+        function generateContent(routeid,title,distance,difficulty){
 
             var contentstring = "";
             contentstring+= "<div class='map-info-window'>";
-            contentstring+= "<h1>"+title+routeid+"</h1>";
-            contentstring+= "<p>Here is some info on the route</p>";
-            contentstring+= "<p>"+body+"</p>";
-            contentstring+= "<p><a href='#route-"+routeid+"' id='weatherButton' class='btn btn-orng'><i class='fa fa-eye'></i> View Route Data</a></p>";
+            contentstring+= "<h1>"+title+"</h1>";
+            contentstring+= "<div class='difficulty d"+difficulty+"'>"+difficulty+"</div>";
+            contentstring+= "<p><strong>Distance:</strong> "+distance+" km<br><strong>Difficulty:</strong> "+difficulty+"</p>";
+            contentstring+= "<p><a href='#route-"+routeid+"' id='weatherButton' class='btn btn-orng'><i class='fa fa-eye'></i> View Full Route Data</a></p>";
             contentstring+= "</div>";
 
             return contentstring;
