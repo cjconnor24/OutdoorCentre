@@ -1,3 +1,86 @@
+<?php
+session_start();
+
+
+function is_ajax() {
+    return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+}
+
+
+
+// MAKE SURE AJAX REQUEST
+if(is_ajax()) {
+
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+
+        $errors = array();
+
+//        print_r($_POST);
+
+        if (!isset($_POST['email']) || $_POST['email'] == '') {
+            $errors[] = "Please enter your email.";
+        } else {
+            $email = $_POST['email'];
+        }
+
+        if (!isset($_POST['password']) || $_POST['password'] == '') {
+            $errors[] = "Please enter your email.";
+        } else {
+            $password = sha1($_POST['password']);
+        }
+
+        if (count($errors) == 0) {
+
+
+            include('../includes/dbConnect.php');
+            $query = $conn->prepare("SELECT id, email, CONCAT(fname, lname) name FROM users WHERE email=:email AND password = :password");
+            $query->bindParam(":email", $email);
+            $query->bindParam(":password", $password);
+
+            if ($query->execute()) {
+
+                $count = $query->rowCount();
+                $results = $query->fetch(PDO::FETCH_ASSOC);
+
+                if ($count == 1) {
+
+                    if (!isset($_SESSION['user'])) {
+                        $_SESSION['user']['email'] = $email;
+                        $_SESSION['user']['name'] = $results['name'];
+                    }
+
+                    $response = array('status' => 'success', 'message' => 'You will now be logged in.');
+
+                    if(isset($_SESSION['redirect'])){
+                        $response['redirect'] = urldecode($_SESSION['redirect']);
+                    }
+
+                    echo json_encode($response);
+
+                } else {
+
+                    $response = array('status' => 'error', 'message' => 'Sorry, your username and / or password were incorrect.');
+                    echo json_encode($response);
+
+                }
+
+            }
+
+
+        } else {
+
+            $response = array('status' => 'error', 'message' => 'There was an issue with your login.', 'messages' => $errors);
+            echo json_encode($response);
+
+        }
+
+        exit();
+
+    }
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +114,7 @@
         }
 
         @keyframes fadeIn { from { opacity:0;transform:  translate(0px,50px); } to { opacity:1;transform:  translate(0px,0px); } }
+        @keyframes fadeOut { from { opacity:1;transform:  translate(0px,0px); } to { opacity:0;transform:  translate(0px,-250px); } }
 
         .fade-in {
             opacity: 0;
@@ -38,6 +122,12 @@
             animation-fill-mode: forwards;
             animation-duration: 1s;
             animation-delay: 0.3s;
+        }
+        .fade-out {
+            animation: fadeOut ease 1;
+            animation-fill-mode: forwards;
+            animation-duration: 1s;
+            animation-delay: 1s;
         }
 
         #login {
@@ -66,7 +156,7 @@
         }
         .login-box__result {
             margin:2em 0;
-
+            display:none;
             color:#FFF;
             padding:1em;
             font-size:1em;
@@ -82,7 +172,7 @@
             display:none;
         }
 
-        input[type=text], input[type=password], input[type=submit], button[type=submit] {
+        input[type=email], input[type=password], input[type=submit], button[type=submit] {
             display:block;
             width:100%;
             padding:0 2em;
@@ -110,6 +200,8 @@
 </head>
 <body>
 
+
+
 <div id="login">
 
     <div class="login-box fade-in">
@@ -121,27 +213,88 @@
         <p>ADMINISTRATION</p>
         </div>
 
-        <div class="login-box__result success">
+        <div class="login-box__result">
             <p id="flash">Sorry, but your username and / or password are incorrect.</p>
         </div>
 
-        <form action="" method="post">
+        <form action="" method="post" id="login-form">
 
     <div class="form-group">
-        <label for="username">username:</label>
-        <input type="text" name="username" value="" placeholder="Please enter your username" required>
+        <label for="email">email:</label>
+        <input type="email" name="email" value="" placeholder="Please enter your username" required>
     </div>
 
     <div class="form-group">
         <label for="username">username:</label>
-        <input type="password" name="username" value="" placeholder="Please enter your username" required>
+        <input type="password" name="password" value="" placeholder="Please enter your username" required>
     </div>
 
     <div class="form-group">
-        <button type="submit"><i class="fa fa-sign-in"></i> LOGIN</button>
+        <button type="submit" name="submit" value="submit"><i class="fa fa-sign-in"></i> LOGIN</button>
     </div>
 
         </form>
+
+        <script type="text/javascript">
+
+            $(function(){
+
+                $('#login-form').submit(function(e){
+
+                    e.preventDefault();
+                    var formData = $(this).serialize();
+                    console.log(formData);
+
+                    $.post('/admin/login.php',formData,function(resp){
+
+                        if(resp.status=='error'){
+
+                            var resultBox = $('.login-box__result');
+                            resultBox.find('p').text(resp.message);
+                            resultBox.addClass('error')
+                            .slideDown('slow').delay(10000).slideUp('slow',function(e){
+                                e.removeClass('error');
+                            });
+
+                        } else {
+
+                            var resultBox = $('.login-box__result');
+                            resultBox.find('p').text(resp.message);
+                            resultBox.addClass('success').slideDown('fast').delay(3000);
+
+                            //                        <div class="login-box fade-in">
+                            $('.login-box').removeClass('fade-in').delay(1000).addClass('fade-out');
+
+                            setTimeout(function() {
+
+                                if(resp.redirect!==undefined){
+                                    window.location.replace(resp.redirect);
+                                } else {
+                                    window.location.replace("/admin/");
+                                }
+
+                            }, 2000);
+
+
+
+
+
+
+
+
+                        }
+
+                        console.log(resp);
+
+                    },'json');
+
+                })
+
+            })
+
+        </script>
+
+
 
     </div>
 
