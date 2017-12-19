@@ -384,9 +384,9 @@ form label {
     nav ul li a span {
         display:none;
     }
-    nav ul li a:hover {
-        padding:0 0 0 0;
-    }
+    /*nav ul li a:hover {*/
+        /*padding:0 0 0 0;*/
+    /*}*/
 
     .table {
         font-size:0.8em;
