@@ -879,6 +879,16 @@ h5.heading {font-size:1.25em;}
     animation-delay: 0.3s;
 }
 
+/* ACCORDIAN BOX */
+.accordion { width:100%;border-radius:5px;}
+.accordion-toggle {cursor: pointer;background:#687561;padding:1em;font-weight: bold;color:#FFF;border-top:1px solid #FFF;transition:background-color 0.5s ease;}
+.accordion-toggle:hover {background: #b0bea7;}
+.accordion-toggle:first-child { border-bottom:none!important;}
+.accordion-toggle::after {content:'';display:block;clear:both;}
+.accordion-toggle span {float:right; font-weight:normal;}
+.accordion-content {display: none;padding:1em;}
+.accordion-content.default {display: block;}
+
 /* larger than 1024 */
 @media screen and (max-width:1024px){
 

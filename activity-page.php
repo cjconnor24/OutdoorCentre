@@ -22,8 +22,85 @@ include("includes/header.php");
 
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
 
-        <h2 class="heading">Sub-Heading</h2>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+        <div class="row">
+
+            <div class="col-6">
+            <h2 class="heading">Upcoming Courses</h2>
+
+                <?php
+
+                if(isset($_GET['activity'])){
+                    $activity = $_GET['activity'];
+                } else {
+                    $activity = 5;
+                }
+
+                include('includes/dbConnect.php');
+                $query = $conn->prepare("SELECT * FROM course WHERE activity=:activity AND datetime > NOW();");
+                $query->bindParam(":activity",$activity);
+                $query->execute();
+                $count = $query->rowCount();
+
+                if($count > 0) {
+
+                    $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                    echo "<p>Below are a list of upcoming course. Click the course for more information.</p>";
+
+
+                ?>
+                <!-- CSS -->
+                <style>
+
+                </style>
+
+                <div class="accordion">
+                    <?php
+                    foreach($results as $course) {
+                        $i = 0;
+                        $date = strtotime($course['datetime']);
+                        ?>
+                        <div class="accordion-toggle"><?php echo $course['name'];?><span><i class="fa fa-calendar-o"></i> <?php echo date("jS F Y ha",$date);?></span></div>
+                        <div class="accordion-content <?php echo ($i=0 ? 'default' : '');?>">
+                            <p><?php echo $course['description'];?></p>
+                            <p><a href="/contact.php" class="btn btn-orng"><i class="fa fa-pencil-square-o"></i> Sign Up</a></p>
+                        </div>
+                        <?php
+                        $i++;
+                    }
+
+                    ?>
+                </div>
+                    <?php
+
+                    } else {
+                    echo "<p><em>There are no upcoming courses for this activity.</em></p>";
+                    }
+                    ?>
+
+
+
+                <!-- JS -->
+                <script type="text/javascript">
+                    $(document).ready(function($) {
+                        $('.accordion').find('.accordion-toggle').click(function(){
+
+                            $(this).next().slideToggle('fast');
+                            $(".accordion-content").not($(this).next()).slideUp('fast');
+
+                        });
+                    });
+                </script>
+
+            </div>
+
+            <div class="col-6">
+            <h2 class="heading">Sub-Heading</h2>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            </div>
+
+
+        </div>
 
         <h2 class="heading">Routes</h2>
 
@@ -34,11 +111,7 @@ include("includes/header.php");
         // COULD REFACTOR TO CALLL DIRECTLY IN DB TO REDUCE ADDITIONAL STRAIN
         // ON SERVER BUILDER JSON TWICE FOR THIS PAGE
 
-        if(isset($_GET['activity'])){
-            $activity = $_GET['activity'];
-        } else {
-            $activity = 5;
-        }
+
 
         include('includes/config.php');
         $url = $localurl."/routes/get-routes.php?activity=$activity";
