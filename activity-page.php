@@ -49,11 +49,6 @@ include("includes/header.php");
 
 
                 ?>
-                <!-- CSS -->
-                <style>
-
-                </style>
-
                 <div class="accordion">
                     <?php
                     foreach($results as $course) {
@@ -67,30 +62,17 @@ include("includes/header.php");
                         </div>
                         <?php
                         $i++;
-                    }
-
+                    } // END FOR EACH
                     ?>
                 </div>
                     <?php
-
+                    // IF NO COURSES...
                     } else {
                     echo "<p><em>There are no upcoming courses for this activity.</em></p>";
                     }
                     ?>
 
-
-
-                <!-- JS -->
-                <script type="text/javascript">
-                    $(document).ready(function($) {
-                        $('.accordion').find('.accordion-toggle').click(function(){
-
-                            $(this).next().slideToggle('fast');
-                            $(".accordion-content").not($(this).next()).slideUp('fast');
-
-                        });
-                    });
-                </script>
+                <script type="text/javascript" src="/js/accordian.js"></script>
 
             </div>
 
@@ -178,15 +160,7 @@ include("includes/header.php");
         ?>
 
     <script type="text/javascript">
-
-
-
-
-
         $(document).ready(function() {
-
-
-
 
             function getWeatherData(lat,long) {
 
@@ -244,82 +218,68 @@ include("includes/header.php");
 //                var tstring = '<table>'
                 var days = ["Sunday",'Mondy','Tuesday','Wednesday','Thursday','Friday','Satuday'];
 
-                var table = $("<table class='accordion-content default'></table>");
+                var table = $("<table></table>");
                 var thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
                 var tbody = $("<tbody></tbody>");
 
                 var curtime = new Date();
                 var d = curtime.getDate();
 
-                $('<h2 class="accordion-toggle"></h2>').text(days[curtime.getDay()]).appendTo('#weather-box');
+                $('<h2></h2>').text(days[curtime.getDay()]).appendTo('#weather-box');
 
 
                 // LOOP AND BUILD TABLE
-                    for(i = 0; i < weatherData.length; i++){
+                for(i = 0; i < weatherData.length; i++){
 
-                        var weatherDate = new Date(weatherData[i].datetime);
+                    var weatherDate = new Date(weatherData[i].datetime);
 
-                        console.log(weatherDate);
+                    console.log(weatherDate);
 
-                        if(weatherDate.getDate()!=d){
+                    if(weatherDate.getDate()!=d){
 
-                            thead.appendTo(table);
-                            tbody.appendTo(table);
+                        thead.appendTo(table);
+                        tbody.appendTo(table);
 
-                            $('#weather-box').append(table);
+                        $('#weather-box').append(table);
 
-                            $('<h2></h2>').text(days[weatherDate.getDay()]).appendTo('#weather-box');
-
-
-                            table = $("<table></table>");
-                            thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
-                            tbody = $("<tbody></tbody>");
-
-//                            tstring += '</table>';
-//                            tstring += '<table style="width:100%">';
-//                            tstring += "<thead>";
-//                            tstring += "<tr>";
-//                            tstring += "<th>"+days[weatherDate.getDay()]+"</th>";
-//                            tstring += "<th>DATETIME</th>";
-//                            tstring += "<th>Temperature</th>";
-//                            tstring += "<th>Wind Speed</th>";
-//                            tstring += "<th>Description</th>";
-//                            tstring += "</thead>";
-
-                            d = weatherDate.getDate();
-
-                        }
-
-                        var trow = $("<tr>");
-
-                        var iconcell = $("<td></td>");
-                        var iconurl = 'http://openweathermap.org/img/w/'+weatherData[i].icon+'.png';
-                        var icon = $("<img>").attr("src",iconurl);
-                        icon.appendTo(iconcell);
-                        iconcell.appendTo(trow);
-
-                        $("<td></td>").text(('0' + (weatherDate.getHours()+1)).slice(-2)+'00').appendTo(trow);
-                        $("<td></td>").html(Math.round(weatherData[i].temp)+'&#8451;').appendTo(trow);
-                        $("<td></td>").text(Math.round(weatherData[i].wind.speed)+' kmph').appendTo(trow);
-                        $("<td></td>").text(weatherData[i].wind.speed+' degrees').appendTo(trow);
-                        $("<td class='hide'></td>").text(weatherData[i].description).appendTo(trow);
+                        $('<h2></h2>').text(days[weatherDate.getDay()]).appendTo('#weather-box');
 
 
-                        // APPEND THE ROW TO THE BODY
-                        trow.appendTo(tbody);
+                        table = $("<table></table>");
+                        thead = $("<thead><th>SYMBOL</th><th>TIME</th><th>TEMPERATURE</th><th>WIND SPEED</th><th>WIND DIRECTION</th><th class='hide'>OVERVIEW</th></thead>");
+                        tbody = $("<tbody></tbody>");
+
+                        d = weatherDate.getDate();
 
                     }
+
+                    var trow = $("<tr>");
+
+                    var iconcell = $("<td></td>");
+                    var iconurl = 'http://openweathermap.org/img/w/'+weatherData[i].icon+'.png';
+                    var icon = $("<img>").attr("src",iconurl);
+                    icon.appendTo(iconcell);
+                    iconcell.appendTo(trow);
+
+                    $("<td></td>").text(('0' + (weatherDate.getHours()+1)).slice(-2)+'00').appendTo(trow);
+                    $("<td></td>").html(Math.round(weatherData[i].temp)+'&#8451;').appendTo(trow);
+                    $("<td></td>").text(Math.round(weatherData[i].wind.speed)+' kmph').appendTo(trow);
+                    $("<td></td>").text(weatherData[i].wind.speed+' degrees').appendTo(trow);
+                    $("<td class='hide'></td>").text(weatherData[i].description).appendTo(trow);
+
+                    // APPEND THE ROW TO THE BODY
+                    trow.appendTo(tbody);
+
+                }
 
                 // BUILD THE REMAINING ELEMENTS
                 thead.appendTo(table);
                 tbody.appendTo(table);
 
-
                 // UPDATE THE TABLE
                 $('#weather-box').append(table);
 
                 $('body').addClass('noscrolling');
-
 
                 $('.loading-box').slideUp('slow',function(){
                     $('#weather-box').slideDown('slow');
@@ -332,7 +292,6 @@ include("includes/header.php");
                 $('body').removeClass('noscrolling');
                 $('#overlay').fadeOut('fast');
             })
-
 
             // WHEN WEATHER BUTTON CLICKED
             $(".check-weather").click(function (e) {
@@ -356,12 +315,11 @@ include("includes/header.php");
     </script>
 
     <script>
-        // INITIALISE THE MAP
-//        function initMap() {
-//        INTIALISE WITH JQUERY INSTEAD
+
+        // INTIALISE WITH JQUERY INSTEAD OF CALLBACK
         $(function(){
 
-// ENCAPSULATING IN FUNCTION SO AS TO CALL FROM GOOGLE MAPS ALSO
+            // ENCAPSULATING IN FUNCTION SO AS TO CALL FROM GOOGLE MAPS ALSO
             function enableSmooth() {
 
                 $('a[href*="#"]')
@@ -403,7 +361,8 @@ include("includes/header.php");
 
             }
 
-                enableSmooth();
+            // CALL SO THAT APPLIES TO PAGE ALSO
+            enableSmooth();
 
 
             var style = {
