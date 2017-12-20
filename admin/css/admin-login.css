@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+html, * {
+    padding:0;
+    margin:0;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    background:#202334;
+    font-size:16px;
+    font-family:Arial,Arial, Helvetica, sans-serif;
+    color:#FFF;
+}
+
+@keyframes fadeIn { from { opacity:0;transform:  translate(0px,50px); } to { opacity:1;transform:  translate(0px,0px); } }
+@keyframes fadeOut { from { opacity:1;transform:  translate(0px,0px); } to { opacity:0;transform:  translate(0px,-250px); } }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn ease 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+}
+.fade-out {
+    animation: fadeOut ease 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 1s;
+}
+
+#login {
+    /*display:flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+h1 {
+    font-family:Oswald, Arial, Helvetica, sans-serif;
+}
+.login-box {
+
+    max-width:400px;
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+
+}
+.login-box__text {
+    text-transform:uppercase;
+    margin:0 0 2em 0;
+}
+.login-box__logo {
+    width:50%;
+    margin:2em auto;
+}
+.login-box__result {
+    margin:2em 0;
+    display:none;
+    color:#FFF;
+    padding:1em;
+    font-size:1em;
+    border-radius:5px;
+}
+.login-box__return a {
+    text-align:center;
+    text-decoration: none;
+    color:deepskyblue;
+    font-size:0.9em;
+}
+
+.error {
+    background:#8b0000;
+}
+.success {
+    background:#28a745;
+}
+label {
+    display:none;
+}
+
+input[type=email], input[type=password], input[type=submit], button[type=submit] {
+    display:block;
+    width:100%;
+    padding:0 2em;
+    height:50px;
+    margin:0 0 1em 0;
+    border:none;
+    border-radius:5px;
+}
+input[type=submit], button[type=submit] {
+
+    background:deepskyblue;
+    color:#FFF;
+    padding:0;
+    font-size:20px;
+    text-transform: uppercase;
+    font-family:Oswald, Arial, Helvetica, sans-serif;
+    transition:background-color 0.5s ease;
+    cursor: pointer;
+}
+input[type=submit]:hover, button[type=submit]:hover {
+    background: #00eaff;
+}

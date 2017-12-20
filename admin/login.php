@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+// FUNCTION TO CHECK IF AJAX REQUEST
 function is_ajax() {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
@@ -13,9 +13,8 @@ if(is_ajax()) {
 
     if (isset($_POST['email']) && isset($_POST['password'])) {
 
+        // ERROR CHECKING
         $errors = array();
-
-//        print_r($_POST);
 
         if (!isset($_POST['email']) || $_POST['email'] == '') {
             $errors[] = "Please enter your email.";
@@ -29,21 +28,26 @@ if(is_ajax()) {
             $password = sha1($_POST['password']);
         }
 
+        // IF NO ERRORS
         if (count($errors) == 0) {
-
-
+            
             include('../includes/dbConnect.php');
             $query = $conn->prepare("SELECT id, email, CONCAT(fname, lname) name FROM users WHERE email=:email AND password = :password");
             $query->bindParam(":email", $email);
             $query->bindParam(":password", $password);
 
+            // CHECK QUERY IS SUCCESSFUL
             if ($query->execute()) {
 
                 $count = $query->rowCount();
                 $results = $query->fetch(PDO::FETCH_ASSOC);
+                $conn = null;
 
+                // IF ONLY 1 ROW RETURNED ITS A MATCH
                 if ($count == 1) {
 
+                    // IF NOT EXISTING, WRITE TO SESSION
+                    // TODO: ADD AN EXPIRY - SAY 30 MINS?
                     if (!isset($_SESSION['user'])) {
                         $_SESSION['user']['email'] = $email;
                         $_SESSION['user']['name'] = $results['name'];
@@ -51,14 +55,17 @@ if(is_ajax()) {
 
                     $response = array('status' => 'success', 'message' => 'You will now be logged in.');
 
+                    // IF TRYING TO ACCESS A PARTICULAR PAGE, REDIRECT TO THAT PAGE
                     if(isset($_SESSION['redirect'])){
                         $response['redirect'] = urldecode($_SESSION['redirect']);
                     }
 
+                    // OUTPUT JSON BACK TO AJAX CALL
                     echo json_encode($response);
 
                 } else {
 
+                    // OUTPUT JSON BACK TO AJAX CALL
                     $response = array('status' => 'error', 'message' => 'Sorry, your username and / or password were incorrect.');
                     echo json_encode($response);
 
@@ -69,6 +76,7 @@ if(is_ajax()) {
 
         } else {
 
+            // OUTPUT JSON BACK TO AJAX CALL
             $response = array('status' => 'error', 'message' => 'There was an issue with your login.', 'messages' => $errors);
             echo json_encode($response);
 
@@ -90,120 +98,12 @@ if(is_ajax()) {
 
     <title>Admin Lomond Outdoor Adventures</title>
 
-
     <link rel="shortcut icon" href="/favicon.ico">
 
     <script src="/js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/admin/css/admin-login.css">
 
-    <style type="text/css">
-
-        @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
-        html, * {
-            padding:0;
-            margin:0;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            background:#202334;
-            font-size:16px;
-            font-family:Arial,Arial, Helvetica, sans-serif;
-            color:#FFF;
-        }
-
-        @keyframes fadeIn { from { opacity:0;transform:  translate(0px,50px); } to { opacity:1;transform:  translate(0px,0px); } }
-        @keyframes fadeOut { from { opacity:1;transform:  translate(0px,0px); } to { opacity:0;transform:  translate(0px,-250px); } }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn ease 1;
-            animation-fill-mode: forwards;
-            animation-duration: 1s;
-            animation-delay: 0.3s;
-        }
-        .fade-out {
-            animation: fadeOut ease 1;
-            animation-fill-mode: forwards;
-            animation-duration: 1s;
-            animation-delay: 1s;
-        }
-
-        #login {
-            /*display:flex;*/
-            /*align-items: center;*/
-            /*justify-content: center;*/
-        }
-        h1 {
-            font-family:Oswald, Arial, Helvetica, sans-serif;
-        }
-        .login-box {
-
-            max-width:400px;
-            width:80%;
-            margin:0 auto;
-            text-align: center;
-
-        }
-        .login-box__text {
-            text-transform:uppercase;
-            margin:0 0 2em 0;
-        }
-        .login-box__logo {
-            width:50%;
-            margin:2em auto;
-        }
-        .login-box__result {
-            margin:2em 0;
-            display:none;
-            color:#FFF;
-            padding:1em;
-            font-size:1em;
-            border-radius:5px;
-        }
-        .login-box__return a {
-            text-align:center;
-            text-decoration: none;
-            color:deepskyblue;
-            font-size:0.9em;
-        }
-
-        .error {
-            background:#8b0000;
-        }
-        .success {
-            background:#28a745;
-        }
-        label {
-            display:none;
-        }
-
-        input[type=email], input[type=password], input[type=submit], button[type=submit] {
-            display:block;
-            width:100%;
-            padding:0 2em;
-            height:50px;
-            margin:0 0 1em 0;
-            border:none;
-            border-radius:5px;
-        }
-        input[type=submit], button[type=submit] {
-
-            background:deepskyblue;
-            color:#FFF;
-            padding:0;
-            font-size:20px;
-            text-transform: uppercase;
-            font-family:Oswald, Arial, Helvetica, sans-serif;
-            transition:background-color 0.5s ease;
-            cursor: pointer;
-        }
-        input[type=submit]:hover, button[type=submit]:hover {
-            background: #00eaff;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -242,63 +142,7 @@ if(is_ajax()) {
 
         </form>
 
-        <script type="text/javascript">
-
-//            TODO: TIDY UP - MOVE JS AND CSS EXTERNAL
-
-            $(function(){
-
-                $('#login-form').submit(function(e){
-
-                    e.preventDefault();
-                    var formData = $(this).serialize();
-                    console.log(formData);
-
-                    // CHECK CREDENTIALS AGAINST DB
-                    $.post('/admin/login.php',formData,function(resp){
-
-                        // IF ERROR
-                        if(resp.status=='error'){
-
-                            // UPDATE USER
-                            var resultBox = $('.login-box__result');
-                            resultBox.find('p').text(resp.message);
-                            resultBox.addClass('error')
-                            .slideDown('slow').delay(10000).slideUp('slow',function(e){
-                                e.removeClass('error');
-                            });
-
-                        } else {
-
-                            // UPDATE AND REDIRECT TO ADMIN
-                            var resultBox = $('.login-box__result');
-                            resultBox.find('p').text(resp.message);
-                            resultBox.addClass('success').slideDown('fast').delay(3000);
-
-                            $('.login-box').removeClass('fade-in').delay(1000).addClass('fade-out');
-
-                            // WAIT ON ANIMATION
-                            setTimeout(function() {
-
-                                if(resp.redirect!==undefined){
-                                    window.location.replace(resp.redirect);
-                                } else {
-                                    window.location.replace("/admin/");
-                                }
-
-                            }, 2000);
-
-                        }
-
-                        console.log(resp);
-
-                    },'json');
-
-                })
-
-            })
-
-        </script>
+        <script type="text/javascript" src="/admin/js/login.js"></script>
 
 
         <p class="login-box__return"><a href="/"><i class="fa fa-arrow-left"></i> Return to Lomond Adventure</a></p>
