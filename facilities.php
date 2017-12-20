@@ -8,8 +8,6 @@
         <p class="hero__p">At Lomond Aventure, we have excellent facilities at our centre.</p>
         </div>
 
-<!--        <p><a href="#" class="btn btn-lg btn-orng">FIND OUT MORE</a></p>-->
-
     </div>
 
 </div>
