@@ -868,6 +868,17 @@ h5.heading {font-size:1.25em;}
     background:#eeeeee;
 }
 
+/* SOME ANIMATIONS */
+@keyframes fadeIn { from { opacity:0;transform:  translate(0px,50px); } to { opacity:1;transform:  translate(0px,0px); } }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn ease 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+}
+
 /* larger than 1024 */
 @media screen and (max-width:1024px){
 
