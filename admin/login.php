@@ -254,10 +254,13 @@ if(is_ajax()) {
                     var formData = $(this).serialize();
                     console.log(formData);
 
+                    // CHECK CREDENTIALS AGAINST DB
                     $.post('/admin/login.php',formData,function(resp){
 
+                        // IF ERROR
                         if(resp.status=='error'){
 
+                            // UPDATE USER
                             var resultBox = $('.login-box__result');
                             resultBox.find('p').text(resp.message);
                             resultBox.addClass('error')
@@ -267,13 +270,14 @@ if(is_ajax()) {
 
                         } else {
 
+                            // UPDATE AND REDIRECT TO ADMIN
                             var resultBox = $('.login-box__result');
                             resultBox.find('p').text(resp.message);
                             resultBox.addClass('success').slideDown('fast').delay(3000);
 
-                            //                        <div class="login-box fade-in">
                             $('.login-box').removeClass('fade-in').delay(1000).addClass('fade-out');
 
+                            // WAIT ON ANIMATION
                             setTimeout(function() {
 
                                 if(resp.redirect!==undefined){
@@ -283,13 +287,6 @@ if(is_ajax()) {
                                 }
 
                             }, 2000);
-
-
-
-
-
-
-
 
                         }
 

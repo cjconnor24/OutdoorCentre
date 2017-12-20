@@ -1,6 +1,9 @@
 <?php
 include('includes/config.php');
 include("includes/header.php");
+
+// TODO: HOOK UP CATGOERIES TO DB
+// TODO: CHECK WEATHER - ADD SUNRISE SUNSET
 ?>
 
     <div id="full-size-map"></div>
