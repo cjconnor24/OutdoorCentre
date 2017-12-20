@@ -264,7 +264,14 @@ include("includes/header.php");
                     $("<td></td>").text(('0' + (weatherDate.getHours()+1)).slice(-2)+'00').appendTo(trow);
                     $("<td></td>").html(Math.round(weatherData[i].temp)+'&#8451;').appendTo(trow);
                     $("<td></td>").text(Math.round(weatherData[i].wind.speed)+' kmph').appendTo(trow);
-                    $("<td></td>").text(weatherData[i].wind.speed+' degrees').appendTo(trow);
+
+                    // WIND DIRECTION
+                    var winddir = $("<td></td>").text(Math.round(weatherData[i].wind.direction)+' degrees ').appendTo(trow);
+
+                    // BUILD THE ICON AND ROTATE TO SUIT THE ANGLE OF THE WIND
+                    $("<i class='fa fa-arrow-circle-up'></i>").css({ WebkitTransform: 'rotate(' + Math.round(weatherData[i].wind.direction) + 'deg)'}).css('color','#e17645').css('font-size','1.5em').appendTo(winddir);
+                    winddir.appendTo(trow);
+
                     $("<td class='hide'></td>").text(weatherData[i].description).appendTo(trow);
 
                     // APPEND THE ROW TO THE BODY
