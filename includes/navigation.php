@@ -1,7 +1,7 @@
 <ul class="nav__menu open">
     <li><a href="/">Home</a></li>
     <li><a href="about-us.php">About Us</a></li>
-    <li><a href="#">Facilities</a>
+    <li><a href="/facilities.php">Facilities</a>
         <ul class="nav__submenu">
             <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">First</a></li>
             <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Climbing</a></li>
