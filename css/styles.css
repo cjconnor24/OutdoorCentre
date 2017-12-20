@@ -993,10 +993,12 @@ h5.heading {font-size:1.25em;}
         left:0;
         transition:0.25s ease;
         box-shadow:0 0 30px #000;
+
         z-index:100;
     }
     .nav__menu.open {
         left:-80%;
+        box-shadow:none;
     }
     .nav__menu li {
         float:none;
