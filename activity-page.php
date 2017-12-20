@@ -646,8 +646,7 @@ include("includes/header.php");
             return contentstring;
         }
     </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbs8Wb7fnp6cMbiuuWfJbX-3X3ItHC2Rw&libraries=geometry">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbs8Wb7fnp6cMbiuuWfJbX-3X3ItHC2Rw&libraries=geometry">
     </script>
 
     </div>
