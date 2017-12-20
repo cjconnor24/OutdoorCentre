@@ -1,4 +1,5 @@
 <?php
+include("includes/secure.php");
 // AJAX RESPONSE
 
 // CHECK IF

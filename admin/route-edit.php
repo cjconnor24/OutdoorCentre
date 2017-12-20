@@ -1,4 +1,5 @@
 <?php
+include("includes/secure.php");
 ##### PERFORM AJAX LOGIC
 
 

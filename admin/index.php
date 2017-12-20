@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php
+include("includes/secure.php");
+include('includes/header.php'); ?>
 
         <h1>Admin Dashboard</h1>
         <p>Welcome to the Lomond Outdoor Administration below</p>

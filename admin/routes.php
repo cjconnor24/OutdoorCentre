@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php
+include("includes/secure.php");
+include('includes/header.php'); ?>
 
 
 
