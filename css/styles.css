@@ -258,6 +258,7 @@ nav::after {
     z-index:-3;
     transition:background-image 2s ease;
 }
+/*TODO: THERE IS AN ISSUE HERE ON IE AND SAFARI*/
 .hero::after {
     content: '';
     width:100%;
@@ -266,6 +267,7 @@ nav::after {
     background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
     display:block;
     position:absolute;
+    left:0;
     bottom:0;
     z-index:-1;
 }
