@@ -3,15 +3,12 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        // TODO: EXTRACT THIS INTO SEPARATE LOGIC
+        // TODO: EXTRACT THIS INTO SEPARATE LOGIC FOR RE-USE
 
         // CREATE IMGAGES THE THEIR POSITIONING
         var imgArr = new Array(
-            ['/img/full-size-hero/hero-1.jpg','center center'],
-            ['/img/full-size-hero/hero-2.jpg','center center'],
-            ['/img/full-size-hero/hero-3.jpg','center bottom'],
-            ['/img/full-size-hero/hero-4.jpg','center center'],
-            ['/img/full-size-hero/hero-5.jpg','left bottom']
+            ['/img/full-size-hero/hero-11.jpg','right top'],
+            ['/img/full-size-hero/hero-10.jpg','center center']
         );
 
         console.log("THIS RUNNS");
