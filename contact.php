@@ -128,7 +128,17 @@
         });
         map.setOptions({styles: style['retro']});
 
-//        map.data.loadGeoJson('/routes/test-route.json');
+        var contentString = '<div class="map-info-window">'+
+            '<h1>Lomond Adventures</h1>'+
+            '<p>123 Loch Lomond <br>Loch Lomond <br><br>G21 123</p>'+
+            '<p><strong>tel</strong> 0141 123 1234</p>'+
+            '<p><strong>email</strong> <a href="mailto:reception@lomondoutdoors.com">reception@lomondoutdoors.com</a></p>'+
+            '</div>';
+
+        var centreinfo = new google.maps.InfoWindow({
+            content: contentString
+        });
+
         var image = new google.maps.MarkerImage("/img/center-marker.png", null, null, null, new google.maps.Size(53,80));
 
         var marker = new google.maps.Marker({
@@ -136,7 +146,11 @@
             map: map,
             icon: image,
             animation: google.maps.Animation.DROP,
-            html: '<h1>Center</h1>'
+            title: 'Lomond Adventures Centre'
+        });
+
+        marker.addListener('click', function() {
+            centreinfo.open(map, marker);
         });
     }
 </script>
