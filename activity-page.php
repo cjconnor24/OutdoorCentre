@@ -102,18 +102,11 @@ include("includes/header.php");
 
         <h2 class="heading">Routes</h2>
 
-        <div id="route-container">
+        <div class="row route-row">
         <?php
 
         include('includes/dbConnect.php');
 
-
-//        $query = $conn->prepare("SELECT id, name, description FROM route WHERE activity = :activityid;");
-//        $query->bindParam(":activityid",$activity);
-//        $query->execute();
-//        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-//
-//        print_r($results);
 
         //TODO: NOW THAT THIS ALL RESIDES IN DB - DON'T NEED TO CALL JSON
         // COULD REFACTOR TO CALLL DIRECTLY IN DB TO REDUCE ADDITIONAL STRAIN
@@ -136,6 +129,8 @@ include("includes/header.php");
         curl_close($ch);
 
         $json = json_decode($result);
+
+        $i = 1;
 
         // LOOP THROUGH THE FEATURES
         foreach($json->{'features'} as $walk) {
@@ -166,8 +161,9 @@ include("includes/header.php");
                 // CHECK THE AGE OF THE FILE
                 $weatherfilemodified = filemtime($weatherfilepath);
                 $timethreshold = (60*30);
+                $timedifference = time() - $weatherfilemodified;
 
-                if((time()-$weatherfilemodified) > $timethreshold) {
+                if($timedifference > $timethreshold) {
 
                     //
                     $url = "http://api.openweathermap.org/data/2.5/weather?lat=" . $latlong[1] . "&lon=" . $latlong[0] . "&appid=" . $weatherapi."&units=metric";
@@ -234,7 +230,9 @@ include("includes/header.php");
                 </div>
             </div>
 
+            <!-- ROUTE INFO SECTION -->
             <div class="route__info">
+
                 <h3 class="route__name"><?php echo $props->{'name'}; ?></h3>
                 <p class="route__description"><?php echo $props->{'description'}; ?></p>
 
@@ -242,23 +240,31 @@ include("includes/header.php");
                 <div class="route__info__stats">
                     <table>
                         <tr>
-                            <td>Difficulty</td>
+                            <td><strong>Difficulty</strong></td>
                             <td><?php echo $props->{'difficulty'}; ?></td>
                         </tr>
                         <tr>
-                            <td>Distance</td>
+                            <td><strong>Distance</strong></td>
                             <td><?php echo round($props->{'distance'},2); ?>km</td>
                         </tr>
                     </table>
                 </div>
 
-                <p><a href="#" data-long="<?php echo $latlong[0];?>" data-lat="<?php echo $latlong[1];?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Five Day Forecast</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a></p>
+                <a href="#" data-long="<?php echo $latlong[0];?>" data-lat="<?php echo $latlong[1];?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Five Day Forecast</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a>
 
             </div>
+
 
         </div>
 
         <?php
+
+            if($i%2==0){
+                echo "</div><div class='row route-row'>";
+            }
+
+            $i++; // INCREMENT COUNTER SO I CAN IMPLEMENT THE ROWS
+
         } // END IF
         } // END LOOP
         ?>
