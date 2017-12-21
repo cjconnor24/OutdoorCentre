@@ -1,6 +1,45 @@
 <?php include('includes/header.php');?>
 
+<script type="text/javascript">
+    $(document).ready(function(){
 
+        // TODO: EXTRACT THIS INTO SEPARATE LOGIC
+
+        // CREATE IMGAGES THE THEIR POSITIONING
+        var imgArr = new Array(
+            ['/img/full-size-hero/hero-1.jpg','center center'],
+            ['/img/full-size-hero/hero-2.jpg','center center'],
+            ['/img/full-size-hero/hero-3.jpg','center bottom'],
+            ['/img/full-size-hero/hero-4.jpg','center center'],
+            ['/img/full-size-hero/hero-5.jpg','left bottom']
+        );
+
+        console.log("THIS RUNNS");
+
+        var preloadArr = new Array();
+        var i;
+
+        // PRELOAD THE IMAGES
+        for(i=0; i < imgArr.length; i++){
+            preloadArr[i] = new Image();
+            preloadArr[i].src = imgArr[i][0];
+        }
+
+        var currImg = 1;
+        var intID = setInterval(changeImg, 6000);
+
+        // CHANGE THE IMAGE
+        function changeImg(){
+
+            // CHANGE THE IMAGE AND THE BG POSITION
+            var current = currImg++%imgArr.length;
+            $('.hero').css('background-image','url(' + preloadArr[current].src +')');
+            $('.hero').css('background-position',imgArr[current][1]);
+
+        }
+
+    });
+</script>
 
 <div class="hero fullscreen">
 

@@ -245,8 +245,11 @@ nav::after {
 .hero {
     width:100%;
     margin-top:75px;
-    background:url('/img/placeholder-1.jpg') center center no-repeat fixed;
-    background-size:cover;
+    background:url('/img/full-size-hero/hero-4.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding:calc(50px + 2em) 0 calc(100px + 2em) 0;
     /*padding:75px 0 10vh 0;*/
     min-height:350px;
@@ -256,8 +259,13 @@ nav::after {
     color:#fff;
     position:relative;
     z-index:-3;
-    transition:background-image 2s ease;
+    transition:all 1s ease;
 }
+/*.hero.about-us {*/
+    /*background:url('/img/site-photos/placeholder-1.jpg') center center no-repeat fixed;*/
+    /*background-size:100%;*/
+
+/*}*/
 /*TODO: THERE IS AN ISSUE HERE ON IE AND SAFARI*/
 .hero::after {
     content: '';
