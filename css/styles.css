@@ -237,7 +237,6 @@ nav::after {
 
 .nav__submenu li a img {
     width:45%;
-    border:1px solid #e17645;
     margin:0 1em 0 0;
     transition:0.25s;
 }
@@ -417,7 +416,8 @@ video#bgvid {
 .row .route:nth-child(1){ margin:0 0.5em 0 0;}
 .row .route:nth-child(2){ margin:0 0 0 0.5em;}
 .route {
-    background:#687561;
+    background:url('/img/activities/canoeing.jpg') no-repeat center center #687561;
+    background-size:cover;
     border-radius:5px;
     color:#FFF;
     font-size:100%;
@@ -426,7 +426,25 @@ video#bgvid {
     padding:2em;
     display:flex;
     transition:all 0.5s ease;
+    position:relative;
+    z-index:1;
 }
+
+.route::after {
+    content:'';
+    display:block;
+    width:100%;
+    height:100%;
+    background:#687561;
+    position:absolute;
+    opacity:0.9;
+    border-radius:5px;
+    top:0;
+    left:0;
+    z-index:-1;
+    transition:0.5s all ease;
+}
+.route:hover.route::after {opacity:0.95;}
 .route:hover .route__weather {
     box-shadow:inset 0px 0px 10px #333;
 
@@ -482,68 +500,47 @@ video#bgvid {
 }
 
 /*activity styles*/
+#activity-list .row {
+    margin:0 0 1em 0;
+}
 .activity {
     background:#687561;
-    position:relative;
-    min-height:300px;
-    background-size:300px auto;
-    padding:1em 5em 1em 40%;
+    background-size:cover;
     color:#fff;
     border-radius:5px;
-    margin:0 0 2em 0;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin:0 0 1em 0;
+    width:100%;
+    overflow:hidden;
+    position:relative;
 }
-
+.activity::after {
+    content: '';
+    display:block;
+    clear:both;
+}
 .activity__heading {
     color:#e17645;
     text-transform: uppercase;
     font-size:2em;
 }
+.activity__content {
+    /*height:100%;*/
+    width:60%;
+    /*float:left;*/
+    padding:2em 3em;
+}
+.activity__content .btn {
+    font-size:1.5em;
+    margin:0;
+}
 .activity__img {
-    height:300px;
-    width:calc(40% - 3em);
-    /*max-width:600px;*/
     position:absolute;
-    overflow:hidden;
-    left:0;
-    top:0;
-    border-radius:4px;
+    display:block;
+    height:100%;
+    width:40%;
 }
 .activity__img img {
-    max-width:800px;
-    max-height:300px;
-    position: absolute;
-    left: -0%;
-    top: -0%;
-    transition:0.5s;
-}
-.activity:hover .activity__img img {
-    max-width:850px;
-    max-height:350px;
-    left:calc(0% - 25px);
-    top:calc(0% - 25px);
-    opacity:0.6;
-}
-.activity__button {
-    display:block;
-    background:#e17645;
-    color:#fff;
-    font-family:oswald, sans-serif;
-    font-size:1.5em;
-    line-height:50px;
-    height:50px;
-
-    padding:0 0 0 1em;
-    border-radius:3px;
-    text-decoration: none;
-    position:relative;
-    transition:background 0.25s;
-}
-.activity__button:hover {
-    background:#ff9455;
+    width:100%;
 }
 
 /* footer styles */
@@ -998,6 +995,12 @@ h5.heading {font-size:1.25em;}
         left:0;
 
     }
+
+    /* ACTIVITY LISTINGS */
+    /*.activity {padding:1em 1em 1em calc(50% - 0em);}*/
+    /*.activity__img {width:50%;height:100%;}*/
+    /*.activity__img img {height:100%;max-height:none;}*/
+
 
 
 
