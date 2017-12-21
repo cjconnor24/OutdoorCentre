@@ -21,7 +21,7 @@ $navactivities = $query->fetchAll(PDO::FETCH_ASSOC);
             <?php
             foreach($navactivities as $activity) {
                 ?>
-                <li><a href="/activity-page.php?activity=<?php echo $activity['id'];?>"><img src="/img/placeholder-1.jpg"
+                <li><a href="/activity-page.php?activity=<?php echo $activity['id'];?>"><img src="/img/activities/<?php echo str_replace(' ','-',strtolower($activity['name']));?>-thumb.jpg"
                                                                  alt="Placeholder"><?php echo $activity['name'];?></a></li>
                 <?php
             }
