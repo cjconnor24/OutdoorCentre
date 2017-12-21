@@ -205,6 +205,7 @@ include("includes/header.php");
 
             // IMPORT ARRAY FOR WEATHER ICON CODES
             include('includes/weather.php');
+            $weathericon = (!($weather['id'] > 699 && $weather['id'] < 800) && !($weather['id'] > 899 && $weather['id']< 1000) ? 'day-' : '').$weathericons[$weather['id']]['icon'];
             ?>
             <div class="route__weather">
                 <div class="route_weather_container">
@@ -215,7 +216,7 @@ include("includes/header.php");
                 </div>
 
                 <div class="route__weather__icon">
-                    <i class="main-icon wi wi-<?php echo $weathericons[$weather['id']]['icon'];?>"></i>
+                    <i class="main-icon wi wi-<?php echo $weathericon;?>"></i>
                 </div>
 
 
@@ -230,6 +231,7 @@ include("includes/header.php");
                 </div>
             </div>
 
+            <div class="spacer"></div>
             <!-- ROUTE INFO SECTION -->
             <div class="route__info">
 
