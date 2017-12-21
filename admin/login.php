@@ -30,7 +30,7 @@ if(is_ajax()) {
 
         // IF NO ERRORS
         if (count($errors) == 0) {
-            
+
             include('../includes/dbConnect.php');
             $query = $conn->prepare("SELECT id, email, CONCAT(fname, lname) name FROM users WHERE email=:email AND password = :password");
             $query->bindParam(":email", $email);

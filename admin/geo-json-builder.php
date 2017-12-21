@@ -74,17 +74,17 @@ include('../includes/dbConnect.php');
 
 foreach($json['features'] as &$route){
 
-    // TODO: CHECK ITS LINE STRING
+    // CHECK ITS LINE STRING
     if($route['geometry']['type']=='LineString') {
 
-        // TODO: IMPORT THE PROPERTIES - NAME STROKE ETC.
+        // IMPORT THE PROPERTIES - NAME STROKE ETC.
         $route['properties'];
         $name = (isset($route['properties']['name']) ? $route['properties']['name'] : '');
 
-        // TODO: IMPORT THE CO-ORDINATES - ARRAY CONVERT TO JSON
+        // IMPORT THE CO-ORDINATES - ARRAY CONVERT TO JSON
         $coordinates = json_encode($route['geometry']['coordinates']);
 
-        // TODO: IMPORT THE DISTANCE
+        // IMPORT THE DISTANCE
         $distance = calculateLineString($route['geometry']['coordinates']);
 
 //        $activity = 5;
