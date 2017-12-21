@@ -1138,7 +1138,7 @@ h5.heading {font-size:1.25em;}
         padding-right:0;
     }
 }
-@media screen and (max-width:480px) {
+@media screen and (max-width:520px) {
 
     .route {
         display:block;
