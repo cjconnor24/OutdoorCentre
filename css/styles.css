@@ -505,41 +505,51 @@ video#bgvid {
 }
 .activity {
     background:#687561;
+    /*background-size:cover;*/
     background-size:cover;
     color:#fff;
-    border-radius:5px;
+    /*border-radius:5px;*/
     margin:0 0 1em 0;
     width:100%;
-    overflow:hidden;
-    position:relative;
+    /*overflow:hidden;*/
+    /*position:relative;*/
 }
 .activity::after {
     content: '';
     display:block;
-    clear:both;
+    z-index:2;
 }
 .activity__heading {
     color:#e17645;
     text-transform: uppercase;
     font-size:2em;
 }
+.canoeing {background: url('/img/activities/canoeing.jpg') no-repeat center center};
+.kayaking {background: url('/img/activities/kayaking.jpg') no-repeat center center};
+.clibming {background: url('/img/activities/climbing.jpg') no-repeat center center};
+
+}
 .activity__content {
     /*height:100%;*/
-    width:60%;
+    /*width:60%;*/
+    /*margin:0 auto;*/
+    /*background:rgba(0,0,0,0.8);*/
+
     /*float:left;*/
     padding:2em 3em;
+    z-index: 2;
 }
 .activity__content .btn {
     font-size:1.5em;
     margin:0;
 }
-.activity__img {
-    position:absolute;
-    display:block;
-    height:100%;
-    width:40%;
-}
-.activity__img img {
+/*.activity__img {*/
+    /*position:absolute;*/
+    /*display:block;*/
+    /*height:100%;*/
+    /*width:40%;*/
+/*}*/
+.activity img {
     width:100%;
 }
 
