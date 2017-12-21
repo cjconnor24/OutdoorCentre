@@ -1,4 +1,6 @@
 /*@import url('reset.css');*/
+@import url('/css/weather-icons.min.css');
+
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 html, * {
     padding:0;
@@ -428,31 +430,77 @@ video#bgvid {
 }
 
 /*ROUTE STYLES*/
+#route-container::after {
+    content: '';
+    display:block;
+    clear:both;
+}
 .route {
     background:#687561;
     border-radius:10px;
-    margin:0 0 1em 0;
+    margin:0 1em 1em 0;
     color:#FFF;
     font-size:100%;
+    width:calc(50% - 1em);
+    float:left;
+
     display:flex;
+    transition:0.5s;
+    /*flex-direction: column;*/
+}
+.route:hover {
+    background: #6d7d67;
 }
 .route::after {
     content: '';
     display:block;
     clear:both;
 }
-.route__map {
-    background:#F00;
+.route__weather {
     float:left;
-    width:50%;
-    /*display:flex;*/
-    border-radius:10px 0 0 10px;
+    position:relative;
+    /*width:30%;*/
+    background:#FFF;
+    color:#687561;
+    margin:1em;
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius:5px;
+    text-align: center;
 }
+
+.route__weather_container {
+    background:rgba(0,0,0,0.5);
+    display:block;
+}
+.route__weather__temp i:first-child {color:deepskyblue;}
+.route__weather__temp i:nth-child(2) {color:darkred;}
+.route__weather__sun, .route__weather__temp, .route__weather__icon, .route__weather__description {
+    flex: 1;
+    margin:1em;
+    display:block;
+    max-width:100%;
+
+
+}
+.route__weather .main-icon {
+    font-size:75px;
+    color:#e17645;
+}
+
 .route__info {
     float:left;
     width:45%;
-    padding:2em;
+    padding:1em ;
+    /*padding:2em;*/
     /*display: flex;*/
+    /*text-align: left;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }
 .route__description {
     white-space: pre-line;
@@ -920,6 +968,11 @@ h5.heading {font-size:1.25em;}
         width:85%;
     }
 
+    .route {
+        width:100%;
+        float:none;
+    }
+
 }
 
 @media screen and (min-width: 768px) and (max-width:860px)  {
@@ -1084,4 +1137,30 @@ h5.heading {font-size:1.25em;}
         padding-left:0;
         padding-right:0;
     }
+}
+@media screen and (max-width:480px) {
+
+    .route {
+        display:block;
+        padding:1em;
+    }
+    .route__weather {
+        width:100%;
+        margin:0 0 1em 0;
+        padding:0 0 1em 0;
+        float:none;
+        display:block;
+    }
+    .route__info {
+        margin:0;
+        padding:0;
+        width:100%;
+        float:none;
+        display:block;
+    }
+    .route__info .btn {
+        dipslay:block;
+        width:100%;
+    }
+
 }

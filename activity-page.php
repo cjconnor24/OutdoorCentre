@@ -29,6 +29,22 @@ include("includes/header.php");
 
                 <?php
 
+                // FUNCTION FOR GETTING CACHED WEATHER FILE NAME
+                function get_weather_json_name($lat, $long){
+
+                    $nlat = round($lat,2);
+                    $nlong = round($long,2);
+
+                    $fn = $nlat."_".$nlong;
+                    $fn = str_replace("-","",$fn);
+                    $fn = str_replace(".","-",$fn);
+
+                    $path = 'cache/weather/';
+                    return $path.$fn.".json";
+
+
+                }
+
                 if(isset($_GET['activity'])){
                     $activity = $_GET['activity'];
                 } else {
@@ -86,8 +102,18 @@ include("includes/header.php");
 
         <h2 class="heading">Routes</h2>
 
-
+        <div id="route-container">
         <?php
+
+        include('includes/dbConnect.php');
+
+
+//        $query = $conn->prepare("SELECT id, name, description FROM route WHERE activity = :activityid;");
+//        $query->bindParam(":activityid",$activity);
+//        $query->execute();
+//        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+//
+//        print_r($results);
 
         //TODO: NOW THAT THIS ALL RESIDES IN DB - DON'T NEED TO CALL JSON
         // COULD REFACTOR TO CALLL DIRECTLY IN DB TO REDUCE ADDITIONAL STRAIN
@@ -101,14 +127,14 @@ include("includes/header.php");
 
         // SETUP THE CURL REQUEST
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json'
-        ));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 
         // GET THE RESULT
         $result = curl_exec($ch);
+        curl_close($ch);
+
         $json = json_decode($result);
 
         // LOOP THROUGH THE FEATURES
@@ -126,9 +152,87 @@ include("includes/header.php");
         $latlong = $walk->{'geometry'}->{'coordinates'}[$middle];
 
         ?>
+
         <div class="route" id="route-<?php echo $props->{'routeid'}; ?>">
 
-            <div class="route__map"></div>
+            <?php
+
+            // GET WEATHER AND OUTPUT
+            $weatherfilepath = get_weather_json_name($latlong[0], $latlong[1]);
+
+            // CHECK IF THERE IS ALREADY A CACHED FILE FOR THIS LOCATION
+            if(file_exists($weatherfilepath))
+
+                // CHECK THE AGE OF THE FILE
+                $weatherfilemodified = filemtime($weatherfilepath);
+                $timethreshold = (60*30);
+
+                if((time()-$weatherfilemodified) > $timethreshold) {
+
+                    //
+                    $url = "http://api.openweathermap.org/data/2.5/weather?lat=" . $latlong[1] . "&lon=" . $latlong[0] . "&appid=" . $weatherapi."&units=metric";
+                    $ch = curl_init();
+
+                    // SETUP THE CURL REQUEST
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                    // GET THE RESULT
+                    $result = curl_exec($ch);
+                    $json = json_decode($result);
+
+
+                    // WRITE TO FILE
+                    $fn = $weatherfilepath;
+                    $file = fopen($fn,'w');
+                    fwrite($file,$result);
+                    fclose($file);
+                    curl_close($ch);
+
+                } else {
+
+                    $result = file_get_contents($weatherfilepath);
+                    $json = json_decode($result);
+
+                }
+
+            //EXTRACT THE WEATHER VARIABLES REQUIRED
+            $weather = array();
+            $weather['id'] = intval($json->weather[0]->id);
+            $weather['hi'] = $json->main->temp_max;
+            $weather['low'] = $json->main->temp_min;
+            $weather['sunrise'] = $json->sys->sunrise;
+            $weather['sunset'] = $json->sys->sunset;
+            $weather['icon'] = $json->weather[0]->icon;
+            $weather['description'] = $json->weather[0]->description;
+
+            // IMPORT ARRAY FOR WEATHER ICON CODES
+            include('includes/weather.php');
+            ?>
+            <div class="route__weather">
+                <div class="route_weather_container">
+                    <h3>Current Weather</h3>
+
+                <div class="route__weather__sun">
+                    <p> <i class="wi wi-sunrise"></i> <?php echo date('H:m',$weather['sunrise']);?> <i class="wi wi-sunset"></i> <?php echo date('H:m',$weather['sunset']);?></p>
+                </div>
+
+                <div class="route__weather__icon">
+                    <i class="main-icon wi wi-<?php echo $weathericons[$weather['id']]['icon'];?>"></i>
+                </div>
+
+
+                    <div class="route__weather__description">
+                        <p><?php echo ucwords($weather['description']);?></p>
+                    </div>
+
+                <div class="route__weather__temp">
+                    <p><i class="wi wi-thermometer-exterior"></i> Low <?php echo $weather['low'];?>&#8451;  <i class="wi wi-thermometer"></i> High <?php echo $weather['hi'];?>&#8451;</p>
+
+                </div>
+                </div>
+            </div>
 
             <div class="route__info">
                 <h3 class="route__name"><?php echo $props->{'name'}; ?></h3>
@@ -148,7 +252,7 @@ include("includes/header.php");
                     </table>
                 </div>
 
-                <p><a href="#" data-long="<?php echo $latlong[0];?>" data-lat="<?php echo $latlong[1];?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Check Weather</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a></p>
+                <p><a href="#" data-long="<?php echo $latlong[0];?>" data-lat="<?php echo $latlong[1];?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Five Day Forecast</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a></p>
 
             </div>
 
@@ -158,6 +262,7 @@ include("includes/header.php");
         } // END IF
         } // END LOOP
         ?>
+        </div>
 
     <script type="text/javascript">
         $(document).ready(function() {
