@@ -379,39 +379,7 @@ nav::after {
 .nohero {
     margin-top:75px;
 }
-.overlap {
-    position:relative;
-    top:-1em;
-    background:#fff;
-    transition:position 1s;
-}
-.overlap::before {
-    content:"";
-    height:200px;
-    width:100%;
-    padding:3em;
-    margin:0 auto;
-    display:block;
-    background:#fff;
-    box-shadow:0 0 40px #687561;
-    top:-2em;
-    left:-3em;
-    position:absolute;
-    z-index:-2;
-}
-.overlap::after {
-    content:"";
-    height:75px;
-    width:100%;
-    padding:3em;
-    position:absolute;
-    top:150px;
-    left:-3em;
-    background:#fff;
-    box-shadow:0 0 100px #fff;
-    display:block;
-    z-index:-1;
-}
+
 
 video#bgvid {
 
@@ -430,20 +398,16 @@ video#bgvid {
 }
 
 /*ROUTE STYLES*/
-#route-container::after {
-    content: '';
-    display:block;
-    clear:both;
+.route-row {
+    display:flex;
 }
+
 .route {
     background:#687561;
     border-radius:10px;
-    margin:0 1em 1em 0;
+    margin:0 0em 1em 0;
     color:#FFF;
     font-size:100%;
-    width:calc(50% - 1em);
-    float:left;
-
     display:flex;
     transition:0.5s;
     /*flex-direction: column;*/
@@ -946,6 +910,43 @@ h5.heading {font-size:1.25em;}
 .accordion-toggle span {float:right; font-weight:normal;}
 .accordion-content {display: none;padding:1em;}
 .accordion-content.default {display: block;}
+
+/* MAKE OVERLAP ONLY AVAILABLE ON LARGER SCREENS */
+@media screen and (min-width: 768px){
+    .overlap {
+        position:relative;
+        top:-1em;
+        background:#fff;
+        transition:position 1s;
+    }
+    .overlap::before {
+        content:"";
+        height:200px;
+        width:100%;
+        padding:3em;
+        margin:0 auto;
+        display:block;
+        background:#fff;
+        box-shadow:0 0 40px #687561;
+        top:-2em;
+        left:-3em;
+        position:absolute;
+        z-index:-2;
+    }
+    .overlap::after {
+        content:"";
+        height:75px;
+        width:100%;
+        padding:3em;
+        position:absolute;
+        top:150px;
+        left:-3em;
+        background:#fff;
+        box-shadow:0 0 100px #fff;
+        display:block;
+        z-index:-1;
+    }
+}
 
 /* larger than 1024 */
 @media screen and (max-width:1024px){
