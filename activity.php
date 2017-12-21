@@ -17,23 +17,26 @@
 
 
         <?php
-        $activities = array("Canoeing","Kayaking","Climbing","Hill Walking");
-        for($i = 0; $i<4; $i++) {
+//        $activities = array("Canoeing","Kayaking","Climbing","Hill Walking");
+//        for($i = 0; $i<4; $i++) {
 
+            include('includes/dbConnect.php');
+            $query = $conn->query('SELECT id, name, description FROM activity;');
+            $query->execute();
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($results as $row){
         ?>
         <div class="activity">
 
             <div class="activity__img">
-            <img src="/img/placeholder-<?php echo $i+1;?>.jpg" alt="<?php echo $activities[$i];?>">
+            <img src="/img/placeholder-1.jpg" alt="<?php echo $row['name'];?>">
             </div>
 
             <div class="activity__content">
-            <h2 class="activity__heading"><?php echo $activities[$i];?></h2>
-            <p>Kayaking is absolutely brilliant fun and very good fun to do. You can do lots of kayaking and some dummy text just to pad this out.</p>
-                <?php if($i==3){
-                   echo "<p>Kayaking is absolutely brilliant fun and very good fun to do. You can do lots of kayaking and some dummy text just to pad this out.</p>";
-                }?>
-            <p><a href="#" class="activity__button">More Info <i class="fa fa-info-circle"></i></a></p>
+            <h2 class="activity__heading"><?php echo $row['name'];?></h2>
+            <p><?php echo $row['description'];?></p>
+            <p><a href="/activity-page.php?id=<?php echo $row['id'];?>" class="activity__button">More Info <i class="fa fa-info-circle"></i></a></p>
             </div>
 
         </div>

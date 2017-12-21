@@ -17,6 +17,7 @@ include("includes/header.php");
             });
         </script>
 
+        <p><a href="/activity.php" class="btn-back btn btn-small btn-orng"><i class="fa fa-arrow-left"></i> Return to Activity Listings</a></p>
 
         <h1 class="heading">Activites</h1>
 

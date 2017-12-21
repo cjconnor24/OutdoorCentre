@@ -43,13 +43,10 @@
 
 <div class="hero fullscreen">
 
-    <div class="container">
-
-
-
-        <div class="fade-in">
+    <div class="container txt-center">
+       <div class="fade-in">
         <h1 class="hero__header">Welcome to Lomond Adventures</h1>
-        <p class="hero__p">The number one adventure location.</p>
+        <p class="hero__p">The number one adventure location in Scotland. </p>
 
         <p><a href="#" class="btn btn-lg btn-orng">FIND OUT MORE</a></p>
         </div>
