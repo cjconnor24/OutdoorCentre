@@ -243,11 +243,11 @@ include("includes/header.php");
                 <div class="route__info__stats">
                     <table>
                         <tr>
-                            <td><strong>Difficulty</strong></td>
+                            <td><strong>Difficulty: </strong></td>
                             <td><?php echo $props->{'difficulty'}; ?></td>
                         </tr>
                         <tr>
-                            <td><strong>Distance</strong></td>
+                            <td><strong>Distance: </strong></td>
                             <td><?php echo round($props->{'distance'},2); ?>km</td>
                         </tr>
                     </table>
