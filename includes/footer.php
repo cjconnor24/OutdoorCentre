@@ -30,9 +30,10 @@
             <div class="col-2 col-m-6"><h2>Activities</h2>
                 <ul class="footer__menu">
                     <?php
-                    $activities = array('Hiking','Kayaking','Canoeing','Climbing','Sailing');
-                    foreach($activities as $facility){
-                        echo "<li><a href=\"#\">$facility</a></li>";
+                    foreach($activities as $activity) {
+                        ?>
+                        <li><a href="/activity-page.php?activity=<?php echo $activity['id'];?>"><?php echo $activity['name'];?></a></li>
+                        <?php
                     }
                     ?>
                 </ul></div>
