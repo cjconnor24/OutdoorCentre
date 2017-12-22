@@ -1,29 +1,6 @@
 <h2 class="heading">Upcoming Courses</h2>
 
 <?php
-
-// FUNCTION FOR GETTING CACHED WEATHER FILE NAME
-function get_weather_json_name($lat, $long){
-
-    $nlat = round($lat,2);
-    $nlong = round($long,2);
-
-    $fn = $nlat."_".$nlong;
-    $fn = str_replace("-","",$fn);
-    $fn = str_replace(".","-",$fn);
-
-    $path = 'cache/weather/';
-    return $path.$fn.".json";
-
-
-}
-
-if(isset($_GET['activity'])){
-    $activity = $_GET['activity'];
-} else {
-    $activity = 5;
-}
-
 include('includes/dbConnect.php');
 $query = $conn->prepare("SELECT * FROM course WHERE activity=:activity AND datetime > NOW();");
 $query->bindParam(":activity",$activity);
@@ -63,12 +40,7 @@ if($count > 0) {
 
 <script type="text/javascript" src="/js/accordian.js"></script>
 
-</div>
-
-<div class="col-6">
-    <h2 class="heading">Sub-Heading</h2>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-</div>
 
 
-</div>
+
+

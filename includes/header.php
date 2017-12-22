@@ -1,3 +1,8 @@
+<?php
+// ARRAY TO STORE ANY FILES WHICH NEED TO BE OUTPUT BEFORE BODY
+$footerscripts = array();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

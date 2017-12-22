@@ -4,6 +4,36 @@ include("includes/header.php");
 
 // TODO: HOOK UP CATGOERIES TO DB
 // TODO: CHECK WEATHER - ADD SUNRISE SUNSET
+
+if(isset($_GET['activity'])){
+    $activity = $_GET['activity'];
+} else {
+    $activity = 5;
+}
+
+include('includes/dbConnect.php');
+
+$query = $conn->prepare("SELECT id, name, description FROM activity WHERE id = :activityid");
+$query->bindParam(":activityid",$activity);
+$query->execute();
+$activityinfo = $query->fetch(PDO::FETCH_ASSOC);
+
+// FUNCTION FOR GETTING CACHED WEATHER FILE NAME
+function get_weather_json_name($lat, $long){
+
+    $nlat = round($lat,2);
+    $nlong = round($long,2);
+
+    $fn = $nlat."_".$nlong;
+    $fn = str_replace("-","",$fn);
+    $fn = str_replace(".","-",$fn);
+
+    $path = 'cache/weather/';
+    return $path.$fn.".json";
+
+
+}
+
 ?>
 
     <div id="full-size-map"></div>
@@ -19,14 +49,11 @@ include("includes/header.php");
 
         <p><a href="/activity.php" class="btn-back btn btn-small btn-orng"><i class="fa fa-arrow-left"></i> Return to Activity Listings</a></p>
 
-        <h1 class="heading">Activites</h1>
 
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+        <?php
+        // LOAD IN THE STATIC CONTENT
+        include('includes/static-content/'.str_replace(' ','',strtolower($activityinfo['name'])).'.php');?>
 
-        <div class="row">
-
-            <div class="col-6">
-            <?php include('includes/upcoming-courses.php');?>
 
         <h2 class="heading">Routes</h2>
 

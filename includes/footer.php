@@ -137,5 +137,18 @@
 </footer>
 
 </div>
+
+<?php
+// OUTPUT THE FOOTER SCRIPTS IF ANY
+if(isset($footerscripts) && count($footerscripts)>0){
+
+    foreach($footerscripts as $script){
+        echo "<script type='text/javascript' src='$script'></script>";
+    }
+
+}
+
+?>
+
 </body>
 </html>

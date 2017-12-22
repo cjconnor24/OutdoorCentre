@@ -333,7 +333,7 @@ nav::after {
 
 }
 .map-info-window h1 {
-    font-family:Oswald,Arial;
+    font-family: Oswald, Arial, sans-serif;
 }
 .map-info-window .difficulty {
     font-family:Oswald, Arial, Helvetica, sans-serif;
@@ -524,11 +524,12 @@ video#bgvid {
     text-transform: uppercase;
     font-size:2em;
 }
-.canoeing {background: url('/img/activities/canoeing.jpg') no-repeat center center};
-.kayaking {background: url('/img/activities/kayaking.jpg') no-repeat center center};
-.clibming {background: url('/img/activities/climbing.jpg') no-repeat center center};
+.canoeing {background: url('/img/activities/canoeing.jpg') no-repeat center center;}
+.kayaking {background: url('/img/activities/kayaking.jpg') no-repeat center center;}
+.climbing {background: url('/img/activities/climbing.jpg') no-repeat center center;}
+.hill-walking {background: url('/img/activities/hill-walking.jpg') no-repeat center center;}
 
-}
+
 .activity__content {
     /*height:100%;*/
     /*width:60%;*/
@@ -817,6 +818,48 @@ form label {
     border-bottom:1px solid #e17645;
     padding:0 0 0.5em 0;
     margin:0 0 1.5em 0;
+}
+
+blockquote {
+    font-size:1.5em;
+    color:#666;
+    display:block;
+    font-family:Georgia,serif;
+    font-style:italic;
+    text-align:center;
+    width:80%;
+    margin:1em auto;
+    padding:0 0 1em 0;
+    position:relative;
+}
+
+
+/*IMG UTITILITY*/
+.float-left {float:left;}
+.float-right {float:right;}
+
+img[class*='responsive'].float-right {margin:0 0 2em 2em;}
+img[class*='responsive'].float-left {margin:0 2em 2em 0;}
+
+.responsive-img-100 { width:100%;}
+.responsive-img-75 { width:75%;}
+.responsive-img-50 { width:50%;}
+.responsive-img-25 { width:25%;}
+
+/* IMAGE GALLERY */
+.gallery div {
+    width:calc(25% - 0.5em);
+    height:75px;
+    overflow:hidden;
+    float:left;
+    margin:0 0.5em 1em 0;
+}
+.gallery div:nth-child(4n){
+    width:25%;
+    margin:0 0 1em 0;
+}
+.gallery div img {
+    width:100%;
 }
 
 h1.heading {font-size:2.5em;}
