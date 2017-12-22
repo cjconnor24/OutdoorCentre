@@ -301,6 +301,10 @@ nav::after {
     align-items: center;
     /*padding:0;*/
 }
+.hero.boat-hire {
+    background:url('/img/narrow-hero/gallery-1.jpg') no-repeat center center!important;
+    background-size: cover;
+}
 /*.fullscreen .row [class*="col-"]{*/
 /*!*padding-right:0;*!*/
 /*!*background:blue;*!*/
@@ -845,6 +849,79 @@ img[class*='responsive'].float-left {margin:0 2em 2em 0;}
 .responsive-img-75 { width:75%;}
 .responsive-img-50 { width:50%;}
 .responsive-img-25 { width:25%;}
+.responsive-img-10 { width:10%;}
+
+/* PRICING TABLE */
+.pricing-table {
+    display:flex;
+    width:90%;
+    margin:0 auto 1em auto;
+}
+.pricing-table::after {
+    display:block;
+    content: '';
+    clear:both;
+}
+.pricing-table .section__heading {
+    font-family:Oswald, Arial, Helvetica, sans-serif;
+    /*font-weight:700;*/
+    color:#e17645;
+    font-size:3em;
+    margin:0;
+    text-align:center;
+}
+.pricing-table .section__text {
+    margin:0 0 0 2em;
+    width:66%;
+}
+.pricing-table .section {
+    width:33.3333%;
+    position:relative;
+    border-radius:5px;
+    border:1px solid #e17645;
+    padding:0em 0em 100px 0em;
+    float:left;
+    transition:all 0.5s ease;
+}
+.pricing-table .section:hover {background:rgba(225,118,69,0.2);}
+/*.pricing-table .section:hover .btn {color:#e17645;border:1px solid #e17645;background:#FFF;}*/
+.pricing-table .section:nth-child(1){margin:0 1em 0 0 ;}
+.pricing-table .section:nth-child(3){margin:0 0 0 1em ;}
+.pricing-table .section__features li {
+    display:block;
+    padding:1em 1em;
+    text-align:center;
+}
+.pricing-table .section__price {
+    font-size:75px;
+    text-align: center;
+    position: relative;
+    margin:0;
+}
+.pricing-table .section__price::before {
+    content: '£';
+    position:absolute;
+    top:10px;
+    left:20%;
+    font-size:30px;
+    color:#e17645;
+}
+/*.pricing-table .section__features li:nth-child(even) {*/
+    /*background: rgba(200,200,200,0.25);*/
+/*}*/
+
+.pricing-table .section__enquire .btn:hover {
+    background:#e17645;
+    color:#FFF;
+}
+.pricing-table .section__enquire {
+    width:100%;
+    position:absolute;
+    padding:1em 0;
+    bottom:0;
+    left:0;
+    text-align:center;
+}
 
 /* IMAGE GALLERY */
 .gallery div {
@@ -1049,6 +1126,11 @@ h5.heading {font-size:1.25em;}
 
     }
 
+    .pricing-table {
+        width:100%;
+    }
+    /**/
+
     /* ACTIVITY LISTINGS */
     /*.activity {padding:1em 1em 1em calc(50% - 0em);}*/
     /*.activity__img {width:50%;height:100%;}*/
@@ -1231,6 +1313,28 @@ h5.heading {font-size:1.25em;}
         top:70px;
         left:20px;
 
+    }
+
+    .pricing-table {
+        width:100%;
+        display:block;
+    }
+    [class*='responsive-img'] {
+        float:none;
+        width:100%;
+        margin:0!important;
+        padding:0!important;
+    }
+    .pricing-table .section__text {
+        width:100%;
+        float:none;
+        margin:0;
+        padding:0;
+    }
+    .pricing-table .section {
+        margin:0 0 1em 0!important;
+        width:100%;
+        float:none;
     }
 
 }

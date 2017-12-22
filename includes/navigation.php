@@ -12,8 +12,8 @@ $navactivities = $query->fetchAll(PDO::FETCH_ASSOC);
     <li><a href="about-us.php">About Us</a></li>
     <li><a href="/facilities.php">Facilities</a>
         <ul class="nav__submenu">
-            <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">First</a></li>
-            <li><a href="#"><img src="/img/placeholder-1.jpg" alt="Placeholder">Climbing</a></li>
+            <li><a href="/equipment-hire.php">Equipment Hire</a></li>
+
         </ul>
     </li>
     <li><a href="activity.php">Activities</a>
