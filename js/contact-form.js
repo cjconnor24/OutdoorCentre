@@ -6,7 +6,6 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = $(this).serialize();
 
-        console.log(formData);
 
         $.post('contact-form.php',formData,function(resp){
 
@@ -81,7 +80,6 @@ function clearResult(){
         .removeClass('fa-times').removeClass('fa-check');
 
     resultBox.find('ul').remove();
-    console.log("Clear function ran");
 
     return true;
 

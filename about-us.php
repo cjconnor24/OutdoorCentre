@@ -11,8 +11,6 @@
             ['/img/full-size-hero/hero-10.jpg','center center']
         );
 
-        console.log("THIS RUNNS");
-
         var preloadArr = new Array();
         var i;
 

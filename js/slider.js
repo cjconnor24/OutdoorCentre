@@ -17,7 +17,7 @@ function changeHeroImage(){
 
 
     try {
-        console.log('THIS RAN');
+
         var heroBox = document.getElementsByClassName('hero')[0];
         var imagePath = "/img/";
         var heroImages = [
@@ -36,7 +36,6 @@ function changeHeroImage(){
         }
 
     } catch (err) {
-        Console.log('REMEBER AND AMEND YOUR JS SLIDER STUFF');
     }
 
 

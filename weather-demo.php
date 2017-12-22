@@ -31,9 +31,6 @@
             // LOOP THROUGH EACH LIST ITEM
             $(weatherfiveday).each(function(key,hourly){
 
-                // THIS WILL SHOW YOU THE VARS IN THE CONSOLE
-                console.log(hourly);
-
                 // GET THE DATA YOU WANT AND EXTRACT IT
                 var datetime = hourly.dt_txt;
                 var temperature = hourly.main.temp;
@@ -45,8 +42,6 @@
 
             })
 
-            // THIS WILL SHOW YOU THE CITY
-            console.log("The city is: "+weatherdata.city.name);
         });
 
     })

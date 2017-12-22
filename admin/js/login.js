@@ -4,7 +4,6 @@ $(function(){
 
         e.preventDefault();
         var formData = $(this).serialize();
-        console.log(formData);
 
         // CHECK CREDENTIALS AGAINST DB
         $.post('/admin/login.php',formData,function(resp){
@@ -41,8 +40,6 @@ $(function(){
                 }, 2000);
 
             }
-
-            console.log(resp);
 
         },'json');
 

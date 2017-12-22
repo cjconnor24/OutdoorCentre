@@ -255,7 +255,6 @@ function get_weather_json_name($lat, $long){
                     // GET THE DATE FROM THE CURRENT
                     var weatherdate = new Date(val.dt * 1000);
 
-                    console.log(val);
 
                     // BUILD AN OBJECT
                     var weatherRow = {
@@ -294,8 +293,6 @@ function get_weather_json_name($lat, $long){
                 for(i = 0; i < weatherData.length; i++){
 
                     var weatherDate = new Date(weatherData[i].datetime);
-
-                    console.log(weatherDate);
 
                     if(weatherDate.getDate()!=d){
 
@@ -604,20 +601,6 @@ function get_weather_json_name($lat, $long){
                 var bounds = new google.maps.LatLngBounds();
                 processPoints(event.feature.getGeometry(), bounds.extend, bounds);
                 map.fitBounds(bounds);
-
-                // MAKE SURE ISNT A POINT BEFORE CALULCATING DISTANCE
-//                if(!(event.feature.getGeometry() instanceof google.maps.Data.Point)) {
-//
-//                    // GET THE DISTANCE OF THE ROUTE - OMG THIS TOOK A WHILE
-//                    var distance = google.maps.geometry.spherical.computeLength(event.feature.getGeometry().getArray());
-//                    var distancekm = distance / 1000;
-//                    var distancemiles = distance * 0.000621371;
-//
-//                    console.log("DISTANCE IN MILES: " + distancemiles);
-//                    console.log("DISTANCE IN METERS: " + distance);
-//                    console.log("DISTANCE IN KMS: " + distancekm);
-//
-//                }
 
                 //routeid,title,distance,difficulty
 

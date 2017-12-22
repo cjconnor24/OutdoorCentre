@@ -90,8 +90,7 @@ include('_partials/_enquiry-table.php');
                     })
 
                     if(charttype=='bar') {
-                        console.log('this ran');
-//                        myChart.options.scales.yAxes[0].ticks.min = 0;
+
                         myChart.options.scales.yAxes[0].ticks.beginAtZero = true;
                     }
 
