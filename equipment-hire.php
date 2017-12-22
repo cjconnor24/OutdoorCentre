@@ -71,7 +71,7 @@
 
                 </ul>
 
-                <div class="section__enquire"><a href="#" class="btn btn-orng">Enquire Now</a></div>
+                <div class="section__enquire"><a href="/contact.php" class="btn btn-orng">Enquire Now</a></div>
             </div>
 
             <div class="section">
@@ -86,7 +86,7 @@
 
                 </ul>
 
-                <div class="section__enquire"><a href="#" class="btn btn-orng">Enquire Now</a></div>
+                <div class="section__enquire"><a href="/contact.php" class="btn btn-orng">Enquire Now</a></div>
             </div>
 
             <div class="section">
@@ -100,7 +100,7 @@
 
                 </ul>
 
-                <div class="section__enquire"><a href="#" class="btn btn-orng">Enquire Now</a></div>
+                <div class="section__enquire"><a href="/contact.php" class="btn btn-orng">Enquire Now</a></div>
             </div>
 
         </div>
@@ -118,7 +118,7 @@
                     <li><strong>APPROVED</strong> by the RNLI</li>
                 </ul>
 
-                <div class="section__enquire"><a href="#" class="btn btn-orng">Enquire Now</a></div>
+                <div class="section__enquire"><a href="/contact.php" class="btn btn-orng">Enquire Now</a></div>
             </div>
 
             <div class="section__text">
@@ -141,7 +141,7 @@
                     <li>Rope</li>
                 </ul>
 
-                <div class="section__enquire"><a href="#" class="btn btn-orng">Enquire Now</a></div>
+                <div class="section__enquire"><a href="/contact.php" class="btn btn-orng">Enquire Now</a></div>
             </div>
 
             <div class="section__text">
