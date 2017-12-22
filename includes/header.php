@@ -12,7 +12,7 @@ $footerscripts = array();
 
     <title>Lomond Outdoor Adventures - Loch Lomond, Glasgow, Scotland</title>
 
-    <link rel="shortcut icon" href="/favicon.ico">
+    <?php include('includes/favicons.php');?>
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <!--    ADDING JQUERY LOCALLY FOR OFFLINE DEV-->
     <script src="/js/jquery-3.2.1.min.js"></script>
