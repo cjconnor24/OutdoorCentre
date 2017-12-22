@@ -1,6 +1,6 @@
 $(function(){
 
-    $('.cookies').delay(3000).fadeIn();
+    $('.cookies').delay(1500).fadeIn();
 
     // SET COOKIE TO SAY AGREED
     $('.cookies__link-agree').click(function(e){
