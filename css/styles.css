@@ -997,6 +997,12 @@ h5.heading {font-size:1.25em;}
     font-size:0.8em;
     text-align:center;
     padding:1em 0;
+    text-decoration: none;
+}
+#overlay .weather .weather__copyright a {
+    text-decoration:none;
+    font-weight:700;
+    color:#e17645;
 }
 #overlay .weather i.fa-times {
     font-size:1.5em;
