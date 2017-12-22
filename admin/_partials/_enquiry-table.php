@@ -26,9 +26,9 @@ if($count > 0) {
             <td class="sm-hide"><i class="fa fa-calendar"></i> <?php echo $row['received'];?></td>
             <td class="hide"><strong><?php echo $row['activityname'];?></strong></td>
             <td>
-                <a href="view-enquiry.php?id=<?php echo $row['enquiryid'];?>" title="View Enquiry" class="table__button<?php echo ($row['responseid']==NULL ? " remove" : "");?>"><i class="fa fa-envelope<?php echo ($row['responseid']==NULL ? "" : "-open");?>"></i> <span>Read</span></a>
-                <a href="#<?php echo $row['enquiryid'];?>" title="Reply to Enquiry" class="table__button"><i class="fa fa-reply"></i> <span>Read</span></a>
-                <a href="#<?php echo $row['enquiryid'];?>" title="Delete Enquiry" class="table__button remove"><i class="fa fa-trash"></i> <span>Read</span></a>
+                <a href="/admin/view-enquiry.php?id=<?php echo $row['enquiryid'];?>" title="View Enquiry" class="table__button<?php echo ($row['responseid']==NULL ? " remove" : "");?>"><i class="fa fa-envelope<?php echo ($row['responseid']==NULL ? "" : "-open");?>"></i> <span>Read</span></a>
+                <a href="/admin/view-enquiry.php?id=<?php echo $row['enquiryid'];?>" title="Reply to Enquiry" class="table__button"><i class="fa fa-reply"></i> <span>Read</span></a>
+                <a href="javascript:alert('To do...');" title="Delete Enquiry" class="table__button remove"><i class="fa fa-trash"></i> <span>Read</span></a>
             </td>
         </tr>
     <?php } ?>
