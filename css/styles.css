@@ -504,59 +504,51 @@ video#bgvid {
 }
 
 /*activity styles*/
-#activity-list .row {
-    margin:0 0 1em 0;
-}
+
 .activity {
     background:#687561;
-    /*background-size:cover;*/
     background-size:cover;
     color:#fff;
-    /*border-radius:5px;*/
-    margin:0 0 1em 0;
-    width:100%;
-    /*overflow:hidden;*/
-    /*position:relative;*/
+    border-radius:10px;
+    width:calc(50% - 0.5em);
+    float:left;
+    overflow:hidden;
+    position:relative;
 }
+.activity:nth-child(odd){margin:0 0.5em 1em 0;}
+.activity:nth-child(even){margin:0 0 1em 0.5em;}
 .activity::after {
     content: '';
     display:block;
     z-index:2;
 }
+.activity .activity__content {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.25),rgba(104, 117, 97, 0), rgba(104, 117, 97, 1));
+    padding:2em;
+}
+.activity img {
+    width:100%;
+    display:block;
+    z-index:-3;
+    opacity: 0.1;
+}
+
 .activity__heading {
     color:#e17645;
     text-transform: uppercase;
     font-size:2em;
 }
-.canoeing {background: url('/img/activities/canoeing.jpg') no-repeat center center;}
-.kayaking {background: url('/img/activities/kayaking.jpg') no-repeat center center;}
-.climbing {background: url('/img/activities/climbing.jpg') no-repeat center center;}
-.hill-walking {background: url('/img/activities/hill-walking.jpg') no-repeat center center;}
 
-
-.activity__content {
-    /*height:100%;*/
-    /*width:60%;*/
-    /*margin:0 auto;*/
-    /*background:rgba(0,0,0,0.8);*/
-
-    /*float:left;*/
-    padding:2em 3em;
-    z-index: 2;
-}
 .activity__content .btn {
     font-size:1.5em;
     margin:0;
 }
-/*.activity__img {*/
-    /*position:absolute;*/
-    /*display:block;*/
-    /*height:100%;*/
-    /*width:40%;*/
-/*}*/
-.activity img {
-    width:100%;
-}
+
 
 /* footer styles */
 .footer__copyright {
@@ -1132,9 +1124,16 @@ h5.heading {font-size:1.25em;}
     /**/
 
     /* ACTIVITY LISTINGS */
-    /*.activity {padding:1em 1em 1em calc(50% - 0em);}*/
-    /*.activity__img {width:50%;height:100%;}*/
-    /*.activity__img img {height:100%;max-height:none;}*/
+    .activity {
+        width:100%;
+        float:none;
+        margin:0 0 1em 0!important;
+        padding:0;
+        min-height:350px;
+    }
+    .activity .activity__content {
+        background: linear-gradient(rgba(0, 0, 0, 0.25) 0%,rgba(104, 117, 97, 1) 75%);
+    }
 
 
 

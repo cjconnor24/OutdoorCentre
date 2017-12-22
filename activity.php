@@ -11,7 +11,7 @@
 </div>
 
 
-    <div id="activity-list" class="container overlap">
+    <div class="container overlap">
 
         <h1 class="heading">Activites</h1>
 
@@ -25,7 +25,7 @@
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            $i = 1;
+
 
             foreach($results as $row){
         ?>
@@ -33,7 +33,7 @@
         <div class="activity <?php echo strtolower($row['name']);?>">
 
 <!--            <div class="activity__img">-->
-<!--                <img src="/img/activities/--><?php //echo str_replace(" ","-",strtolower($row['name']));?><!--.jpg" alt="--><?php //echo $row['name'];?><!--">-->
+                <img src="/img/activities/<?php echo str_replace(" ","-",strtolower($row['name']));?>.jpg" alt="<?php echo $row['name'];?>">
 <!--            </div>-->
 
             <div class="activity__content" data-bg="/img/activities/<?php echo str_replace(" ","-",strtolower($row['name']));?>.jpg"">
@@ -46,11 +46,6 @@
 
         <?php
 
-            $i++; // INCREASE COUNT FOR CREATING ROWS
-
-                if($i%2){
-//                    echo "</div><div class='row'>";
-                }
             } ?>
         </div>
 
