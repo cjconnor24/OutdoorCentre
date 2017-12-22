@@ -391,6 +391,7 @@ nav::after {
 }
 .nohero {
     margin-top:75px;
+    padding-top:60px;
 }
 
 
@@ -673,19 +674,7 @@ footer form button[type=submit]:hover {
 .footer__address {
     line-break: normal;
 }
-.cookies {
-    height:60px;
-    width:100%;
-    display:block;
-    background:rgba(0,0,0,0.75);
-    position:fixed;
-    color:#fff;
-    bottom:0;
-    left:0;
-    z-index:100;
-    text-align:center;
-    box-sizing: border-box;
-}
+
 
 form input[type=text], form input[type=email] {
     border:1px solid #ccc;
@@ -771,19 +760,47 @@ form label {
 .form-group {
     padding:0 0 1em 0;
 }
-
+.cookies {
+    height:50px;
+    width:100%;
+    display:none;
+    background:rgba(0,0,0,0.75);
+    position:fixed;
+    color:#fff;
+    bottom:0;
+    left:0;
+    z-index:100;
+    text-align:center;
+    box-sizing: border-box;
+}
+.cookies a {
+    color:#FFF;
+}
 .cookies__message {
     line-height:60px;
 }
-.cookies__link-agree {
-    display:inline-block;
-    color:green;
+a.cookies__link-agree, a.cookies__link-disagree {
+    /*display:inline-block;*/
+    padding:6px 20px;
+    border-radius:3px;
+    font-size:0.8em;
     text-decoration:none;
+    box-shadow:inset 0px 0px 10px rgba(0,0,0,0.5);
+    transition:0.5s ease;
+}
+.cookies__link-agree {
+    color:#FFF;
+    background:darkgreen;
+}
+.cookies__link-agree:hover {
+    background: #00b200;
 }
 .cookies__link-disagree {
-    color:red;
+    color:#FFF;
+    background:darkred;
+    margin:0 1em 0 0;
 }
-
+.cookies__link-disagree:hover {background:red;}
 /* UTILITY STUFF FOR RE-USE */
 .result {
     transition:0.5s background-color;

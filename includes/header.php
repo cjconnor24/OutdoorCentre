@@ -1,4 +1,5 @@
 <?php
+session_start();
 // ARRAY TO STORE ANY FILES WHICH NEED TO BE OUTPUT BEFORE BODY
 $footerscripts = array();
 
@@ -60,10 +61,10 @@ $footerscripts = array();
 
 </div>
 
-<!--EU COOKIE LAW DISCLAIMER-->
-<!--<div class="cookies">-->
-<!--    <p class="cookies__message">This site used cookies blah blah blah. <a href="#" class="cookies__link-agree">I agree.</a> | <a href="#" class="cookies__link-disagree">I do not agree.</a></p>-->
-<!--</div>-->
+<?php
+// CHECK IF USER HAS AGREED TO EU COOKIES
+include('includes/cookie-include.php');
+?>
 
 <div>
     <header>
