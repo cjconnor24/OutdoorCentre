@@ -495,6 +495,22 @@ video#bgvid {
     float:left;
     align-self: flex-end;
 }
+.map-info-window .d3 {background:#E14545;}
+.map-info-window .d2 {background:#E17645;}
+.map-info-window .d1 {background:#27C664;}
+.route__info__stats [class^=difficulty-] {
+    display:block;
+    height:30px;
+    width:30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius:15px;
+    font-size:0.75em;
+    box-shadow:inset 0px 0px 5px rgba(0,0,0,0.75);
+}
+.route__info__stats .difficulty-3 {background:#E14545;}
+.route__info__stats .difficulty-2 {background:#E17645;}
+.route__info__stats .difficulty-1 {background:#27C664;}
 .route__description {
     white-space: pre-line;
 }
