@@ -52,7 +52,7 @@ function get_weather_json_name($lat, $long){
 
         <?php
         // LOAD IN THE STATIC CONTENT
-        include('includes/static-content/'.str_replace(' ','',strtolower($activityinfo['name'])).'.php');?>
+        include('includes/static-content/'.str_replace(' ','-',strtolower($activityinfo['name'])).'.php');?>
 
 
         <h2 class="heading">Routes</h2>

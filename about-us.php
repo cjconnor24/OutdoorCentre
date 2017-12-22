@@ -51,14 +51,13 @@
 
 </div>
 
-
     <div class="container overlap">
         <h1 class="heading">About Lomond Adventures</h1>
 
         <div class="row">
 
             <div class="col-7">
-                <p><img class="responsive-img-100" src="/img/gallery/gallery-43.jpg" alt="Lomond Outdoor Centre"></p>
+                <p><img class="responsive-img-100" src="/img/gallery/gallery-36.jpg" alt="Lomond Outdoor Centre"></p>
             </div>
 
             <div class="col-5">
@@ -71,33 +70,6 @@
 
         </div>
 
-
-
-
-<!--        <div class="row">-->
-<!--        <div class="col-5">-->
-<!--            <h2 class="heading">ACCOMMODATION</h2>-->
-<!--        <p>Houses 32 young people and four staff in dormitories</p>-->
-<!--        <p>16 beds plus two staff on each landing</p>-->
-<!--        <p>Drying room</p>-->
-<!--        <p>Dining room</p>-->
-<!--        <p>Patio area with BBQ facilities</p>-->
-<!--        <p>Wildflower meadow</p>-->
-<!--        <p>Fenced conservation area with pond</p>-->
-<!--        <p>Download the Balmaha Centre room plan</p>-->
-<!--        </div>-->
-<!---->
-<!--            <div class="col-7">-->
-<!---->
-<!--                <h2 class="heading">WHAT ACTIVITIES ARE AVAILABLE AT Lomond Adventures?</h2>-->
-<!--                <p>The great outdoors of the Brecon Beacons National Park are our backyard in Balmaha-on-Usk. There's the beautiful Monmouthshire & Brecon Canal for walks and cycling on the towpath as well as safe canoeing along its length.</p>-->
-<!--                <p>The Taff Trail passes through Balmaha-on-Usk so there is off-road cycling (it's an old tram road that used to bring limestone down to the canal where you can still see old lime kilns). Mountains in sight of the centre include Tor y Foel and The Allt, or you can climb up to the ridge which encompasses Waun Fach and, further along, Pen y Fan.</p>-->
-<!--                <p>There are plenty of easy walks as well as more strenous hill walks. Activities also on the doorstep include climbing and caving too. Take your pick!</p>-->
-<!--            </div>-->
-<!---->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
     </div>
 
 
