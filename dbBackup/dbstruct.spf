@@ -91,6 +91,7 @@
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>SELECT COUNT(*), YEAR(datetime), MONTH(datetime), DAY(datetime) FROM newsletter GROUP BY YEAR(datetime), MONTH(datetime), DAY(datetime) ORDER BY COUNT(*)</string>
 		<string>SELECT COUNT(*), YEAR(datetime), MONTH(datetime) FROM newsletter GROUP BY YEAR(datetime), MONTH(datetime) ORDER BY COUNT(*)</string>
 		<string>SELECT COUNT(*), YEAR(datetime), MONTH(datetime) FROM newsletter ORDER BY COUNT(*)</string>
 		<string>SELECT COUNT(*), YEAR(created_at), MONTH(created_at) FROM newsletter ORDER BY COUNT(*)</string>
@@ -128,7 +129,6 @@ activity.name activityname FROM enquiry, activity WHERE enquiry.activity = activ
 		<string>SELECT * FROM enquiry, activity WHERE enquiry.activity = activity.id AND enquiry.id NOT IN (select enquiry FROM response)</string>
 		<string>SELECT * FROM enquiry, activity WHERE enquiry.activity = activity.id</string>
 		<string>SELECT * FROM enquiry, activity WHERE enquiry.activity = activity.id AND id NOT IN (SELECT enquiry FROM response)</string>
-		<string>SELECT * FROM enquiry, activity WHERE WHERE enquiry.activity = activity.id AND id NOT IN (SELECT enquiry FROM response)</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>
