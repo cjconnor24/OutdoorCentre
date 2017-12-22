@@ -47,7 +47,7 @@ if(is_ajax()) {
                 if ($count == 1) {
 
                     // IF NOT EXISTING, WRITE TO SESSION
-                    // TODO: ADD AN EXPIRY - SAY 30 MINS?
+                    // TODO: ADD AN EXPIRY - SAY 30 MINS? - WILL DO IF GET TIME
                     if (!isset($_SESSION['user'])) {
                         $_SESSION['user']['email'] = $email;
                         $_SESSION['user']['name'] = $results['name'];
