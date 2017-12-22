@@ -1,13 +1,13 @@
 $(function(){
 
     $('.cookies').delay(1500).fadeIn();
-
+    
     // SET COOKIE TO SAY AGREED
     $('.cookies__link-agree').click(function(e){
 
         e.preventDefault();
 
-        // DO IT IN PHP...NEED A PLUGIN FOR JQUERY
+        // do it in php...need a plugin for jquery
         $.getJSON('/cookie-set.php',function(resp){
 
             if(resp.status=='success'){
