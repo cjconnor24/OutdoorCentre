@@ -17,6 +17,8 @@ if($count > 0) {
 
     <p>Below are the current users signed up to the mailing list.</p>
 
+    <a href="/admin/newsletter-download.php" class="btn"><i class="fa fa-download"></i> Export List as CSV</a>
+
     <table class="table">
         <thead>
         <tr>
