@@ -101,7 +101,7 @@
                 // GET THE ID OF THE ENQUIRY
                 $refno = $conn->lastInsertId();
 
-                // TODO: ACTUALLY MAIL THE CLIENT AND THE ADMINISTRATOR WITH THE INFO
+                // TODO: ACTUALLY MAIL THE CLIENT AND THE ADMINISTRATOR WITH THE INFO - WONT WORK LOCALLY BUT CAN USE mail()
 
                 $response = array(
                     "status"=>"success",

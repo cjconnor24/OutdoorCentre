@@ -2,9 +2,8 @@
 include('includes/config.php');
 include("includes/header.php");
 
-// TODO: HOOK UP CATGOERIES TO DB
-// TODO: CHECK WEATHER - ADD SUNRISE SUNSET
-
+// GET ID FROM URL
+// TODO: PRETTY URLS - GET NAME INSTEAD e.g. /activity/climbing/
 if(isset($_GET['activity'])){
     $activity = $_GET['activity'];
 } else {
@@ -63,10 +62,7 @@ function get_weather_json_name($lat, $long){
         include('includes/dbConnect.php');
 
 
-        //TODO: NOW THAT THIS ALL RESIDES IN DB - DON'T NEED TO CALL JSON
-        // COULD REFACTOR TO CALLL DIRECTLY IN DB TO REDUCE ADDITIONAL STRAIN
-        // ON SERVER BUILDER JSON TWICE FOR THIS PAGE
-
+        //TODO: NOW THAT THIS ALL RESIDES IN DB - DON'T NEED TO CALL JSON COULD REFACTOR TO CALLL DIRECTLY IN DB TO REDUCE ADDITIONAL STRAIN ON SERVER BUILDER JSON TWICE FOR THIS PAGE
         include('includes/config.php');
         $url = $localurl."/routes/get-routes.php?activity=$activity";
         $ch = curl_init();

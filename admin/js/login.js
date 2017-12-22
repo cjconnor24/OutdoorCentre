@@ -1,5 +1,3 @@
-//            TODO: TIDY UP - MOVE JS AND CSS EXTERNAL
-
 $(function(){
 
     $('#login-form').submit(function(e){

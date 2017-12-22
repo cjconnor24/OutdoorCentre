@@ -1,4 +1,4 @@
-/*@import url('reset.css');*/
+
 @import url('/css/weather-icons.min.css');
 
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
@@ -19,7 +19,6 @@ h4{ font-size: 1em;font-family: 'oswald', sans-serif;font-weight:400;}
 h5{ font-size: 0.83em;font-family: 'oswald', sans-serif;font-weight:400;}
 h6{ font-size: 0.75em;font-family: 'oswald', sans-serif;font-weight:400;}
 
-
 p { line-height: 1.5;
     margin: 0 0 1em;    }
 
@@ -32,19 +31,16 @@ column logic
 }
 .row [class*="col-"]:first-child {
     padding-left:0;
-    /*background:#f00;*/
+
 }
 .row [class*="col-"]:last-child{
     padding-right:0;
-    /*background:blue;*/
+
 }
-/*temp for visual debug*/
-/*.row [class*="col-"]:nth-child(even){*/
-/*background:rgba(155,0,155,0.3);*/
-/*}*/
-/*.row [class*="col-"]:nth-child(odd){*/
-/*background:rgba(155,155,0,0.3);*/
-/*}*/
+
+
+
+
 
 .col-1 { width: calc((100%/12)*1) ;}
 .col-2 { width: calc((100%/12)*2) ;}
@@ -71,7 +67,6 @@ orange #e17645
 colors
  */
 
-
 .btn {
     background-color: #333333; /* green */
     border: none;
@@ -85,7 +80,7 @@ colors
     border-radius:5px;
     font-family:oswald,sans-serif;
     transition:background-color 0.2s;
-    /*box-shadow:0px 0px 3px #333;*/
+
 }
 .btn-small {
     font-size:0.7em;
@@ -127,7 +122,7 @@ body {
     overflow: hidden;
 }
 .body {
-    /*padding:2em 0;*/
+
     padding:0 0 2em 0;
     background:#fff; /* counter the green flood from above */
     position:relative;
@@ -262,7 +257,7 @@ nav::after {
     -o-background-size: cover;
     background-size: cover;
     padding:calc(50px + 2em) 0 calc(100px + 2em) 0;
-    /*padding:75px 0 10vh 0;*/
+
     min-height:350px;
     display: flex;
     justify-content: center;
@@ -272,11 +267,9 @@ nav::after {
     z-index:-3;
     transition:all 2s ease;
 }
-/*.hero.about-us {*/
-    /*background:url('/img/site-photos/placeholder-1.jpg') center center no-repeat fixed;*/
-    /*background-size:100%;*/
 
-/*}*/
+
+
 /*TODO: THERE IS AN ISSUE HERE ON IE AND SAFARI*/
 .hero::after {
     content: '';
@@ -299,22 +292,19 @@ nav::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*padding:0;*/
+
 }
 .hero.boat-hire {
     background:url('/img/narrow-hero/gallery-1.jpg') no-repeat center center!important;
     background-size: cover;
 }
-/*.fullscreen .row [class*="col-"]{*/
-/*!*padding-right:0;*!*/
-/*!*background:blue;*!*/
-/*}*/
 
 .container {
     width:80%;
     max-width:1536px;
     margin:0 auto;
 }
+
 /* MAP STYLING CONTACT PAGE*/
 #location-map {
     margin:75px 0 0 0;
@@ -394,7 +384,6 @@ nav::after {
     padding-top:60px;
 }
 
-
 video#bgvid {
 
     top:0;
@@ -406,8 +395,7 @@ video#bgvid {
     width: auto;
     height: auto;
     z-index:-5;
-    /*z-index: -100;*/
-    /*background: url(polina.jpg) no-repeat;*/
+
     background-size: cover;
 }
 
@@ -463,7 +451,6 @@ video#bgvid {
 .route:only-child {width:calc(50% - 0.5em);margin:0!important;}
 
 
-
 .route__weather {
     background:#FFF;
     color:#687561;
@@ -481,9 +468,8 @@ video#bgvid {
 .route__weather__temp i:first-child {color:deepskyblue;}
 .route__weather__temp i:nth-child(2) {color:darkred;}
 .route__weather__sun, .route__weather__temp, .route__weather__icon, .route__weather__description {
-    /*flex:1;*/
-    margin:1em;
 
+    margin:1em;
 
 }
 .route__weather .main-icon {
@@ -520,7 +506,6 @@ video#bgvid {
     margin:0.5em 0 0 0;
 }
 
-/*activity styles*/
 
 .activity {
     background:#687561;
@@ -566,7 +551,6 @@ video#bgvid {
     margin:0;
 }
 
-
 /* footer styles */
 .footer__copyright {
     text-align:center;
@@ -580,17 +564,13 @@ footer {
     background:url(/img/faded-logo@2x.png) bottom center no-repeat fixed;
     background-size: auto;
     position:relative;
-    /*z-index:100;*/
-    /*background-attachment: ;*/
+
 }
 footer h2 {
     font-size:1.2em;
     text-transform: uppercase;
     padding:0 0 0.8em 0;
     text-shadow:1px 1px 5px #666;
-}
-footer form {
-    /*display:inline-block;*/
 }
 footer form label {
     display:none;
@@ -650,7 +630,7 @@ footer form button[type=submit]:hover {
 }
 .footer__socialmenu li a:hover {
     background:#ff9455;
-    /*font-size:1.8em;*/
+
 }
 .footer__socialmenu li a span {
     display:none;
@@ -661,7 +641,7 @@ footer form button[type=submit]:hover {
 }
 .footer__menu li a {
     text-decoration:none;
-    /*text-transform: uppercase;*/
+
     color:#fff;
     font-size:1em;
     transition:color 0.25s ease, padding 0.3s ease;
@@ -674,7 +654,6 @@ footer form button[type=submit]:hover {
 .footer__address {
     line-break: normal;
 }
-
 
 form input[type=text], form input[type=email] {
     border:1px solid #ccc;
@@ -780,7 +759,7 @@ form label {
     line-height:60px;
 }
 a.cookies__link-agree, a.cookies__link-disagree {
-    /*display:inline-block;*/
+
     padding:6px 20px;
     border-radius:3px;
     font-size:0.8em;
@@ -862,7 +841,6 @@ blockquote {
     position:relative;
 }
 
-
 /*IMG UTITILITY*/
 .float-left {float:left;}
 .float-right {float:right;}
@@ -889,7 +867,7 @@ img[class*='responsive'].float-left {margin:0 2em 2em 0;}
 }
 .pricing-table .section__heading {
     font-family:Oswald, Arial, Helvetica, sans-serif;
-    /*font-weight:700;*/
+
     color:#e17645;
     font-size:3em;
     margin:0;
@@ -909,7 +887,7 @@ img[class*='responsive'].float-left {margin:0 2em 2em 0;}
     transition:all 0.5s ease;
 }
 .pricing-table .section:hover {background:rgba(225,118,69,0.2);}
-/*.pricing-table .section:hover .btn {color:#e17645;border:1px solid #e17645;background:#FFF;}*/
+
 .pricing-table .section:nth-child(1){margin:0 1em 0 0 ;}
 .pricing-table .section:nth-child(3){margin:0 0 0 1em ;}
 .pricing-table .section__features li {
@@ -931,9 +909,6 @@ img[class*='responsive'].float-left {margin:0 2em 2em 0;}
     font-size:30px;
     color:#e17645;
 }
-/*.pricing-table .section__features li:nth-child(even) {*/
-    /*background: rgba(200,200,200,0.25);*/
-/*}*/
 
 .pricing-table .section__enquire .btn:hover {
     background:#e17645;
@@ -997,7 +972,7 @@ h5.heading {font-size:1.25em;}
 }
 #overlay {
     position: fixed;
-    /*display: flex;*/
+
     width: 100%;
     height: 100%;
     overflow-y: scroll;
@@ -1154,7 +1129,6 @@ h5.heading {font-size:1.25em;}
     .pricing-table {
         width:100%;
     }
-    /**/
 
     /* ACTIVITY LISTINGS */
     .activity {
@@ -1167,7 +1141,6 @@ h5.heading {font-size:1.25em;}
     .activity .activity__content {
         background: linear-gradient(rgba(0, 0, 0, 0.25) 0%,rgba(104, 117, 97, 1) 75%);
     }
-
 
 
 
@@ -1380,7 +1353,6 @@ h5.heading {font-size:1.25em;}
     }
 }
 @media screen and (max-width:520px) {
-
 
 
 }

@@ -87,8 +87,6 @@ foreach($json['features'] as &$route){
         // IMPORT THE DISTANCE
         $distance = calculateLineString($route['geometry']['coordinates']);
 
-//        $activity = 5;
-
         $insertstatement = "INSERT INTO route (name,coordinates,activity,distance) VALUES (:name,:coordinates,:activity,:distance)";
         $query = $conn->prepare($insertstatement);
         $query->bindParam(":name", $name);
