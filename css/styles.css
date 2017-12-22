@@ -1294,7 +1294,7 @@ h5.heading {font-size:1.25em;}
     }
 
     /* ROUTES  */
-    .route {
+    .route, .route:only-child {
         display:block;
         float:none;
         width:100%;
