@@ -93,8 +93,6 @@ if(isset($footerscripts) && count($footerscripts)>0){
     }
 
 }
-
 ?>
-
 </body>
 </html>
