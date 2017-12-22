@@ -196,7 +196,7 @@ function get_weather_json_name($lat, $long){
                     <table>
                         <tr>
                             <td><strong>Difficulty: </strong></td>
-                            <td><?php echo $props->{'difficulty'}; ?></td>
+                            <td><span class="difficulty-<?php echo $props->{'difficulty'}; ?>"><?php echo $props->{'difficulty'}; ?></span></td>
                         </tr>
                         <tr>
                             <td><strong>Distance: </strong></td>
