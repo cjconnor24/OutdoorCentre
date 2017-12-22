@@ -11,7 +11,7 @@
     <?php include('../includes/favicons.php');?>
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <!--    ADDING JQUERY LOCALLY FOR OFFLINE DEV-->
-    <script src="/js/jqueryhref="/favicons/-3.2.1.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/admin/css/admin-styles.css" media="screen">
 

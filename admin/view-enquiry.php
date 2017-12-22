@@ -148,7 +148,7 @@ CONCAT(users.fname,\" \",users.lname) fullname
                                                             <td><?php echo $results->enquiryemail; ?></td>
                                                     </tr>
                                                     <tr>
-                                                            <td><strong>Received</strong></td></td>
+                                                            <td><strong>Received</strong></td>
                                                             <td><?php echo date('d-m-Y H:m',strtotime($results->received)); ?></td>
                                                     </tr>
                                                     <tr>
@@ -244,33 +244,32 @@ CONCAT(users.fname,\" \",users.lname) fullname
             <p><a href="/admin/enquiries.php" class="btn btn-small"><i class="fa fa-arrow-circle-left"></i> Return to Enquiries</a></p>
 
             <script type="text/javascript">
-                // AJAX TO PASS TO FORM
-                                $(document).ready(function(){
+            $(document).ready(function(){
 
-                                    $("#enquiry-response-form").submit(function(e) {
+                $("#enquiry-response-form").submit(function(e) {
 
-                                        e.preventDefault();
+                    e.preventDefault();
 
-                                        var formData = $(this).serialize();
+                    var formData = $(this).serialize();
 
-                                        var r = confirm("Are you sure you want to send this response?");
-                                        if (r == true) {
+                    var r = confirm("Are you sure you want to send this response?");
+                    if (r === true) {
 
-                                            $.post('view-enquiry.php', formData, function (resp) {
+                        $.post('view-enquiry.php', formData, function (resp) {
 
-                                                if (resp.status == "success") {
-                                                    location.reload();
-                                                } else {
-                                                    alert(resp.message);
-                                                }
+                            if (resp.status == "success") {
+                                location.reload();
+                            } else {
+                                alert(resp.message);
+                            }
 
-                                            }, 'json');
+                        }, 'json');
 
-                                        }
-                                    });
+                    }
+                });
 
 
-                                });
+            });
 
             </script>
 

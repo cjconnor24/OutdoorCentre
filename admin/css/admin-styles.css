@@ -366,10 +366,10 @@ form label {
         display:none;
     }
     #side-bar {
-        width:100px;
+        width:70px;
     }
     #main-body {
-        padding:2em 100px 2em 150px;
+        padding:2em 100px 2em 100px;
     }
     .side-bar__logo { margin:0 auto 1em auto;}
     .side-bar__heading {display:none;}
@@ -390,6 +390,15 @@ form label {
 
     .table {
         font-size:0.8em;
+    }
+    .row {
+        display:block;
+        width:100%;
+        margin:0;
+        padding:0;
+    }
+    .panel {
+        width:100%;
     }
 
 
