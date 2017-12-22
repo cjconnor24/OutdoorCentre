@@ -20,9 +20,9 @@
                 <h2>Facilities</h2>
                 <ul class="footer__menu">
                     <?php
-                    $facilities = array('Boat Hire','Equipment Hire','Life Jacket Hire');
-                    foreach($facilities as $facility){
-                        echo "<li><a href=\"#\">$facility</a></li>";
+                    $facilities = array('Facilities'=>'/facilities.php','Equipment Hire'=>'/equipment-hire.php');
+                    foreach($facilities as $key=>$facility){
+                        echo "<li><a href=\"$facility\">$key</a></li>";
                     }
                     ?>
                 </ul>
@@ -65,61 +65,7 @@
 
                     </form>
 
-                    <script type="text/javascript">
-                    $(document).ready(function(){
-
-                        $('#newsletter-signup-form').submit(function(e){
-
-                            e.preventDefault();
-
-                            $.ajax({
-                                type: "POST",
-                                dataType: 'json',
-                                url: '/newsletter.php',
-                                data: $('#newsletter-signup-form').serialize(),
-                                success: function(resp){
-
-                                    var resultBox = $("#newsletter-signup-form").find(".result");
-
-                                    if(resp.status=="success"){
-
-                                        // ADD THE JSON MESSAGE
-                                        resultBox.find('.message').html(resp.message);
-                                        resultBox
-                                            .removeClass('bg-error')
-                                            .addClass('bg-success');
-
-                                        // CLEAR THE EMAIL ADDRESS
-                                        $("#email").val('');
-
-                                        // SLIDE DOWN AND DISPLAY THE BOX - REMOVE ANY ERRORS
-                                        resultBox.slideDown('slow',function(){
-
-                                            resultBox
-                                                .delay(5000)
-                                                .slideUp('slow');
-
-                                        });
-
-                                    } else {
-
-                                        resultBox.find('.message').html(resp.message);
-
-                                        // ADD CLASS BEFORE SHOTING
-                                        resultBox.addClass('bg-error');
-                                        resultBox.slideDown('fast');
-
-                                    }
-                                }
-                            });
-
-
-                        });
-
-                    });
-
-
-                    </script>
+                    <script type="text/javascript" src="/js/newsletter-signup.js"></script>
 
                 </div>
 
