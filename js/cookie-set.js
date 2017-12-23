@@ -11,6 +11,7 @@ $(function(){
         $.getJSON('/cookie-set.php',function(resp){
 
             if(resp.status=='success'){
+                $('.cookies__message').text('Thank you!');
                 $('#cookie-law').delay(500).fadeOut();
             }
         })
