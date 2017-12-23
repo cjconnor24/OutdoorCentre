@@ -40,11 +40,11 @@ function get_weather_json_name($lat, $long){
     <div class="container nooverlap nohero">
 
         <!-- JS -->
-        <script type="text/javascript">
-            $(document).ready(function($) {
-
-            });
-        </script>
+<!--        <script type="text/javascript">-->
+<!--            $(document).ready(function($) {-->
+<!---->
+<!--            });-->
+<!--        </script>-->
 
         <p><a href="/activity.php" class="btn-back btn btn-small btn-orng"><i class="fa fa-arrow-left"></i> Return to Activity Listings</a></p>
 
@@ -78,6 +78,7 @@ function get_weather_json_name($lat, $long){
         curl_close($ch);
 
         $json = json_decode($result);
+
 
         $i = 1;
 
@@ -141,6 +142,10 @@ function get_weather_json_name($lat, $long){
                     $json = json_decode($result);
 
                 }
+
+            // SET UTC
+            date_default_timezone_set('UTC');
+
 
             //EXTRACT THE WEATHER VARIABLES REQUIRED
             $weather = array();
@@ -234,6 +239,8 @@ function get_weather_json_name($lat, $long){
                 var weatherData = [];
 
                 $.get(apiurl,function(resp){
+
+                    console.log(resp);
 
                     // DO NOTHING AND PASS TO CALLBACK
 
