@@ -1108,6 +1108,12 @@ h5.heading {font-size:1.25em;}
     .col-m-11 { width: calc((100%/12)*11) ;}
     .col-m-12 { width: calc((100%/12)*12) ;}
 
+    .col-m-1::after {
+      content: '';
+      clear:both;
+      display:block;
+    }
+
     /* WEATHER OVERLAY */
     #overlay .weather {
         width:85%;
@@ -1150,6 +1156,11 @@ h5.heading {font-size:1.25em;}
     .activity .activity__content {
         background: linear-gradient(rgba(0, 0, 0, 0.25) 0%,rgba(104, 117, 97, 1) 75%);
     }
+
+    /* FOOTER */
+    /* footer .row [class^=col-] {
+      width:50%;
+    } */
 
 
 
