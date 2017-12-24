@@ -1207,6 +1207,8 @@ h5.heading {font-size:1.25em;}
 
     footer .row [class*="col-"] {
         width:100%;
+        margin:0 0 2em 0;
+        padding:0;
     }
     .nav__submenu {
         display:none;
