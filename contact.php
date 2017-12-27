@@ -20,7 +20,7 @@
 
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-6 col-s-12">
 
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -58,7 +58,7 @@
 
             </div>
 
-            <div class="col-6">
+            <div class="col-6 col-s-12">
 
                 <div class="form-group">
                     <label for="message">Message</label>
@@ -86,5 +86,3 @@
 </div>
 
 <?php include('includes/footer.php'); ?>
-
-

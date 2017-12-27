@@ -38,7 +38,7 @@
                     ?>
                 </ul></div>
 
-            <div class="col-4 col-m-1 "><h2>Social Media</h2>
+            <div class="col-4 col-m-12"><h2>Social Media</h2>
 
                 <ul class="footer__socialmenu">
                     <li><a href="#"><i class="fa fa-linkedin"></i> <span>LinkedIn</span></a></li>
