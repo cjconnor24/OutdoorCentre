@@ -106,42 +106,51 @@ function get_weather_json_name($lat, $long){
             $weatherfilepath = get_weather_json_name($latlong[0], $latlong[1]);
 
             // CHECK IF THERE IS ALREADY A CACHED FILE FOR THIS LOCATION
-            if(file_exists($weatherfilepath))
+            if(file_exists($weatherfilepath)){
 
-                // CHECK THE AGE OF THE FILE
+                // CHECK THE AGE OF THE FILE - IF MORE THAN 30 MINUTES OLD RE-DOWNLOAD
                 $weatherfilemodified = filemtime($weatherfilepath);
                 $timethreshold = (60*30);
                 $timedifference = time() - $weatherfilemodified;
+                $download = ($timedifference > $timethreshold);
 
-                if($timedifference > $timethreshold) {
+            } else {
 
-                    //
-                    $url = "http://api.openweathermap.org/data/2.5/weather?lat=" . $latlong[1] . "&lon=" . $latlong[0] . "&appid=" . $weatherapi."&units=metric";
-                    $ch = curl_init();
+                $download = true;
 
-                    // SETUP THE CURL REQUEST
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-                    // GET THE RESULT
-                    $result = curl_exec($ch);
-                    $json = json_decode($result);
+            }
 
 
-                    // WRITE TO FILE
-                    $fn = $weatherfilepath;
-                    $file = fopen($fn,'w');
-                    fwrite($file,$result);
-                    fclose($file);
-                    curl_close($ch);
+            // DOWNLOAD THE FILE FROM OPENWEATHER
+            if($download) {
 
-                } else {
+                // CONNECT TO THE API AND GET THE WEATHER JSON
+                $url = "http://api.openweathermap.org/data/2.5/weather?lat=" . $latlong[1] . "&lon=" . $latlong[0] . "&appid=" . $weatherapi."&units=metric";
+                $ch = curl_init();
 
-                    $result = file_get_contents($weatherfilepath);
-                    $json = json_decode($result);
+                // SETUP THE CURL REQUEST
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-                }
+                // GET THE RESULT
+                $result = curl_exec($ch);
+                $json = json_decode($result);
+
+
+                // WRITE TO FILE
+                $fn = $weatherfilepath;
+                $file = fopen($fn,'w');
+                fwrite($file,$result);
+                fclose($file);
+                curl_close($ch);
+
+            } else {
+
+                $result = file_get_contents($weatherfilepath);
+                $json = json_decode($result);
+
+            }
 
             // SET UTC
             date_default_timezone_set('UTC');
