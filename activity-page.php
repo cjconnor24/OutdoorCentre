@@ -4,7 +4,7 @@ include("includes/header.php");
 
 // GET ID FROM URL
 // TODO: PRETTY URLS - GET NAME INSTEAD e.g. /activity/climbing/
-if(isset($_GET['activity'])){
+if (isset($_GET['activity'])) {
     $activity = $_GET['activity'];
 } else {
     $activity = 5;
@@ -13,24 +13,22 @@ if(isset($_GET['activity'])){
 include('includes/dbConnect.php');
 
 $query = $conn->prepare("SELECT id, name, description FROM activity WHERE id = :activityid");
-$query->bindParam(":activityid",$activity);
+$query->bindParam(":activityid", $activity);
 $query->execute();
 $activityinfo = $query->fetch(PDO::FETCH_ASSOC);
 
 // FUNCTION FOR GETTING CACHED WEATHER FILE NAME
-function get_weather_json_name($lat, $long){
-
-    $nlat = round($lat,2);
-    $nlong = round($long,2);
+function get_weather_json_name($lat, $long)
+{
+    $nlat = round($lat, 2);
+    $nlong = round($long, 2);
 
     $fn = $nlat."_".$nlong;
-    $fn = str_replace("-","",$fn);
-    $fn = str_replace(".","-",$fn);
+    $fn = str_replace("-", "", $fn);
+    $fn = str_replace(".", "-", $fn);
 
     $path = 'cache/weather/';
     return $path.$fn.".json";
-
-
 }
 
 ?>
@@ -51,7 +49,7 @@ function get_weather_json_name($lat, $long){
 
         <?php
         // LOAD IN THE STATIC CONTENT
-        include('includes/static-content/'.str_replace(' ','-',strtolower($activityinfo['name'])).'.php');?>
+        include('includes/static-content/'.str_replace(' ', '-', strtolower($activityinfo['name'])).'.php');?>
 
 
         <h2 class="heading">Routes</h2>
@@ -83,20 +81,18 @@ function get_weather_json_name($lat, $long){
         $i = 1;
 
         // LOOP THROUGH THE FEATURES
-        foreach($json->{'features'} as $walk) {
+        foreach ($json->{'features'} as $walk) {
 
         // MAKE SURE LINE STRING AND NOT POINT
-        if ($walk->{'geometry'}->{'type'} == "LineString") {
+            if ($walk->{'geometry'}->{'type'} == "LineString") {
 
         // GET PROPERTIES
-        $props = $walk->{'properties'};
+                $props = $walk->{'properties'};
 
-        // GET AVERAGE LATLONG ON THE ROUTE FOR THE WEATHER
-        $totalplots = count(($walk->{'geometry'}->{'coordinates'}));
-        $middle = floor($totalplots/2);
-        $latlong = $walk->{'geometry'}->{'coordinates'}[$middle];
-
-        ?>
+                // GET AVERAGE LATLONG ON THE ROUTE FOR THE WEATHER
+                $totalplots = count(($walk->{'geometry'}->{'coordinates'}));
+                $middle = floor($totalplots/2);
+                $latlong = $walk->{'geometry'}->{'coordinates'}[$middle]; ?>
 
         <div class="route" id="route-<?php echo $props->{'routeid'}; ?>">
 
@@ -105,90 +101,83 @@ function get_weather_json_name($lat, $long){
             // GET WEATHER AND OUTPUT
             $weatherfilepath = get_weather_json_name($latlong[0], $latlong[1]);
 
-            // CHECK IF THERE IS ALREADY A CACHED FILE FOR THIS LOCATION
-            if(file_exists($weatherfilepath)){
+                // CHECK IF THERE IS ALREADY A CACHED FILE FOR THIS LOCATION
+                if (file_exists($weatherfilepath)) {
 
                 // CHECK THE AGE OF THE FILE - IF MORE THAN 30 MINUTES OLD RE-DOWNLOAD
-                $weatherfilemodified = filemtime($weatherfilepath);
-                $timethreshold = (60*30);
-                $timedifference = time() - $weatherfilemodified;
-                $download = ($timedifference > $timethreshold);
-
-            } else {
-
-                $download = true;
-
-            }
+                    $weatherfilemodified = filemtime($weatherfilepath);
+                    $timethreshold = (60*30);
+                    $timedifference = time() - $weatherfilemodified;
+                    $download = ($timedifference > $timethreshold);
+                } else {
+                    $download = true;
+                }
 
 
-            // DOWNLOAD THE FILE FROM OPENWEATHER
-            if($download) {
+                // DOWNLOAD THE FILE FROM OPENWEATHER
+                if ($download) {
 
                 // CONNECT TO THE API AND GET THE WEATHER JSON
-                $url = "http://api.openweathermap.org/data/2.5/weather?lat=" . $latlong[1] . "&lon=" . $latlong[0] . "&appid=" . $weatherapi."&units=metric";
-                $ch = curl_init();
+                    $url = "http://api.openweathermap.org/data/2.5/weather?lat=" . $latlong[1] . "&lon=" . $latlong[0] . "&appid=" . $weatherapi."&units=metric";
+                    $ch = curl_init();
 
-                // SETUP THE CURL REQUEST
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // SETUP THE CURL REQUEST
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-                // GET THE RESULT
-                $result = curl_exec($ch);
-                $json = json_decode($result);
-
-
-                // WRITE TO FILE
-                $fn = $weatherfilepath;
-                $file = fopen($fn,'w');
-                fwrite($file,$result);
-                fclose($file);
-                curl_close($ch);
-
-            } else {
-
-                $result = file_get_contents($weatherfilepath);
-                $json = json_decode($result);
-
-            }
-
-            // SET UTC
-            date_default_timezone_set('UTC');
+                    // GET THE RESULT
+                    $result = curl_exec($ch);
+                    $json = json_decode($result);
 
 
-            //EXTRACT THE WEATHER VARIABLES REQUIRED
-            $weather = array();
-            $weather['id'] = intval($json->weather[0]->id);
-            $weather['hi'] = $json->main->temp_max;
-            $weather['low'] = $json->main->temp_min;
-            $weather['sunrise'] = $json->sys->sunrise;
-            $weather['sunset'] = $json->sys->sunset;
-            $weather['icon'] = $json->weather[0]->icon;
-            $weather['description'] = $json->weather[0]->description;
+                    // WRITE TO FILE
+                    $fn = $weatherfilepath;
+                    $file = fopen($fn, 'w');
+                    fwrite($file, $result);
+                    fclose($file);
+                    curl_close($ch);
+                } else {
+                    $result = file_get_contents($weatherfilepath);
+                    $json = json_decode($result);
+                }
 
-            // IMPORT ARRAY FOR WEATHER ICON CODES
-            include('includes/weather.php');
-            $weathericon = (!($weather['id'] > 699 && $weather['id'] < 800) && !($weather['id'] > 899 && $weather['id']< 1000) ? 'day-' : '').$weathericons[$weather['id']]['icon'];
-            ?>
+                // SET UTC
+                date_default_timezone_set('UTC');
+
+
+                //EXTRACT THE WEATHER VARIABLES REQUIRED
+                $weather = array();
+                $weather['id'] = intval($json->weather[0]->id);
+                $weather['hi'] = $json->main->temp_max;
+                $weather['low'] = $json->main->temp_min;
+                $weather['sunrise'] = $json->sys->sunrise;
+                $weather['sunset'] = $json->sys->sunset;
+                $weather['icon'] = $json->weather[0]->icon;
+                $weather['description'] = $json->weather[0]->description;
+
+                // IMPORT ARRAY FOR WEATHER ICON CODES
+                include('includes/weather.php');
+                $weathericon = (!($weather['id'] > 699 && $weather['id'] < 800) && !($weather['id'] > 899 && $weather['id']< 1000) ? 'day-' : '').$weathericons[$weather['id']]['icon']; ?>
             <div class="route__weather">
                 <div class="route_weather_container">
                     <h3>Current Weather</h3>
 
                 <div class="route__weather__sun">
-                    <p> <i class="wi wi-sunrise"></i> <?php echo date('H:m',$weather['sunrise']);?> <i class="wi wi-sunset"></i> <?php echo date('H:m',$weather['sunset']);?></p>
+                    <p> <i class="wi wi-sunrise"></i> <?php echo date('H:m', $weather['sunrise']); ?> <i class="wi wi-sunset"></i> <?php echo date('H:m', $weather['sunset']); ?></p>
                 </div>
 
                 <div class="route__weather__icon">
-                    <i class="main-icon wi wi-<?php echo $weathericon;?>"></i>
+                    <i class="main-icon wi wi-<?php echo $weathericon; ?>"></i>
                 </div>
 
 
                     <div class="route__weather__description">
-                        <p><?php echo ucwords($weather['description']);?></p>
+                        <p><?php echo ucwords($weather['description']); ?></p>
                     </div>
 
                 <div class="route__weather__temp">
-                    <p><i class="wi wi-thermometer-exterior"></i> Low <?php echo $weather['low'];?>&#8451;  <i class="wi wi-thermometer"></i> High <?php echo $weather['hi'];?>&#8451;</p>
+                    <p><i class="wi wi-thermometer-exterior"></i> Low <?php echo $weather['low']; ?>&#8451;  <i class="wi wi-thermometer"></i> High <?php echo $weather['hi']; ?>&#8451;</p>
 
                 </div>
                 </div>
@@ -210,12 +199,12 @@ function get_weather_json_name($lat, $long){
                         </tr>
                         <tr>
                             <td><strong>Distance: </strong></td>
-                            <td><?php echo round($props->{'distance'},2); ?>km</td>
+                            <td><?php echo round($props->{'distance'}, 2); ?>km</td>
                         </tr>
                     </table>
                 </div>
 
-                <a href="#" data-long="<?php echo $latlong[0];?>" data-lat="<?php echo $latlong[1];?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Five Day Forecast</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a>
+                <a href="#" data-long="<?php echo $latlong[0]; ?>" data-lat="<?php echo $latlong[1]; ?>" class="btn btn-orng check-weather"><i class="fa fa-cloud"></i> Five Day Forecast</a> <a href="#" class="btn btn-orng"><i class="fa fa-map-marker"></i> View Route on Map</a>
 
             </div>
 
@@ -224,13 +213,12 @@ function get_weather_json_name($lat, $long){
 
         <?php
 
-            if($i%2==0){
+            if ($i%2==0) {
                 echo "</div><div class='row route-row'>";
             }
 
-            $i++; // INCREMENT COUNTER SO I CAN IMPLEMENT THE ROWS
-
-        } // END IF
+                $i++; // INCREMENT COUNTER SO I CAN IMPLEMENT THE ROWS
+            } // END IF
         } // END LOOP
         ?>
         </div>
