@@ -1,6 +1,9 @@
 # LOMOND ADVENTURES
 This project was developed in HTML, CSS, PHP and MySQL as part of a University module in web design.
 
+## Results
+The project was a pass at *88%*
+
 ## INSTALLATION
 
 To install, please place all files at the route of the web server.
