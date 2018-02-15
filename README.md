@@ -27,3 +27,9 @@ Lastly, in the includes/config.php file, please enter the URL of the website as 
 $localurl = "http://outdoor.localhost/";
 $weatherapi = "";
 ```
+
+## YouTube Walkthrough
+Below is a youtube walkthrough of the desktop and mobile interfaces
+
+[![Outdoor Centre walkthrough](https://raw.githubusercontent.com/cjconnor24/OutdoorCentre/master/img/youtube-walkthrough.png)](https://www.youtube.com/watch?v=4bC4KbD4sOU "Outdoor Centre Walkthrough")
+
